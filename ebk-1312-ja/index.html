@@ -41,6 +41,41 @@
     content="https://img1.wsimg.com/isteam/ip/7a346dac-4ced-49dc-9dec-17a0a9db821a/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-12-10%20214324.png" />
   <meta name="twitter:image:alt" content="智動矩陣" />
   <meta name="theme-color" content="#dc143c" />
+  <style>
+    #paymentModal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        z-index: 1000;
+    }
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    button {
+        margin-top: 10px;
+        padding: 10px 15px;
+        background-color: rgb(220, 20, 60);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: rgb(144, 9, 36);
+    }
+  </style>
   <style data-inline-fonts>
     /* latin */
     @font-face {
@@ -4238,20 +4273,25 @@
                         data-typography="HeadingGamma"
                         class="x-el x-el-h3 c1-1 c1-2 c1-1i c1-1j c1-70 c1-1z c1-1y c1-1l c1-1m c1-b c1-2l c1-5q c1-1p c1-5r c1-5s c1-5t c1-5u">
                         馬上購買</h3>
-                      <div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-bv c1-e0 c1-b c1-c c1-d c1-e c1-f c1-g">
-                        <div data-ux="PriceMajor" data-aid="PAYMENT_PRICE_RENDERED" data-typography="BodyBeta"
-                          class="x-el x-el-div c1-1 c1-2 c1-1i c1-1j c1-1k c1-1l c1-1m c1-1n c1-26 c1-b c1-bq c1-5z c1-1p c1-60 c1-61 c1-62 c1-63">
-                          國內(台灣)帳戶請使用ECPay</div>
-                      </div>
                       <div>
-                        <p style="margin:0"><span style="color:red;">請務必填妥電子信箱以接收購買商品</span></p><br>
+                        <p style="margin:0"><span style="color:rgb(160, 58, 58);">國內(台灣)帳戶請使用ECPay</span></p><br>
                       </div>
                         <!-- ECPay button -->
-                      <div style="margin-bottom: 1rem;">
-                        <a href="https://p.ecpay.com.tw/80CBEFA">
-                          <img src="https://payment.ecpay.com.tw/Content/themes/WebStyle20170517/images/ecgo.png" alt="" />
+                        <a href="#" id="ecpayButton">
+                          <img src="https://payment.ecpay.com.tw/Content/themes/WebStyle20170517/images/ecgo.png" alt="ECPay 付款">
                         </a>
-                      </div>
+                        <div id="overlay"></div>
+                        <div id="paymentModal">
+                          <h3>單手ICE & AIRCHAIR 升天電子書</h3>
+                          <select id="paymentOption">
+                            <option value="97E21D5">街頭版 - NT$ 179 TWD</option>
+                            <option value="27654B8">強化版 - NT$ 249 TWD</option>
+                            <option value="28B1D5C">師範版 - NT$ 299 TWD</option>
+                          </select>
+                          <br>
+                          <button id="confirmPayment">確認付款</button>
+                          <button id="closeModal">取消</button>
+                        </div>
                       <!-- PayPal button -->
                       <div>
                         <style>.pp-SRNADRN8U6FFQ{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
@@ -4476,6 +4516,25 @@
       </div>
     </div>
   </div>
+  <script>
+    document.getElementById("ecpayButton").addEventListener("click", function(event) {
+        event.preventDefault();
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("paymentModal").style.display = "block";
+    });
+
+    document.getElementById("closeModal").addEventListener("click", function() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("paymentModal").style.display = "none";
+    });
+
+    document.getElementById("confirmPayment").addEventListener("click", function() {
+        var selectedValue = document.getElementById("paymentOption").value;
+        var paymentURL = "https://p.ecpay.com.tw/" + selectedValue;
+
+        window.location.href = paymentURL;
+    });
+  </script>
 </body>
 
 </html>
