@@ -3669,9 +3669,17 @@
       transition: background 0.3s;
     }
 
-    /* 滑鼠懸停時變色 */
+    /* 滑鼠懸停時變色+滑動 */
     .accordion-header:hover {
       background: #f5f5f5;
+      animation: slide-animation 0.8s ease-in-out;
+    }
+    
+    /* 定義滑動動畫 */
+    @keyframes slide-animation {
+      0% { transform: translateX(0); }
+      68% { transform: translateX(10px); }
+      100% { transform: translateX(0px); }
     }
 
     /* 箭頭圖示 */
