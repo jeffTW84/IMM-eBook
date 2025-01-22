@@ -30,50 +30,6 @@
     }
   </style>
   <style>
-    .product {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      width: 300px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-    }
-
-    .product-card h3 {
-      margin: 0.5rem 0;
-      font-size: 1.5rem;
-      font-family: 'Raleway', sans-serif;
-    }
-
-    .product-card p {
-      font-size: 1rem;
-      opacity: 0.8;
-      font-family: 'Raleway', sans-serif;
-    }
-  </style>
-  <style>
     .fixed-banner {
       position: fixed;
       top: 0;
@@ -140,78 +96,6 @@
       50% {
         transform: translate(10px, 10px);
       }
-    }
-  </style>
-  <style>
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      color: #ccc;
-      background-color: #000;
-      padding: 2rem;
-    }
-
-    .bookshelf {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .book {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 10px;
-      overflow: hidden;
-      width: 300px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .book:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
-    }
-
-    .book img {
-      width: 100%;
-      height: auto;
-    }
-
-    .book-info {
-      padding: 1rem;
-      text-align: left;
-    }
-
-    .book-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #ff4b5c;
-      margin-bottom: 0.5rem;
-    }
-
-    .book-meta {
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .book-meta span {
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .book-link {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      color: #fff;
-      background: crimson;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    .book-link:hover {
-      background: #e63946;
     }
   </style>
   <style>
@@ -328,80 +212,6 @@
       line-height: 1.6; 
       color: rgb(197, 197, 197);
       animation: fadeInUp 0.8s ease forwards;
-    }
-  </style>
-  <style>
-    .feedback-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      background: #000;
-    }
-
-    .feedback-card {
-      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      padding: 1rem;
-      color: #fff;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .feedback-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .feedback-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-      filter: grayscale(50%);
-      transition: filter 0.3s ease;
-    }
-
-    .feedback-card:hover img {
-      filter: grayscale(0%);
-    }
-
-    .feedback-name {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin: 1rem 0;
-      color: #ff6b6b;
-      text-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
-    }
-
-    .feedback-content {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #ddd;
-      margin: 0.5rem 0;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      padding: 0.5rem;
-      border-radius: 5px;
-    }
-
-    .feedback-card {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   </style>
   <style>
@@ -577,46 +387,8 @@
   </div>
 
   <section class="section">
-    <h2>電子書 / Ebook</h2>
-    <div class="bookshelf">
-      
-      <div class="book">
-        <a href="https://ebook.intellimotionmatrix.com/ebk-1312-ja/preview.html">
-          <img src="https://jeffTW84.github.io/IMM-eBook/assets/p00.png" alt="Book 1 Cover">
-        </a>
-        <div class="book-info">
-          <div class="book-title">單手ICE & AIRCHAIR升天</div>
-          <div class="book-meta">
-            <span>上架日期：2025/1/23</span>
-            <span>作 者：柯玠甫、劉宗翰、施孟毅</span>
-            <span>排 版：SRMonster</span>
-            <span>語 言：繁體中文</span>
-            <span>版 本：街頭版 / 強化版 / 師範版</span>
-            <span>適合對象：專注於動作訓練的舞者 / 兼顧動作與肌力強化的舞者 / 希望全面理解技術與原理的舞者</span>
-            <span>頁 數：10 / 21 / 30頁</span>
-            <span>檔案大小：3.45 / 5.66 / 6.21MB</span>
-          </div>
-          <a href="https://ebook.intellimotionmatrix.com/ebk-1312-ja/preview.html" class="book-link">閱讀更多</a>
-        </div>
-      </div>
-    
-      <div class="book">
-        <img src="https://jeffTW84.github.io/IMM-eBook/assets/p00_E.png" alt="Book 2 Cover">
-        <div class="book-info">
-          <div class="book-title">ONE-HAND TURTLE & AIRCHAIR</div>
-          <div class="book-meta">
-            <span>Release Date：(Coming soon)</span>
-            <span>Author：柯玠甫、劉宗翰、施孟毅</span>
-            <span>Layout Design：SRMonster</span>
-            <span>Language：English</span>
-            <span>Versions: Street Edition / Enhanced Edition / Master Edition</span>
-            <span>Suitable for: Dancers focused on movement training / Dancers aiming to enhance both movement and strength / Dancers seeking a comprehensive understanding of techniques and principles</span>
-            <span>Page Count：—</span>
-            <span>File Size：—</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2>電子書 — 單手ICE & AIRCHAIR升天</h2>
+
   </section>
 
   <section class="section">

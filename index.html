@@ -30,50 +30,6 @@
     }
   </style>
   <style>
-    .product {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      width: 300px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-    }
-
-    .product-card h3 {
-      margin: 0.5rem 0;
-      font-size: 1.5rem;
-      font-family: 'Raleway', sans-serif;
-    }
-
-    .product-card p {
-      font-size: 1rem;
-      opacity: 0.8;
-      font-family: 'Raleway', sans-serif;
-    }
-  </style>
-  <style>
     .fixed-banner {
       position: fixed;
       top: 0;
@@ -215,69 +171,6 @@
     }
   </style>
   <style>
-    /* 定義 accordion 基本樣式 */
-    .accordion {
-      width: 100%;
-      max-width: 800px;
-      margin: auto;
-      border-top: 1px solid rgb(102, 4, 23);
-    }
-
-    .accordion-item {
-      border-bottom: 1px solid rgb(102, 4, 23);
-    }
-
-    .accordion-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      font-size: 18px;
-      cursor: pointer;
-      color: rgb(197, 197, 197);
-      background: rgb(0, 0, 0);
-      transition: background 0.3s;
-    }
-
-    .accordion-header:hover {
-      background: #6c6c6c;
-      animation: slide-animation 0.8s ease-in-out;
-    }
-
-    @keyframes slide-animation {
-      0% { transform: translateX(0); }
-      68% { transform: translateX(10px); }
-      100% { transform: translateX(0px); }
-    }
-    
-    .arrow {
-      width: 12px;
-      height: 12px;
-      border: solid rgb(102, 4, 23);
-      border-width: 0 2px 2px 0;
-      display: inline-block;
-      padding: 3px;
-      transform: rotate(45deg);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .accordion-header.active .arrow {
-      transform: rotate(225deg);
-    }
-
-    .accordion-content {
-      display: none;
-      padding: 15px;
-      background: rgb(0, 0, 0);
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .accordion-header.active {
-      background: #6c6c6c;
-    }
-  </style>
-  <style>
     .normal-content {
       font-size: 1.2rem;
       line-height: 1.8;
@@ -328,80 +221,6 @@
       line-height: 1.6; 
       color: rgb(197, 197, 197);
       animation: fadeInUp 0.8s ease forwards;
-    }
-  </style>
-  <style>
-    .feedback-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      background: #000;
-    }
-
-    .feedback-card {
-      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      padding: 1rem;
-      color: #fff;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .feedback-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .feedback-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-      filter: grayscale(50%);
-      transition: filter 0.3s ease;
-    }
-
-    .feedback-card:hover img {
-      filter: grayscale(0%);
-    }
-
-    .feedback-name {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin: 1rem 0;
-      color: #ff6b6b;
-      text-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
-    }
-
-    .feedback-content {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #ddd;
-      margin: 0.5rem 0;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      padding: 0.5rem;
-      border-radius: 5px;
-    }
-
-    .feedback-card {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   </style>
   <style>
@@ -671,60 +490,6 @@
       }
 
       lastScrollTop = scrollTop;
-    });
-  </script>
-  <script>
-    function toggleAccordion(header) {
-      const content = header.nextElementSibling;
-      const isActive = header.classList.contains("active");
-
-      // 關閉所有其他的 accordion
-      document.querySelectorAll(".accordion-header").forEach((item) => {
-        item.classList.remove("active");
-        item.nextElementSibling.style.display = "none";
-      });
-
-      // 如果當前未激活，則展開
-      if (!isActive) {
-        header.classList.add("active");
-        content.style.display = "block";
-
-        // 計算滑動位置，距離螢幕頂部 80px
-        const offset = 80; // 距螢幕頂部的偏移量
-        const top = header.getBoundingClientRect().top + window.scrollY - offset;
-
-        // 滑動到指定位置
-        window.scrollTo({
-          top: top,
-          behavior: "smooth",
-        });
-      }
-    }
-  </script>
-  <script>
-    const images = document.querySelectorAll('.gallery img');
-    const dots = document.querySelectorAll('.dots span');
-    let currentIndex = 0;
-    let interval = setInterval(switchImage, 3000);
-
-    function switchImage() {
-      images[currentIndex].classList.remove('active');
-      dots[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.add('active');
-      dots[currentIndex].classList.add('active');
-    }
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        clearInterval(interval);
-        images[currentIndex].classList.remove('active');
-        dots[currentIndex].classList.remove('active');
-        currentIndex = index;
-        images[currentIndex].classList.add('active');
-        dots[currentIndex].classList.add('active');
-        interval = setInterval(switchImage, 3000);
-      });
     });
   </script>
 </body>
