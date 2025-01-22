@@ -100,7 +100,7 @@
   </style>
   <style>
     body {
-      font-family: 'Noto Sans TC', sans-serif;
+      font-family: Raleway, 'Noto Sans TC', sans-serif;
       color: #ccc;
       background-color: #000;
       padding: 2rem;
@@ -490,6 +490,33 @@
       }
 
       lastScrollTop = scrollTop;
+    });
+  </script>
+
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    const dots = document.querySelectorAll('.dots span');
+    let currentIndex = 0;
+    let interval = setInterval(switchImage, 3000);
+
+    function switchImage() {
+      images[currentIndex].classList.remove('active');
+      dots[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+      dots[currentIndex].classList.add('active');
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        clearInterval(interval);
+        images[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+        currentIndex = index;
+        images[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+        interval = setInterval(switchImage, 3000);
+      });
     });
   </script>
 </body>
