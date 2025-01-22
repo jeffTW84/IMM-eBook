@@ -162,71 +162,82 @@
     }
   </style>
   <style>
-    .book-intro {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.5rem;
-      background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    body {
+      font-family: Raleway, "Noto Sans TC", sans-serif;;
     }
 
-    .book-intro:hover {
-      transform: scale(1.05);
-      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
-    }
-
-    .book-cover {
-      max-width: 150px;
+    .book-container {
+      background: #111;
+      color: #ccc;
+      padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s ease;
-    }
-
-    .book-cover:hover {
-      transform: rotate(-5deg) scale(1.1);
-    }
-
-    .book-details {
-      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .book-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
-      color: #ff6b6b;
-      margin-bottom: 0.5rem;
+      color: crimson;
+      margin-bottom: 2rem;
     }
 
-    .book-author {
+    .book-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .book-cover {
+      max-width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .book-info {
+      flex: 1;
       font-size: 1rem;
-      color: #ccc;
-      margin-bottom: 1rem;
+      line-height: 1.8;
+      text-align: left;
     }
-
-    .book-description {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #ddd;
-      margin-bottom: 1.5rem;
+  </style>
+  <style>
+    #paymentModal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        z-index: 1000;
     }
-
-    .book-link {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: crimson;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
-      transition: background 0.3s ease, transform 0.3s ease;
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
     }
-
-    .book-link:hover {
-      background: #e63946;
-      transform: scale(1.1);
+    button {
+        margin-top: 10px;
+        padding: 10px 15px;
+        background-color: rgb(220, 20, 60);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: rgb(144, 9, 36);
     }
   </style>
   <style>
@@ -455,17 +466,186 @@
   </div>
 
   <section class="section">
-    <h2>電子書 — 單手ICE & AIRCHAIR升天</h2>
-    <div class="book-intro">
-      <img src="https://jeffTW84.github.io/IMM-eBook/assets/p00.png" alt="書本封面" class="book-cover">
-      <div class="book-details">
-        <h2 class="book-title">霹靂舞進階動作分析與訓練</h2>
-        <p class="book-author">作者：張三</p>
-        <p class="book-description">這本書介紹了現代科技如何影響我們的生活，並探討了未來的可能性，是一本極具啟發性的作品。</p>
-        <a href="#" class="book-link">閱讀更多</a>
+    <h2>單手 ICE & AIRCHAIR 升天</h2>
+    <div class="book-container">
+      <div class="book-content">
+        <img src="https://jeffTW84.github.io/IMM-eBook/assets/p00.png" alt="書本封面" class="book-cover">
+        <div class="book-info">
+          <p>上架日期：2025/1/23</p>
+          <p>作者：柯玠甫、劉宗翰、施孟毅</p>
+          <p>排版：SRMonster</p>
+          <p>語言：繁體中文</p>
+          <p>版本：街頭版 / 強化版 / 師範版</p>
+          <p>適合對象：專注於動作訓練的舞者 / 兼顧動作與肌力強化的舞者 / 希望全面理解技術與原理的舞者</p>
+          <p>頁數：10 / 21 / 30頁</p>
+          <p>檔案大小：3.45 / 5.66 / 6.21MB</p>
+          
+          <a href="#" id="ecpayButton">
+            <img src="https://payment.ecpay.com.tw/Content/themes/WebStyle20170517/images/ecgo.png" alt="ECPay 付款">
+          </a>
+          <div id="overlay"></div>
+          <div id="paymentModal">
+            <h3>單手ICE & AIRCHAIR 升天電子書</h3>
+            <select id="paymentOption">
+              <option value="8759026">街頭版 - NT$ 179 TWD</option>
+              <option value="03D4B12">強化版 - NT$ 249 TWD</option>
+              <option value="67B200E">師範版 - NT$ 299 TWD</option>
+            </select>
+            <br>
+            <button id="confirmPayment">確認付款</button>
+            <button id="closeModal">取消</button>
+          </div>
+          <div>
+            <style>.pp-SRNADRN8U6FFQ{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+              <form action="https://www.paypal.com/ncp/payment/SRNADRN8U6FFQ" method="post" target="_top" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+                <input class="pp-SRNADRN8U6FFQ" type="submit" value="立即購" />
+                <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
+                <section> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+              </form>
+          </div>
+        </div>
       </div>
     </div>
     
+    
+  </section>
+
+  <section class="section">
+    <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>電子書介紹</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="accordion-content">
+            <p class="normal-content">我們提供單次免費體驗，讓您深入了解商品的功能與效果。體驗過程約 30 分鐘，包括功能介紹、操作示範、注意事項提醒，並提供您實際上機體驗。您可以透過這次體驗充分了解商品，之後可選擇月租服務，或直接購買擁有屬於自己的專業輔助訓練裝置。歡迎隨時預約！</p><br>
+            
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>電子書特點</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="accordion-content">
+            <p class="normal-content">我們的月租服務每月費用為 2200 元，租期自機台送達當日起計算，為期 30 天。若您選擇租用六個月以上，可再享 85 折優惠價格。您可以選擇自行取貨，或支付運費由我們配送到府，使用更便利。另外機台會有正常損耗，我們僅會對意外損壞收取合理賠償費用，讓您無憂體驗、專注提升技術。</p><br>
+            <p class="box-content">目前機台數量有限，但我們提供先預約月租服務，優先為您保留機台。我們正加緊生產中，更多機台即將上線，敬請關注哦。</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>選擇原因</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="accordion-content">
+            
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Draco特點</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="accordion-content">
+            <div class="set-container">
+              <div class="set-Grid">
+                <div class="set-no">01</div>
+                <div>
+                  <h3 class="set-title">自動軌道設計</h3>
+                  <p class="set-content">固定進動軌道，包含公轉及自轉。
+                </div>
+              </div>
+              <div class="set-Grid">
+                <div class="set-no">02</div>
+                <div>
+                  <h3 class="set-title">可調設計</h3>
+                  <p class="set-content">高度10段、半徑4段可調。</p>
+                </div>
+              </div>
+              <div class="set-Grid">
+                <div class="set-no">03</div>
+                <div>
+                  <h3 class="set-title">穩固吸附</h3>
+                  <p class="set-content">42個吸盤。</p>
+                </div>
+              </div>
+              <div class="set-Grid">
+                <div class="set-no">04</div>
+                <div>
+                  <h3 class="set-title">快速安裝</h3>
+                  <p class="set-content">不須拆天花板及地板，平滑地板直接吸附上去。</p>
+                </div>
+              </div>
+              <div class="set-Grid">
+                <div class="set-no">05</div>
+                <div>
+                  <h3 class="set-title">軟墊設計</h3>
+                  <p class="set-content">轉盤帶軟墊，人體舒適。</p>
+                </div>
+              </div>
+              <div class="set-Grid">
+                <div class="set-no">06</div>
+                <div>
+                  <h3 class="set-title">適合多種身材</h3>
+                  <p class="set-content">腰帶可調。</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>版本信息</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="accordion-content">
+            <div class="set-container">
+              <div class="set-Grid">
+                <div class="set-no">01</div>
+                <div>
+                  <h3 class="set-title">街頭版</h3>
+                  <p class="set-content">此版本提供 20 項專項訓練，您可以按部就班嘗試每個階段的動作，在適應後進入下一階段。相信您可以在短時間內上手，並巧妙應用在比賽及表演中。
+                </div>
+              </div>
+              <div class="set-Grid">
+                <div class="set-no">02</div>
+                <div>
+                  <h3 class="set-title">強化版</h3>
+                  <p class="set-content">除了 20 項專項訓練，此版本附加上 6 項熱身動作及 18 項肌力訓練。若您有接觸過自由重量訓練，強化版的效益將在您身上發揮最大化。在一定的訓練後，相信您可以更穩定完成高質量的動作。</p>
+                </div>
+              </div>
+              <div class="set-Grid">
+                <div class="set-no">03</div>
+                <div>
+                  <h3 class="set-title">師範版</h3>
+                  <p class="set-content">此版本完整含括 3D 建模的力學及解剖學分析、運動科學觀點以及所有訓練項目。尤其在運動科學提到的 SSC 及力速曲線中，我們提及這兩種機制如何協同作用，是以往鮮少被提出的觀點。感謝您加入我們對霹靂舞科學化的探索旅程，相信您會對這兩項升天動作有新的認識。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>電子書試讀</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="accordion-content">
+            
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>使用說明</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="accordion-content">
+            <p class="box-content">您可以按照書中訓練課表配合訓練進行。</p>
+          </div>
+        </div>
+      </div>
+    </h3>
   </section>
 
   <section class="section">
@@ -503,6 +683,25 @@
       &copy; 2025 IntelliMotionMatrix INC. All rights reserved.
     </div>
   </footer>
+  <script>
+    document.getElementById("ecpayButton").addEventListener("click", function(event) {
+      event.preventDefault();
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("paymentModal").style.display = "block";
+    });
+
+    document.getElementById("closeModal").addEventListener("click", function() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("paymentModal").style.display = "none";
+    });
+
+    document.getElementById("confirmPayment").addEventListener("click", function() {
+      var selectedValue = document.getElementById("paymentOption").value;
+      var paymentURL = "https://p.ecpay.com.tw/" + selectedValue;
+
+      window.location.href = paymentURL;
+    });
+  </script>
   <script>
     // Handle banner shrink on scroll
     const banner = document.getElementById('banner');
