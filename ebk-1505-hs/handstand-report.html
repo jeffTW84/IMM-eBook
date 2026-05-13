@@ -63,7 +63,7 @@ main{padding:0 3rem 6rem;max-width:900px;width:100%}
 
 /* ── Sidebar / TOC ─────────────────────────────────── */
 aside{position:sticky;top:0;height:100vh;overflow-y:auto;padding:2rem 1.5rem;border-right:1px solid var(--border);background:var(--bg2)}
-.toc-logo{display:flex;align-items:center;gap:.6rem;margin-bottom:2.5rem}
+.toc-logo{display:flex;align-items:center;gap:.6rem;margin-bottom:2.5rem;text-decoration:none;border:none}
 .toc-logo-icon{width:44px;height:44px;min-width:44px;display:grid;place-items:center}
 .toc-logo-icon img{width:44px;height:44px;object-fit:contain;filter:invert(1) brightness(2);opacity:.9}
 .toc-logo-text{font-weight:700;font-size:.95rem;line-height:1.2;color:var(--text)}
@@ -234,7 +234,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
     background:var(--bg2);border-bottom:1px solid var(--border);
     padding:0 1.2rem;gap:.8rem;
   }
-  .mobile-bar-logo{display:flex;align-items:center;gap:.6rem}
+  .mobile-bar-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;border:none}
   .mobile-bar-logo img{width:32px;height:32px;object-fit:contain;filter:invert(1) brightness(2);opacity:.9}
   .mobile-bar-text{font-weight:700;font-size:.88rem;color:var(--text)}
   .mobile-bar-sub{font-size:.65rem;color:var(--text3)}
@@ -267,13 +267,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 
 <!-- ── Mobile Top Bar ───────────────────────────────── -->
 <div class="mobile-bar">
-  <div class="mobile-bar-logo">
+  <a class="mobile-bar-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
     <img src="../assets/imm-logo.png" alt="IMM Logo">
     <div>
       <div class="mobile-bar-text">智動矩陣</div>
       <div class="mobile-bar-sub">Handstand Science Report</div>
     </div>
-  </div>
+  </a>
   <button class="hamburger" id="menuBtn" aria-label="開啟目錄">
     <span></span><span></span><span></span>
   </button>
@@ -286,13 +286,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 
 <!-- ── Sidebar ──────────────────────────────────────── -->
 <aside>
-  <div class="toc-logo">
+  <a class="toc-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
     <div class="toc-logo-icon"><img src="../assets/imm-logo.png" alt="IMM Logo"></div>
     <div>
       <div class="toc-logo-text">智動矩陣-倒立科學</div>
       <div class="toc-logo-sub">Handstand Science Report</div>
     </div>
-  </div>
+  </a>
   <nav>
     <div class="toc-group">概覽</div>
     <ul>
