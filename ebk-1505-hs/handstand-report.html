@@ -219,12 +219,41 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 /* ── Keyword pill ──────────────────────────────────── */
 .kw{display:inline;background:rgba(79,158,255,.12);color:var(--accent2);border-radius:4px;padding:.1em .4em;font-size:.85em;font-weight:500}
 
+/* ── Mobile Top Bar ────────────────────────────────── */
+.mobile-bar{display:none}
+
+/* ── Backdrop ──────────────────────────────────────── */
+.sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(2px)}
+.sidebar-backdrop.open{display:block}
+
 /* ── Responsive ────────────────────────────────────── */
 @media(max-width:900px){
-  .page-wrap{grid-template-columns:1fr}
-  aside{display:none}
+  .mobile-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    position:fixed;top:0;left:0;right:0;height:54px;z-index:100;
+    background:var(--bg2);border-bottom:1px solid var(--border);
+    padding:0 1.2rem;gap:.8rem;
+  }
+  .mobile-bar-logo{display:flex;align-items:center;gap:.6rem}
+  .mobile-bar-logo img{width:32px;height:32px;object-fit:contain;filter:invert(1) brightness(2);opacity:.9}
+  .mobile-bar-text{font-weight:700;font-size:.88rem;color:var(--text)}
+  .mobile-bar-sub{font-size:.65rem;color:var(--text3)}
+  .hamburger{background:none;border:1px solid var(--border);border-radius:6px;padding:.4rem .55rem;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+  .hamburger span{display:block;width:18px;height:2px;background:var(--text2);border-radius:2px;transition:all .25s}
+  .hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+  .page-wrap{grid-template-columns:1fr;padding-top:54px}
+  aside{
+    position:fixed;top:0;left:-280px;height:100vh;width:260px;
+    z-index:100;transition:left .28s cubic-bezier(.4,0,.2,1);
+    border-right:1px solid var(--border2);box-shadow:var(--shadow2);
+  }
+  aside.open{left:0}
+
   main{padding:0 1.5rem 4rem}
-  .hero{padding:3rem 1.5rem 2.5rem}
+  .hero{padding:2.5rem 1.5rem 2rem}
   .hero-stats{grid-template-columns:1fr 1fr}
   .stage-grid{grid-template-columns:1fr}
   .sensor-grid{grid-template-columns:1fr}
@@ -235,6 +264,23 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 </style>
 </head>
 <body>
+
+<!-- ── Mobile Top Bar ───────────────────────────────── -->
+<div class="mobile-bar">
+  <div class="mobile-bar-logo">
+    <img src="../assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="mobile-bar-text">智動矩陣</div>
+      <div class="mobile-bar-sub">Handstand Science Report</div>
+    </div>
+  </div>
+  <button class="hamburger" id="menuBtn" aria-label="開啟目錄">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- ── Sidebar Backdrop ──────────────────────────────── -->
+<div class="sidebar-backdrop" id="backdrop"></div>
 
 <div class="page-wrap">
 
@@ -948,6 +994,32 @@ const observer = new IntersectionObserver((entries) => {
 }, { rootMargin: '-20% 0px -70% 0px' });
 
 sections.forEach(s => observer.observe(s));
+
+// Mobile sidebar toggle
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.querySelector('aside');
+const backdrop = document.getElementById('backdrop');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  backdrop.classList.add('open');
+  menuBtn.classList.add('active');
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  backdrop.classList.remove('open');
+  menuBtn.classList.remove('active');
+}
+
+menuBtn.addEventListener('click', () =>
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar()
+);
+backdrop.addEventListener('click', closeSidebar);
+
+// Close sidebar when a nav link is tapped on mobile
+navLinks.forEach(a => a.addEventListener('click', () => {
+  if (window.innerWidth <= 900) closeSidebar();
+}));
 </script>
 </body>
 </html>
