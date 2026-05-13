@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>倒立運動科學完整報告 · Handstand Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Variables ─────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08101e;
+  --bg2:#0e1929;
+  --surface:#111f35;
+  --card:#162238;
+  --card2:#1a2a44;
+  --border:#1e3050;
+  --border2:#264166;
+  --accent:#4f9eff;
+  --accent2:#7bc3ff;
+  --gold:#f5b84b;
+  --gold2:#fdd888;
+  --green:#34d399;
+  --red:#f87171;
+  --purple:#a78bfa;
+  --text:#e8f1fc;
+  --text2:#a8bed8;
+  --text3:#6b8aaa;
+  --font:-apple-system,BlinkMacSystemFont,"Inter","PingFang TC","Noto Sans TC",sans-serif;
+  --serif:"Playfair Display","Georgia",serif;
+  --mono:"JetBrains Mono","Fira Code",monospace;
+  --r:10px;
+  --r2:16px;
+  --shadow:0 4px 24px rgba(0,0,0,.45);
+  --shadow2:0 8px 48px rgba(0,0,0,.6);
+  --trans:.2s cubic-bezier(.4,0,.2,1);
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.75;overflow-x:hidden}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ── Typography ────────────────────────────────────── */
+h1,h2,h3,h4{line-height:1.3;font-weight:700}
+h2{font-family:var(--serif);font-size:2rem;margin-bottom:1.5rem}
+h3{font-size:1.2rem;color:var(--accent2);margin:2rem 0 .8rem;padding-left:1rem;border-left:3px solid var(--accent)}
+h4{font-size:1rem;color:var(--gold);margin:1.5rem 0 .6rem;text-transform:uppercase;letter-spacing:.08em;font-size:.85rem}
+p{margin-bottom:1rem;color:var(--text2)}
+strong{color:var(--text);font-weight:600}
+em{color:var(--gold2);font-style:normal;font-weight:500}
+code{font-family:var(--mono);background:var(--card2);color:var(--accent2);padding:.15em .45em;border-radius:4px;font-size:.85em}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--trans)}
+a:hover{border-color:var(--accent)}
+
+/* ── Layout ────────────────────────────────────────── */
+.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;max-width:1440px;margin:0 auto}
+main{padding:0 3rem 6rem;max-width:900px;width:100%}
+
+/* ── Sidebar / TOC ─────────────────────────────────── */
+aside{position:sticky;top:0;height:100vh;overflow-y:auto;padding:2rem 1.5rem;border-right:1px solid var(--border);background:var(--bg2)}
+.toc-logo{display:flex;align-items:center;gap:.6rem;margin-bottom:2.5rem}
+.toc-logo-icon{width:36px;height:36px;display:grid;place-items:center;background:var(--accent);border-radius:8px;font-size:1.2rem}
+.toc-logo-text{font-weight:700;font-size:.95rem;line-height:1.2;color:var(--text)}
+.toc-logo-sub{font-size:.7rem;color:var(--text3);font-weight:400}
+nav ul{list-style:none}
+nav li{margin:.2rem 0}
+nav a{display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border-radius:6px;font-size:.82rem;color:var(--text2);transition:all var(--trans);text-decoration:none;border:none;line-height:1.4}
+nav a:hover{background:var(--surface);color:var(--text)}
+nav a.active{background:var(--surface);color:var(--accent);font-weight:600}
+nav .toc-num{font-size:.7rem;color:var(--text3);font-family:var(--mono);min-width:1.4rem}
+nav .toc-group{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);padding:.75rem .75rem .25rem;margin-top:.5rem}
+
+/* ── Hero ──────────────────────────────────────────── */
+.hero{position:relative;padding:5rem 3rem 4rem;margin-bottom:0;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(79,158,255,.12) 0%,transparent 70%)}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.25);border-radius:20px;padding:.3rem .9rem;font-size:.78rem;color:var(--accent2);letter-spacing:.05em;margin-bottom:1.5rem}
+.hero-tag::before{content:'●';color:var(--green);font-size:.55rem}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);background:linear-gradient(135deg,#fff 30%,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+.hero-sub{font-size:1.05rem;color:var(--text3);margin-bottom:.5rem}
+.hero-date{font-size:.82rem;color:var(--text3);font-family:var(--mono)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem 1.4rem;position:relative;overflow:hidden;transition:border-color var(--trans)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-bar,var(--accent))}
+.stat-card:hover{border-color:var(--border2)}
+.stat-num{font-size:2rem;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1}
+.stat-label{font-size:.75rem;color:var(--text3);margin-top:.35rem}
+
+/* ── Section ───────────────────────────────────────── */
+section{padding:4rem 0 1rem;border-bottom:1px solid var(--border)}
+section:last-child{border-bottom:none}
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.section-num{font-size:.8rem;font-family:var(--mono);color:var(--accent);background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.2);padding:.25rem .6rem;border-radius:4px;white-space:nowrap}
+.section-title{font-family:var(--serif);font-size:1.9rem;color:var(--text)}
+
+/* ── Executive Summary ─────────────────────────────── */
+.insight-grid{display:grid;gap:1rem}
+.insight-card{display:flex;gap:1.2rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.4rem 1.6rem;transition:all var(--trans)}
+.insight-card:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:var(--shadow)}
+.insight-n{width:2.5rem;height:2.5rem;min-width:2.5rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1rem;font-family:var(--mono)}
+.insight-body h4{color:var(--text);font-size:.95rem;text-transform:none;letter-spacing:0;margin:0 0 .35rem;font-family:var(--font)}
+.insight-body p{font-size:.9rem;margin:0;color:var(--text2)}
+
+/* ── Tables ────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border-radius:var(--r);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.875rem}
+thead tr{background:var(--surface)}
+thead th{padding:.8rem 1rem;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-weight:600;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,.018)}
+tbody td{padding:.75rem 1rem;vertical-align:top;color:var(--text2)}
+tbody td:first-child{color:var(--text);font-weight:500}
+tbody tr:hover td{background:rgba(79,158,255,.04)}
+
+/* ── Info Blocks ───────────────────────────────────── */
+.info-block{background:var(--card);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:1rem 1.4rem;margin:1.2rem 0;font-size:.9rem;color:var(--text2)}
+.info-block.gold{border-color:var(--gold)}
+.info-block.green{border-color:var(--green)}
+.info-block.red{border-color:var(--red)}
+.info-block strong{display:block;color:var(--text);margin-bottom:.3rem}
+
+/* ── Big Stat ──────────────────────────────────────── */
+.big-stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+.big-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;text-align:center}
+.big-stat .num{font-size:2.8rem;font-weight:700;font-family:var(--mono);color:var(--gold);line-height:1}
+.big-stat .denom{font-size:1rem;color:var(--text3)}
+.big-stat .desc{font-size:.8rem;color:var(--text3);margin-top:.5rem}
+
+/* ── 4 Stage Model ─────────────────────────────────── */
+.stage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin:1.5rem 0}
+.stage-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.6rem;position:relative;overflow:hidden;transition:all var(--trans)}
+.stage-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.stage-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--stage-color,var(--accent))}
+.stage-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-family:var(--mono);color:var(--stage-color,var(--accent));background:rgba(79,158,255,.1);border:1px solid currentColor;padding:.2rem .6rem;border-radius:4px;margin-bottom:.8rem;opacity:.8}
+.stage-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.stage-en{font-size:.8rem;color:var(--text3);margin-bottom:.9rem;font-style:italic}
+.stage-card ul{padding-left:1.1rem;font-size:.85rem;color:var(--text2)}
+.stage-card ul li{margin:.3rem 0}
+.stage-tool{margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--text3)}
+.stage-tool span{color:var(--accent);font-weight:500}
+
+/* ── Sensor System Cards ───────────────────────────── */
+.sensor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.2rem 0}
+.sensor-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem;text-align:center;transition:border-color var(--trans)}
+.sensor-card:hover{border-color:var(--border2)}
+.sensor-icon{font-size:1.8rem;margin-bottom:.6rem}
+.sensor-name{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.4rem}
+.sensor-desc{font-size:.78rem;color:var(--text3);line-height:1.5}
+
+/* ── Strategy Hierarchy ────────────────────────────── */
+.strategy-steps{display:flex;flex-direction:column;gap:.6rem;margin:1.2rem 0}
+.strategy-step{display:flex;align-items:flex-start;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;transition:border-color var(--trans)}
+.strategy-step:hover{border-color:var(--border2)}
+.step-rank{width:2rem;height:2rem;min-width:2rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;font-family:var(--mono)}
+.step-content{flex:1}
+.step-title{font-weight:600;color:var(--text);font-size:.92rem;margin-bottom:.2rem}
+.step-desc{font-size:.83rem;color:var(--text2)}
+
+/* ── Timeline ──────────────────────────────────────── */
+.timeline{position:relative;margin:1.5rem 0}
+.timeline::before{content:'';position:absolute;left:1.4rem;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{display:flex;gap:1.4rem;margin-bottom:1.5rem;position:relative}
+.tl-dot{width:2.8rem;height:2.8rem;min-width:2.8rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.8rem;font-family:var(--mono);position:relative;z-index:1}
+.tl-body{padding-top:.3rem;flex:1}
+.tl-title{font-weight:600;color:var(--text);margin-bottom:.3rem;font-size:.95rem}
+.tl-desc{font-size:.85rem;color:var(--text2)}
+
+/* ── Comparison Table ──────────────────────────────── */
+.vs-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.vs-table thead th:nth-child(2){color:var(--accent2)}
+.vs-table thead th:nth-child(3){color:var(--gold2)}
+.vs-table thead th:first-child{width:22%}
+.vs-table tbody tr:nth-child(odd) td{background:var(--card)}
+.vs-table tbody tr:nth-child(even) td{background:var(--card2)}
+
+/* ── Reference List ────────────────────────────────── */
+.ref-group{margin-bottom:2rem}
+.ref-group-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.ref-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px dashed var(--border)}
+.ref-item:last-child{border-bottom:none}
+.ref-num{font-family:var(--mono);font-size:.75rem;color:var(--accent);min-width:1.8rem;padding-top:.1rem}
+.ref-content{flex:1}
+.ref-title{font-size:.88rem;color:var(--text);font-weight:500;margin-bottom:.2rem}
+.ref-meta{font-size:.78rem;color:var(--text3)}
+
+/* ── Muscle Tier ───────────────────────────────────── */
+.muscle-tier{margin:1.2rem 0}
+.tier-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;padding:.6rem 1rem;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}
+.tier-header.t2{color:var(--green)}
+.tier-header.t3{color:var(--purple)}
+
+/* ── Research Card ─────────────────────────────────── */
+.research-grid{display:grid;gap:1rem;margin:1.2rem 0}
+.research-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.4rem;transition:all var(--trans)}
+.research-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.research-journal{font-size:.72rem;font-family:var(--mono);color:var(--accent);opacity:.8;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em}
+.research-title{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.6rem}
+.research-findings{display:flex;flex-direction:column;gap:.35rem}
+.research-finding{display:flex;gap:.6rem;font-size:.83rem;color:var(--text2)}
+.research-finding::before{content:'→';color:var(--accent);flex-shrink:0}
+
+/* ── Footer ────────────────────────────────────────── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3rem;grid-column:1/-1}
+.footer-inner{max-width:900px;margin:0 auto;display:flex;gap:2rem;align-items:flex-start}
+.footer-note{font-size:.82rem;color:var(--text3);line-height:1.7;flex:1}
+.footer-badge{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.7rem 1.2rem;font-size:.75rem;color:var(--text3);white-space:nowrap;font-family:var(--mono)}
+
+/* ── List Styles ───────────────────────────────────── */
+.content-list{padding-left:1.3rem;margin:.8rem 0}
+.content-list li{margin:.4rem 0;color:var(--text2);font-size:.92rem}
+.content-list li strong{color:var(--text)}
+
+/* ── Keyword pill ──────────────────────────────────── */
+.kw{display:inline;background:rgba(79,158,255,.12);color:var(--accent2);border-radius:4px;padding:.1em .4em;font-size:.85em;font-weight:500}
+
+/* ── Responsive ────────────────────────────────────── */
+@media(max-width:900px){
+  .page-wrap{grid-template-columns:1fr}
+  aside{display:none}
+  main{padding:0 1.5rem 4rem}
+  .hero{padding:3rem 1.5rem 2.5rem}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .stage-grid{grid-template-columns:1fr}
+  .sensor-grid{grid-template-columns:1fr}
+  .big-stat-row{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}
+  .footer-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+<!-- ── Sidebar ──────────────────────────────────────── -->
+<aside>
+  <div class="toc-logo">
+    <div class="toc-logo-icon">🤸</div>
+    <div>
+      <div class="toc-logo-text">倒立科學</div>
+      <div class="toc-logo-sub">Handstand Science Report</div>
+    </div>
+  </div>
+  <nav>
+    <div class="toc-group">概覽</div>
+    <ul>
+      <li><a href="#summary"><span class="toc-num">00</span>執行摘要</a></li>
+    </ul>
+    <div class="toc-group">核心研究</div>
+    <ul>
+      <li><a href="#biomechanics"><span class="toc-num">01</span>生物力學</a></li>
+      <li><a href="#neuromuscular"><span class="toc-num">02</span>神經肌肉</a></li>
+      <li><a href="#strength"><span class="toc-num">03</span>肌力需求</a></li>
+    </ul>
+    <div class="toc-group">訓練應用</div>
+    <ul>
+      <li><a href="#training"><span class="toc-num">04</span>訓練系統</a></li>
+      <li><a href="#injury"><span class="toc-num">05</span>傷害預防</a></li>
+    </ul>
+    <div class="toc-group">前沿視野</div>
+    <ul>
+      <li><a href="#frontier"><span class="toc-num">06</span>前沿研究</a></li>
+      <li><a href="#comparison"><span class="toc-num">07</span>主流 vs 前沿</a></li>
+      <li><a href="#references"><span class="toc-num">REF</span>參考文獻</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- ── Main ─────────────────────────────────────────── -->
+<div style="display:flex;flex-direction:column">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">Sports Science · Evidence-Based Review · 2026</div>
+  <h1>倒立運動科學完整報告</h1>
+  <p class="hero-sub">Handstand — A Comprehensive Sports Science Review</p>
+  <p class="hero-date">整合日期：2026年5月13日 ／ 涵蓋研究截止：2025年</p>
+
+  <div class="hero-stats">
+    <div class="stat-card" style="--accent-bar:var(--accent)">
+      <div class="stat-num">21</div>
+      <div class="stat-label">系統性回顧涵蓋研究數（2025 Frontiers）</div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--gold)">
+      <div class="stat-num">56.7%</div>
+      <div class="stat-label">習練者慢性手腕疼痛發生率（vs 一般人口 4–6%）</div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--green)">
+      <div class="stat-num">2–3×</div>
+      <div class="stat-label">高頻率訓練（4次/週）vs 低頻（1次/週）的進步速度差</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ── 00 Executive Summary ──────────────────────────── -->
+<section id="summary">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <h2 class="section-title">執行摘要</h2>
+  </div>
+  <p>倒立是一項高度整合感覺、神經與肌肉系統的複雜技能，目前已有相當成熟的運動科學基礎。以下五個結論是整份文獻最核心的洞察：</p>
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(79,158,255,.15);color:var(--accent)">1</div>
+      <div class="insight-body">
+        <h4>平衡控制是動態的，不是靜態的</h4>
+        <p>即使「靜止」的倒立，身體也在持續以微小的腕關節、肩膀調整修正重心。熟練者使用<strong>反應式</strong>控制，而非事先預測式控制，這是更高效、更適應性強的策略。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(245,184,75,.15);color:var(--gold)">2</div>
+      <div class="insight-body">
+        <h4>前鋸肌是最被低估的關鍵肌群</h4>
+        <p>EMG 研究顯示，在所有肩部肌群中，<strong>前鋸肌（Serratus Anterior）</strong>在倒立時活化增幅最大。強化前鋸肌是突破倒立瓶頸最重要的單一訓練目標。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(52,211,153,.15);color:var(--green)">3</div>
+      <div class="insight-body">
+        <h4>訓練頻率比單次訓練量更重要</h4>
+        <p>每週 4～5 次、每次 20 分鐘，比每週 1 次、每次 90 分鐘的進步快 <strong>2～3 倍</strong>。這反映神經技能學習需要課間記憶鞏固（consolidation）的生理本質。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(248,113,113,.15);color:var(--red)">4</div>
+      <div class="insight-body">
+        <h4>手腕慢性疼痛發生率遠高於一般族群</h4>
+        <p>2025 年橫斷面調查：習練者慢性手腕疼痛發生率 <strong>56.7%</strong>，遠超一般人口 4～6%。優化生物力學比單純減少訓練量更為關鍵。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(167,139,250,.15);color:var(--purple)">5</div>
+      <div class="insight-body">
+        <h4>四階段漸進模型是目前最有科學根據的框架</h4>
+        <p>基於<strong>動力系統理論（Dynamical Systems Theory）</strong>的四階段模型——入門 → 體型 → 靜態平衡 → 動態控制——是目前文獻中最受支持的訓練架構。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 01 Biomechanics ────────────────────────────────── -->
+<section id="biomechanics">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">生物力學</h2>
+  </div>
+
+  <h3>1.1 平衡機制：三大感覺系統的整合</h3>
+  <p>倒立的平衡並非由單一感覺系統主導，而是由三大感覺輸入系統協同整合。研究發現，頭部位置（頸椎屈曲）會顯著影響質心（CoM）變異性，顯示頸部感受器對平衡控制有直接貢獻。</p>
+
+  <div class="sensor-grid">
+    <div class="sensor-card">
+      <div class="sensor-icon">👁</div>
+      <div class="sensor-name">視覺系統</div>
+      <div class="sensor-desc">提供空間定向參考。閉眼訓練可大幅降低穩定性，顯示視覺在初學階段至關重要。</div>
+    </div>
+    <div class="sensor-card">
+      <div class="sensor-icon">🔄</div>
+      <div class="sensor-name">前庭系統</div>
+      <div class="sensor-desc">偵測頭部加速度與重力方向。倒立時方向感整體顛倒，需重新校準。</div>
+    </div>
+    <div class="sensor-card">
+      <div class="sensor-icon">🖐</div>
+      <div class="sensor-name">本體感覺系統</div>
+      <div class="sensor-desc">透過皮膚、肌腱、關節感受器提供手部壓力、手腕角度與身體排列的即時回饋。</div>
+    </div>
+  </div>
+
+  <h4>神經控制的階層模式</h4>
+  <div class="info-block">
+    <strong>腦幹 → 小腦 → 大腦皮質</strong>
+    整合周邊感覺訊號（平衡反射）→ 儲存運動記憶與協調連續動作 → 高階預測控制與動作意圖生成。中樞神經系統的核心任務是估算整體身體質心（CoM）位移，並據此啟動肌肉回應。
+  </div>
+
+  <h3>1.2 力學分析：三個關鍵節點</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>節點</th><th>關鍵力學事實</th><th>常見代償</th></tr></thead>
+      <tbody>
+        <tr><td>腕關節</td><td>承載接近 100% 體重，伸展角度約 90°；手指壓力微調（指根 vs 指尖）是主要控制手段</td><td>手指壓力失調導致重心偏移</td></tr>
+        <tr><td>肩帶</td><td>肩胛骨需上旋 + 外展（protraction + upward rotation）；肩膀需垂直於手部正上方</td><td>肩膀前移將壓力轉移至腕關節</td></tr>
+        <tr><td>核心</td><td>主要功能是維持「剛體」狀態；骨盆後傾 + 腹部收縮防止香蕉形；關節力矩 0.2～1.0 Nm/kg</td><td>腰椎過伸（香蕉形）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>1.3 平衡控制策略層級</h3>
+  <p>研究將平衡控制策略分為三個層級，熟練者優先使用第一層，盡量避免動用第三層：</p>
+
+  <div class="strategy-steps">
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(79,158,255,.15);color:var(--accent)">1</div>
+      <div class="step-content">
+        <div class="step-title">腕部策略（Wrist Strategy）— 最優先</div>
+        <div class="step-desc">透過手指與腕關節的精細微調，在幾乎不改變體型的情況下修正重心。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(245,184,75,.15);color:var(--gold)">2</div>
+      <div class="step-content">
+        <div class="step-title">肩部策略（Shoulder Strategy）— 次要選擇</div>
+        <div class="step-desc">腕部策略失效時，改變肩膀角度補償，需要較大幅的上肢調整。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(248,113,113,.15);color:var(--red)">3</div>
+      <div class="step-content">
+        <div class="step-title">髖部策略（Hip Strategy）— 最後手段</div>
+        <div class="step-desc">需要更大的全身動作，技術精準度顯著下降，通常意味著即將失去平衡。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-block gold">
+    <strong>關鍵發現（Scientific Reports, 2021）</strong>
+    更熟練的體操選手表現出更低的 CoP 對 CoM 的主導性——他們不需要大幅移動壓力中心來驅動質心，而是通過<strong>反應式（reactive）</strong>而非預測式（anticipatory）的控制策略維持平衡。
+  </div>
+
+  <h3>1.4 靜態 vs. 動態倒立</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>比較面向</th><th>靜態倒立</th><th>動態倒立（直臂入倒立）</th></tr></thead>
+      <tbody>
+        <tr><td>主要挑戰</td><td>平衡維持、持久力</td><td>進入過程的關節力矩控制</td></tr>
+        <tr><td>主要關節動作</td><td>微幅腕關節調整</td><td>肩屈曲 + 髖伸展協調</td></tr>
+        <tr><td>神經需求</td><td>持續反饋監控</td><td>開路式（feedforward）程式控制</td></tr>
+        <tr><td>訓練重點</td><td>穩定性與耐久性</td><td>動作序列、爆發力與協調性</td></tr>
+        <tr><td>現有研究比例</td><td>約 31%（平衡策略）</td><td>約 57%（運動學 / 動力學）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── 02 Neuromuscular ───────────────────────────────── -->
+<section id="neuromuscular">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">神經肌肉訓練</h2>
+  </div>
+
+  <h3>2.1 本體感覺的核心角色</h3>
+  <p>本體感覺（Proprioception）整合四類感受器，在倒立中扮演核心角色：</p>
+  <ul class="content-list">
+    <li><strong>肌梭（Muscle spindles）</strong>：偵測肌肉長度變化</li>
+    <li><strong>高爾基腱器（Golgi tendon organs）</strong>：偵測肌腱張力</li>
+    <li><strong>關節機械感受器（Joint mechanoreceptors）</strong>：偵測關節角度</li>
+    <li><strong>皮膚壓力感受器</strong>：偵測手掌壓力分佈</li>
+  </ul>
+  <div class="info-block green">
+    <strong>為什麼倒立訓練本體感覺特別有效？</strong>
+    上肢的本體感覺訓練量是人體日常活動中最高的情境之一，因為手部通常不承受全身體重。手部負重訓練能改善手腕與肘關節的位置覺（joint position sense）並增強反射穩定性。
+  </div>
+
+  <h3>2.2 神經適應 vs. 肌肉適應的時間軸</h3>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot" style="background:rgba(79,158,255,.15);color:var(--accent)">1–8<br><span style="font-size:.6rem">週</span></div>
+      <div class="tl-body">
+        <div class="tl-title">早期：以神經適應為主</div>
+        <div class="tl-desc">運動單元募集效率提升；主動肌與拮抗肌的共同激活（co-activation）優化；動作程式在小腦與基底核形成；學習曲線呈快速進步後的高原期。</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:rgba(52,211,153,.15);color:var(--green)">8+<br><span style="font-size:.6rem">週</span></div>
+      <div class="tl-body">
+        <div class="tl-title">中後期：肌肉適應開始顯著</div>
+        <div class="tl-desc">肌肉截面積（CSA）增加；肌腱剛性（tendon stiffness）提升，改善力量傳遞效率；運動皮質表徵區域（motor cortex map）重組與強化。</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:rgba(245,184,75,.15);color:var(--gold)">腦<br><span style="font-size:.6rem">可塑性</span></div>
+      <div class="tl-body">
+        <div class="tl-title">腦部可塑性時間架構（PNAS）</div>
+        <div class="tl-desc">小腦與紋狀體的變化出現在<strong>數天內</strong>（早期快速適應）；初級運動皮質（M1）的結構性重組需要<strong>數週</strong>緩慢演化。</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>2.3 運動學習曲線</h3>
+  <p>倒立的學習符合典型的<strong>冪次學習曲線（Power Law of Learning）</strong>：</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>學習階段</th><th>神經機制</th><th>訓練特徵</th></tr></thead>
+      <tbody>
+        <tr><td>快速學習期</td><td>初級運動皮質大量招募神經元</td><td>每次訓練都有顯著進步</td></tr>
+        <tr><td>鞏固期（高原期）</td><td>記憶鞏固（consolidation）持續進行</td><td>需多次課程累積，小幅穩定進步</td></tr>
+        <tr><td>精熟期</td><td>神經代謝成本下降，動作自動化</td><td>表現穩定，可加載難度</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-block">
+    <strong>分散式練習（Distributed Practice）優於集中式練習（Massed Practice）</strong>
+    每週 4 次 × 20 分鐘的訓練者，因課間記憶鞏固得以進行，進步速度比每週 1 次 × 90 分鐘快 2～3 倍。
+  </div>
+</section>
+
+<!-- ── 03 Strength ────────────────────────────────────── -->
+<section id="strength">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">肌力需求分析</h2>
+  </div>
+
+  <h3>3.1 關鍵肌群（三層架構）</h3>
+
+  <div class="muscle-tier">
+    <div class="tier-header">第一層：肩部穩定肌群（最關鍵）</div>
+    <div class="table-wrap" style="margin-top:0;border-radius:0 0 var(--r) var(--r);border-top:none">
+      <table>
+        <thead><tr><th>肌群</th><th>主要功能</th><th>倒立中的角色</th></tr></thead>
+        <tbody>
+          <tr><td><strong>前鋸肌</strong><br><small>Serratus Anterior</small></td><td>肩胛骨前拉 + 上旋</td><td>EMG 顯示活化增幅最大，是倒立穩定的核心</td></tr>
+          <tr><td><strong>旋轉肌袖</strong><br><small>Rotator Cuff</small></td><td>肱骨頭動態穩定</td><td>防止肩關節在倒置承重下脫位</td></tr>
+          <tr><td><strong>斜方肌</strong><br><small>Trapezius</small></td><td>肩胛骨控制</td><td>協助維持肩胛骨穩定位置</td></tr>
+          <tr><td><strong>三角肌</strong><br><small>Deltoid</small></td><td>肩關節外展 / 屈曲</td><td>主要承重肌群</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="muscle-tier" style="margin-top:1.5rem">
+    <div class="tier-header t2">第二層：核心肌群</div>
+    <div class="table-wrap" style="margin-top:0;border-radius:0 0 var(--r) var(--r);border-top:none">
+      <table>
+        <thead><tr><th>肌群</th><th>倒立中的角色</th></tr></thead>
+        <tbody>
+          <tr><td><strong>腹直肌</strong></td><td>防止腰椎過度伸展（香蕉形）</td></tr>
+          <tr><td><strong>腹內外斜肌</strong></td><td>側向穩定，防止左右晃動</td></tr>
+          <tr><td><strong>脊椎豎立肌</strong></td><td>協助軀幹剛性維持</td></tr>
+          <tr><td><strong>臀大肌</strong></td><td>骨盆後傾的主要驅動肌</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="muscle-tier" style="margin-top:1.5rem">
+    <div class="tier-header t3">第三層：前臂與手部</div>
+    <div class="table-wrap" style="margin-top:0;border-radius:0 0 var(--r) var(--r);border-top:none">
+      <table>
+        <thead><tr><th>肌群</th><th>倒立中的角色</th></tr></thead>
+        <tbody>
+          <tr><td><strong>指屈肌（Finger flexors）</strong></td><td>手指壓力調控的主要執行者</td></tr>
+          <tr><td><strong>腕屈肌 / 伸肌</strong></td><td>腕關節微調控制</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>3.2 訓練前肌力基準值</h3>
+  <p>目前沒有倒立專用的標準化測試規範，但主流訓練社群與臨床建議的前置基準如下：</p>
+  <ul class="content-list">
+    <li><strong>伏地挺身</strong>：至少完成 10 次完整的鑽石伏地挺身（窄距）</li>
+    <li><strong>肩推（Pike Push-up）</strong>：能完成 10 次，為倒立肩推（HSPU）的基礎</li>
+    <li><strong>空心體保持（Hollow Body Hold）</strong>：至少保持 30 秒</li>
+    <li><strong>肩膀活動度</strong>：肩屈曲必須達到完整 180°，否則會出現代償性腰椎過伸</li>
+  </ul>
+</section>
+
+<!-- ── 04 Training ────────────────────────────────────── -->
+<section id="training">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">訓練方法與漸進系統</h2>
+  </div>
+
+  <h3>4.1 四階段科學訓練模型</h3>
+  <p>基於<strong>動力系統理論（Dynamical Systems Theory）</strong>，是目前文獻中最具科學基礎的訓練架構。每個階段的進展都建立在更精細的本體感覺與動覺意識之上。</p>
+
+  <div class="stage-grid">
+    <div class="stage-card" style="--stage-color:var(--accent)">
+      <div class="stage-badge">Stage 01</div>
+      <div class="stage-name">準備期</div>
+      <div class="stage-en">Preparation</div>
+      <ul>
+        <li>建立基礎力量：空心體、肩部穩定、腕關節活動度</li>
+        <li>克服倒置恐懼（fear of inversion）</li>
+        <li>學習進入動作序列（弓箭步 → 踢腿上）</li>
+      </ul>
+      <div class="stage-tool">工具：<span>靠牆倒立（chest-to-wall）</span></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--green)">
+      <div class="stage-badge">Stage 02</div>
+      <div class="stage-name">體型建立</div>
+      <div class="stage-en">Shape</div>
+      <ul>
+        <li>學習並固化正確的倒立體型（直線排列）</li>
+        <li>矯正香蕉形：骨盆後傾 + 腹部收縮 + 肩膀完全伸展</li>
+        <li>建立肌肉記憶中的「體線意識」</li>
+      </ul>
+      <div class="stage-tool">工具：<span>背對牆（back-to-wall）、搭擋輔助</span></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--gold)">
+      <div class="stage-badge">Stage 03</div>
+      <div class="stage-name">靜態平衡</div>
+      <div class="stage-en">Static Balance</div>
+      <ul>
+        <li>從牆壁輔助過渡到短暫自由倒立</li>
+        <li>訓練腕部策略：學習手指施壓調控</li>
+        <li>建立腕部感受器的精細本體感覺</li>
+      </ul>
+      <div class="stage-tool">工具：<span>近牆練習、鱷魚走路（crocodile walk）</span></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--purple)">
+      <div class="stage-badge">Stage 04</div>
+      <div class="stage-name">動態控制</div>
+      <div class="stage-en">Dynamic Control</div>
+      <ul>
+        <li>延長保持時間：10s → 30s → 60s+</li>
+        <li>學習在動態擾動下恢復平衡</li>
+        <li>進階：直臂入倒立、單手倒立</li>
+      </ul>
+      <div class="stage-tool">工具：<span>不穩定表面、閉眼練習、搭擋施加擾動</span></div>
+    </div>
+  </div>
+
+  <h3>4.2 訓練量、頻率與強度建議</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>訓練變項</th><th>初學者</th><th>中階（5秒+）</th><th>進階（30秒+）</th></tr></thead>
+      <tbody>
+        <tr><td><strong>頻率</strong></td><td>3次/週</td><td>4～5次/週</td><td>5～6次/週</td></tr>
+        <tr><td><strong>每次嘗試次數</strong></td><td>10～15次</td><td>20～30次</td><td>30次+</td></tr>
+        <tr><td><strong>每次練習時間</strong></td><td>10～15分鐘</td><td>15～25分鐘</td><td>20～40分鐘</td></tr>
+        <tr><td><strong>強度原則</strong></td><td>中低強度為主</td><td>中等為主，偶爾高強度</td><td>中高強度，有計劃的高強度週期</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-block gold">
+    <strong>核心原則</strong>
+    神經技能學習的關鍵在於<strong>頻率（frequency）</strong>，而非單次訓練量。疲勞狀態下的練習會強化錯誤動作模式，應在疲勞累積前停止。
+  </div>
+
+  <h3>4.3 常見錯誤模式與科學化修正</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>常見錯誤</th><th>生物力學根本原因</th><th>修正策略</th></tr></thead>
+      <tbody>
+        <tr><td><strong>香蕉形</strong><br><small>Banana Shape</small></td><td>肩關節活動度不足 → 腰椎代償性過伸</td><td>肩膀活動度訓練 + 空心體保持練習</td></tr>
+        <tr><td><strong>肩膀前移</strong><br><small>Shoulder Lean</small></td><td>對倒立的恐懼或肩部力量不足</td><td>chest-to-wall 練習 + 視覺對齊訓練</td></tr>
+        <tr><td><strong>手部扭轉</strong><br><small>Turned In/Out</small></td><td>腕關節活動度限制或習慣代償</td><td>中立手部位置強化；平行棒（parallettes）訓練</td></tr>
+        <tr><td><strong>腿部分開</strong><br><small>Straddle Legs</small></td><td>依賴較低重心的補償策略，非真正控制</td><td>腿部主動收緊練習；意識訓練</td></tr>
+        <tr><td><strong>過度依賴視覺</strong></td><td>感覺整合發展不完整</td><td>漸進式閉眼練習；頭部位置變化訓練</td></tr>
+        <tr><td><strong>過度用力</strong><br><small>Gripping/Tensing</small></td><td>焦慮或控制策略未成熟</td><td>降低強度、增加輔助；呼吸與放鬆訓練</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── 05 Injury ──────────────────────────────────────── -->
+<section id="injury">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">傷害預防與常見傷害</h2>
+  </div>
+
+  <h3>5.1 流行病學數據</h3>
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">56.7%</div>
+      <div class="denom">習練者慢性手腕疼痛</div>
+      <div class="desc">2025年橫斷面研究（成年倒立習練者）</div>
+    </div>
+    <div class="big-stat">
+      <div class="num">4–6%</div>
+      <div class="denom">一般人口手腕疼痛發生率</div>
+      <div class="desc">對照組基準，差距近 10 倍</div>
+    </div>
+  </div>
+  <div class="info-block red">
+    <strong>重要發現</strong>
+    傷害風險與訓練強度和生物力學的相關性更高，而非單純訓練量。年輕習練者受傷風險更高，挑戰了「訓練量越多傷害越高」的簡化假設。
+  </div>
+
+  <h3>5.2 常見傷害類型</h3>
+  <h4>手腕傷害（最常見）</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>傷害類型</th><th>成因</th><th>症狀特徵</th></tr></thead>
+      <tbody>
+        <tr><td>伸肌肌腱炎</td><td>重複性過度使用</td><td>腕背側疼痛</td></tr>
+        <tr><td>腕關節韌帶扭傷</td><td>突然負荷或角度錯誤</td><td>局部腫脹、活動範圍受限</td></tr>
+        <tr><td>TFCC 傷害<br><small>三角纖維軟骨複合體</small></td><td>承重時旋轉應力</td><td>尺側手腕疼痛</td></tr>
+        <tr><td>腕管症候群</td><td>長期壓迫正中神經</td><td>手部麻木、刺痛</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>肩部傷害</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>傷害類型</th><th>成因</th></tr></thead>
+      <tbody>
+        <tr><td>旋轉肌袖撕裂</td><td>快速承重或過度訓練</td></tr>
+        <tr><td>肩峰下夾擊症候群</td><td>肩胛骨位置不良 + 重複動作</td></tr>
+        <tr><td>肩關節不穩定</td><td>肌力不足時強行練習</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>5.3 預防策略</h3>
+  <h4>訓練前必做（暖身）</h4>
+  <ul class="content-list">
+    <li><strong>手腕暖身（5～10 分鐘）</strong>：腕關節圓圈、手腕伸展、熊爬（Bear Crawl）等承重過渡動作</li>
+    <li><strong>肩部動態暖身</strong>：肩帶環繞、貓牛式、胸椎旋轉</li>
+  </ul>
+  <h4>結構性預防</h4>
+  <ul class="content-list">
+    <li>在<strong>硬地板</strong>（非軟墊）上練習，避免腕關節過度沉陷</li>
+    <li>使用<strong>平行棒（parallettes）</strong>讓腕關節維持中立位，適合手腕活動度受限者</li>
+    <li>確保肩關節活動度達到完整 180° 屈曲再進行訓練</li>
+  </ul>
+  <h4>前臂與肩部強化（預防性）</h4>
+  <ul class="content-list">
+    <li>前鋸肌：牆面滑動（wall slide）、熊爬、前鋸肌伏地挺身</li>
+    <li>旋轉肌袖：彈力帶外旋 / 內旋</li>
+    <li>前臂屈肌 / 伸肌均衡訓練</li>
+  </ul>
+</section>
+
+<!-- ── 06 Frontier ────────────────────────────────────── -->
+<section id="frontier">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">前沿研究</h2>
+  </div>
+
+  <h3>6.1 最新實驗室研究方向（2024–2025）</h3>
+
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">Frontiers in Sports &amp; Active Living · 2025</div>
+      <div class="research-title">倒立生物力學系統性回顧（21項研究）</div>
+      <div class="research-findings">
+        <div class="research-finding">研究分佈：運動學/動力學 57%、平衡控制 31%、EMG 10%</div>
+        <div class="research-finding">指出重要缺口：缺乏大樣本長期縱向研究，現有研究多集中在競技體操選手</div>
+        <div class="research-finding">娛樂性習練者（calisthenics、街健、yoga）的數據仍然稀缺</div>
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="research-journal">Journal of NeuroEngineering &amp; Rehabilitation · 2024</div>
+      <div class="research-title">疲勞對倒立平衡的非線性動力學研究</div>
+      <div class="research-findings">
+        <div class="research-finding">以去趨勢波動分析（DFA）等非線性工具研究疲勞效應</div>
+        <div class="research-finding">疲勞主要影響冠狀面（mediolateral）的力量變異性，效應量大</div>
+        <div class="research-finding">非線性指標比傳統 CoP 路徑長更能分辨技術水平</div>
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="research-journal">Scientific Reports · 2021</div>
+      <div class="research-title">CoP-CoM 雙向因果控制研究</div>
+      <div class="research-findings">
+        <div class="research-finding">利用 Granger 因果分析揭示 CoP 與 CoM 之間的非對稱因果結構</div>
+        <div class="research-finding">熟練者讓 CoM 較主動地響應 CoP，而非 CoP 被動追蹤 CoM</div>
+        <div class="research-finding">Hurst 指數（H 值）可作為技術水平的量化客觀指標</div>
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="research-journal">JFMK · 2025</div>
+      <div class="research-title">成年習練者手腕傷害橫斷面研究</div>
+      <div class="research-findings">
+        <div class="research-finding">首個專門針對成年非體操選手倒立習練者的流行病學研究</div>
+        <div class="research-finding">確認 56.7% 慢性手腕疼痛發生率</div>
+        <div class="research-finding">年輕習練者受傷風險更高，挑戰傳統「訓練量越多傷害越高」假設</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>6.2 跨領域研究趨勢</h3>
+  <h4>學科交叉</h4>
+  <p>倒立作為基礎技能，跨越競技體操、手技雜技（circus arts）、街頭健身（street workout）與徒手訓練（calisthenics）。學術界開始關注：</p>
+  <ul class="content-list">
+    <li>成人學習者（非兒童期訓練）的神經可塑性與學習效率差異</li>
+    <li>非競技場景習練者的傷害特徵（與競技選手不同）</li>
+    <li>跨學科訓練方法整合（如瑜伽頭倒立 → 手倒立的漸進路徑）</li>
+  </ul>
+  <h4>科技應用前沿</h4>
+  <ul class="content-list">
+    <li><strong>穿戴式 IMU</strong>：可在真實訓練環境（非實驗室）記錄姿態資料，提升生態效度</li>
+    <li><strong>機器學習</strong>：以 CoP 訊號自動分類技術水平，替代主觀教練評估</li>
+    <li><strong>即時生物回饋（real-time biofeedback）</strong>：對倒立學習加速效果研究</li>
+  </ul>
+</section>
+
+<!-- ── 07 Comparison ──────────────────────────────────── -->
+<section id="comparison">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">主流策略 vs. 前沿探索</h2>
+  </div>
+  <p>下表對比現行業界共識與學術前沿正在探索的方向，有助於判斷當前訓練實踐的邊界與未來演化方向：</p>
+
+  <div class="table-wrap">
+    <table class="vs-table">
+      <thead>
+        <tr>
+          <th>面向</th>
+          <th>主流訓練策略（業界共識）</th>
+          <th>前沿科學探索</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>平衡控制理解</strong></td><td>透過手指壓力控制重心</td><td>雙向 CoP-CoM 因果動力學；非線性變異性分析</td></tr>
+        <tr><td><strong>訓練進程</strong></td><td>四階段線性漸進模型</td><td>動力系統理論的非線性吸引子轉換模型</td></tr>
+        <tr><td><strong>技術評估</strong></td><td>教練目視判斷，保持時間計時</td><td>Hurst 指數、DFA 等非線性指標量化技術水平</td></tr>
+        <tr><td><strong>疲勞管理</strong></td><td>疲勞前停止，依主觀感覺調整</td><td>非線性工具偵測早期疲勞的客觀指標</td></tr>
+        <tr><td><strong>傷害預防</strong></td><td>充分暖身、逐步進階、控制訓練量</td><td>生物力學優化比總量控制更重要</td></tr>
+        <tr><td><strong>練習情境</strong></td><td>實驗室或gym內結構化練習</td><td>穿戴式 IMU + 真實訓練環境的生態效度研究</td></tr>
+        <tr><td><strong>學習工具</strong></td><td>搭擋輔助、鏡子、影片回放</td><td>即時生物回饋（real-time biofeedback）系統</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── REF References ────────────────────────────────── -->
+<section id="references">
+  <div class="section-header">
+    <span class="section-num">REF</span>
+    <h2 class="section-title">參考文獻</h2>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">主要學術文獻</div>
+    <div class="ref-item">
+      <div class="ref-num">1</div>
+      <div class="ref-content">
+        <div class="ref-title">Biomechanical analyses of the handstand: a systematic review</div>
+        <div class="ref-meta">Frontiers in Sports and Active Living · 2025 · 涵蓋 21 項研究，迄今最完整的倒立生物力學系統性回顧</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">2</div>
+      <div class="ref-content">
+        <div class="ref-title">Bidirectional causal control in the dynamics of handstand balance</div>
+        <div class="ref-meta">Scientific Reports · 2021 · CoP 與 CoM 雙向因果控制的核心研究</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">3</div>
+      <div class="ref-content">
+        <div class="ref-title">How does fatigue affect handstand balance? A non-linear approach</div>
+        <div class="ref-meta">Journal of NeuroEngineering and Rehabilitation · 2024 · 疲勞對倒立平衡的非線性分析</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">4</div>
+      <div class="ref-content">
+        <div class="ref-title">The Wrist as a Weightbearing Joint in Adult Handstand Practitioners</div>
+        <div class="ref-meta">Journal of Functional Morphology and Kinesiology · 2025 · 56.7% 慢性手腕疼痛發生率橫斷面調查</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">5</div>
+      <div class="ref-content">
+        <div class="ref-title">Kinematics and joints moments profile during straight arm press to handstand in male gymnasts</div>
+        <div class="ref-meta">PLOS One · 2021 · 直臂入倒立的運動學與關節力矩分析</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">訓練模型文獻</div>
+    <div class="ref-item">
+      <div class="ref-num">6</div>
+      <div class="ref-content">
+        <div class="ref-title">The Handstand: A Four Stage Training Model</div>
+        <div class="ref-meta">ResearchGate · 基於動力系統理論的四階段倒立訓練模型</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">神經科學與本體感覺</div>
+    <div class="ref-item">
+      <div class="ref-num">7</div>
+      <div class="ref-content">
+        <div class="ref-title">Neuroplasticity subserving motor skill learning</div>
+        <div class="ref-meta">PMC · 運動技能學習的神經可塑性機制</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">8</div>
+      <div class="ref-content">
+        <div class="ref-title">The Effectiveness of Proprioceptive Training for Improving Motor Performance: A Systematic Review</div>
+        <div class="ref-meta">Frontiers in Rehabilitation Sciences · 2022</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">傷害預防與實務資源</div>
+    <div class="ref-item">
+      <div class="ref-num">9</div>
+      <div class="ref-content">
+        <div class="ref-title">The 7 Most Common Handstand Problems and How to Fix Them</div>
+        <div class="ref-meta">Shift Movement Science · 常見錯誤的系統性分析</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">10</div>
+      <div class="ref-content">
+        <div class="ref-title">Handstand Shoulder Stability</div>
+        <div class="ref-meta">Partner Acrobatics · 肩部穩定性在倒立中的應用</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── Footer ────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-note">本報告整合截至 2026 年 5 月之最新學術研究成果，以 2025 年 Frontiers 系統性回顧及 2025 年手腕傷害橫斷面研究為最前沿資料。報告中的訓練建議基於現有科學文獻，個人實際訓練應結合自身狀況，並考慮尋求合格教練或物理治療師的指導。</p>
+    <div class="footer-badge">Handstand Science · 2026.05</div>
+  </div>
+</footer>
+
+</div><!-- end page-wrap inner -->
+</div><!-- end page-wrap -->
+
+<script>
+// Active TOC highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
