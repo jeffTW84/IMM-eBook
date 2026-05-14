@@ -498,17 +498,42 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
     <h2 class="section-title">神經肌肉訓練</h2>
   </div>
 
-  <h3>2.1 本體感覺的核心角色</h3>
-  <p>本體感覺（Proprioception）整合四類感受器，在倒立中扮演核心角色：</p>
-  <ul class="content-list">
-    <li><strong>肌梭（Muscle spindles）</strong>：偵測肌肉長度變化</li>
-    <li><strong>高爾基腱器（Golgi tendon organs）</strong>：偵測肌腱張力</li>
-    <li><strong>關節機械感受器（Joint mechanoreceptors）</strong>：偵測關節角度</li>
-    <li><strong>皮膚壓力感受器</strong>：偵測手掌壓力分佈</li>
-  </ul>
+  <h3>2.1 體感覺系統的核心角色</h3>
+  <p>倒立的平衡控制依賴<strong>體感覺系統（Somatosensory system）</strong>的兩個分支協同運作，嚴格來說並非同一層級，但在倒立研究文獻中常被一起討論，因為兩者都對姿勢控制有直接貢獻：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>分類</th><th>感受器</th><th>偵測內容</th><th>倒立中的文獻貢獻</th></tr></thead>
+      <tbody>
+        <tr>
+          <td rowspan="3" style="vertical-align:middle"><strong>本體感受器</strong><br><small>Proprioceptors</small><br><small style="color:var(--text3)">感知身體自身狀態</small></td>
+          <td><strong>肌梭</strong><br><small>Muscle spindles</small></td>
+          <td>肌肉長度與伸展速率</td>
+          <td>研究顯示肩部與前臂肌梭密度高，是倒立姿勢微調的主要神經信號來源（Frontiers, 2025）</td>
+        </tr>
+        <tr>
+          <td><strong>高爾基腱器</strong><br><small>Golgi tendon organs</small></td>
+          <td>肌腱張力（肌肉出力大小）</td>
+          <td>監控旋轉肌袖張力，防止在疲勞時過度負荷造成撕裂；與傷害預防研究直接相關（JFMK, 2025）</td>
+        </tr>
+        <tr>
+          <td><strong>關節機械感受器</strong><br><small>Joint mechanoreceptors</small><br><small style="color:var(--text3)">（Ruffini、Pacinian、Golgi 韌帶器）</small></td>
+          <td>關節角度、加速度、終端張力</td>
+          <td>腕關節 Ruffini 末梢持續回報伸展角度，是「腕部策略」的主要感覺基礎（Scientific Reports, 2021）</td>
+        </tr>
+        <tr>
+          <td style="vertical-align:middle"><strong>皮膚感受器</strong><br><small>Cutaneous receptors</small><br><small style="color:var(--text3)">感知外部環境刺激</small></td>
+          <td><strong>皮膚壓力感受器</strong><br><small>Meissner、Pacinian、Merkel 小體</small></td>
+          <td>Meissner 小體偵測手指接觸面的快速壓力變化；Pacinian 小體回應高頻振動（250 Hz）；Merkel 小體持續感知靜態壓力梯度，反映體重在掌心的分佈狀態</td>
+          <td>Frontiers 2025 系統性回顧顯示，熟練倒立者掌心壓力中心軌跡（CoP RMS）顯著低於初學者，皮膚感受器激活模式與本體感受器高度同步；Scientific Reports 2021 實驗指出，局部麻醉手掌皮膚後倒立穩定時間縮短約 18%，直接佐證皮膚感受器對平衡維持的獨立貢獻</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="info-block green">
-    <strong>為什麼倒立訓練本體感覺特別有效？</strong>
-    上肢的本體感覺訓練量是人體日常活動中最高的情境之一，因為手部通常不承受全身體重。手部負重訓練能改善手腕與肘關節的位置覺（joint position sense）並增強反射穩定性。
+    <strong>為什麼倒立對體感覺訓練特別有效？</strong>
+    手部承重是日常活動中極少出現的情境，這使得倒立能同時高強度刺激本體感受器與皮膚感受器兩個分支。研究顯示，持續的手部負重訓練能顯著改善手腕與肘關節的位置覺（joint position sense）並增強反射穩定性。
   </div>
 
   <h3>2.2 神經適應 vs. 肌肉適應的時間軸</h3>
@@ -539,16 +564,92 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 
   <h3>2.3 運動學習曲線</h3>
   <p>倒立的學習符合典型的<strong>冪次學習曲線（Power Law of Learning）</strong>：</p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>學習階段</th><th>神經機制</th><th>訓練特徵</th></tr></thead>
-      <tbody>
-        <tr><td>快速學習期</td><td>初級運動皮質大量招募神經元</td><td>每次訓練都有顯著進步</td></tr>
-        <tr><td>鞏固期（高原期）</td><td>記憶鞏固（consolidation）持續進行</td><td>需多次課程累積，小幅穩定進步</td></tr>
-        <tr><td>精熟期</td><td>神經代謝成本下降，動作自動化</td><td>表現穩定，可加載難度</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;max-width:760px;display:block;margin:1.5rem auto;border-radius:12px;border:1px solid #1e3050;font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif">
+    <defs>
+      <linearGradient id="curveGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#34d399"/>
+        <stop offset="42%" stop-color="#fbbf24"/>
+        <stop offset="100%" stop-color="#4f9eff"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Background -->
+    <rect width="760" height="400" fill="#0e1929" rx="12"/>
+
+    <!-- Phase tint regions (plot area y=50–290) -->
+    <rect x="80" y="50" width="203" height="240" fill="#34d399" fill-opacity="0.07"/>
+    <rect x="283" y="50" width="218" height="240" fill="#fbbf24" fill-opacity="0.07"/>
+    <rect x="501" y="50" width="219" height="240" fill="#4f9eff" fill-opacity="0.07"/>
+
+    <!-- Phase dividers -->
+    <line x1="283" y1="50" x2="283" y2="290" stroke="#264166" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="501" y1="50" x2="501" y2="290" stroke="#264166" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+    <!-- Grid lines -->
+    <line x1="80" y1="220" x2="720" y2="220" stroke="#1e3050" stroke-width="1"/>
+    <line x1="80" y1="155" x2="720" y2="155" stroke="#1e3050" stroke-width="1"/>
+    <line x1="80" y1="90"  x2="720" y2="90"  stroke="#1e3050" stroke-width="1"/>
+
+    <!-- Axes -->
+    <line x1="80" y1="290" x2="720" y2="290" stroke="#264166" stroke-width="2"/>
+    <line x1="80" y1="50"  x2="80"  y2="290" stroke="#264166" stroke-width="2"/>
+    <polygon points="720,287 729,290 720,293" fill="#264166"/>
+    <polygon points="77,50 80,41 83,50"       fill="#264166"/>
+
+    <!-- Axis labels -->
+    <text x="400" y="310" text-anchor="middle" fill="#6b8aaa" font-size="11">練習次數（累積訓練量）→</text>
+    <text x="22" y="175" text-anchor="middle" fill="#6b8aaa" font-size="11" transform="rotate(-90,22,175)">↑ 技術表現</text>
+    <text x="76" y="293" text-anchor="end"    fill="#6b8aaa" font-size="9">低</text>
+    <text x="76" y="93"  text-anchor="end"    fill="#6b8aaa" font-size="9">高</text>
+
+    <!-- Phase labels -->
+    <text x="181" y="68" text-anchor="middle" fill="#34d399" font-size="11.5" font-weight="700">① 快速學習期</text>
+    <text x="392" y="68" text-anchor="middle" fill="#fbbf24" font-size="11.5" font-weight="700">② 鞏固期（高原期）</text>
+    <text x="610" y="68" text-anchor="middle" fill="#7bc3ff" font-size="11.5" font-weight="700">③ 精熟期</text>
+
+    <!-- Curve glow -->
+    <path d="M 80 275 C 85 275 115 180 120 180 S 195 140 200 140 S 260 112 283 107 C 340 98 400 91 450 88 S 490 86 501 85 C 560 83 650 80 720 79"
+          fill="none" stroke="#4f9eff" stroke-width="10" stroke-linecap="round" opacity="0.12"/>
+    <!-- Curve main -->
+    <path d="M 80 275 C 85 275 115 180 120 180 S 195 140 200 140 S 260 112 283 107 C 340 98 400 91 450 88 S 490 86 501 85 C 560 83 650 80 720 79"
+          fill="none" stroke="url(#curveGrad)" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Markers -->
+    <circle cx="80"  cy="275" r="5" fill="#34d399" opacity="0.85"/>
+    <circle cx="283" cy="107" r="6" fill="#0e1929" stroke="#fbbf24" stroke-width="2"/>
+    <circle cx="501" cy="85"  r="6" fill="#0e1929" stroke="#7bc3ff" stroke-width="2"/>
+    <circle cx="720" cy="79"  r="5" fill="#7bc3ff"  opacity="0.85"/>
+
+    <!-- ── Panel row (below axis) ── -->
+
+    <!-- Phase 1 panel -->
+    <rect x="83"  y="300" width="197" height="90" rx="6" fill="#162238" stroke="#34d399" stroke-width="1" stroke-opacity="0.5"/>
+    <text x="181" y="317" text-anchor="middle" fill="#34d399"  font-size="10"   font-weight="700">神經機制</text>
+    <text x="181" y="331" text-anchor="middle" fill="#a8bed8"  font-size="9.5">初級運動皮質大量招募神經元</text>
+    <text x="181" y="345" text-anchor="middle" fill="#a8bed8"  font-size="9.5">運動單元募集效率提升</text>
+    <line x1="83" y1="354" x2="280" y2="354" stroke="#264166" stroke-width="1"/>
+    <text x="181" y="368" text-anchor="middle" fill="#6b8aaa"  font-size="9.5"  font-style="italic">訓練特徵：每次都有顯著進步</text>
+    <text x="181" y="381" text-anchor="middle" fill="#6b8aaa"  font-size="9.5"  font-style="italic">是最有成就感的階段</text>
+
+    <!-- Phase 2 panel -->
+    <rect x="286" y="300" width="212" height="90" rx="6" fill="#162238" stroke="#fbbf24" stroke-width="1" stroke-opacity="0.5"/>
+    <text x="392" y="317" text-anchor="middle" fill="#fbbf24"  font-size="10"   font-weight="700">神經機制</text>
+    <text x="392" y="331" text-anchor="middle" fill="#a8bed8"  font-size="9.5">記憶鞏固（Consolidation）持續進行</text>
+    <text x="392" y="345" text-anchor="middle" fill="#a8bed8"  font-size="9.5">動作程式在小腦與基底核形成</text>
+    <line x1="286" y1="354" x2="498" y2="354" stroke="#264166" stroke-width="1"/>
+    <text x="392" y="368" text-anchor="middle" fill="#6b8aaa"  font-size="9.5"  font-style="italic">訓練特徵：小幅穩定進步</text>
+    <text x="392" y="381" text-anchor="middle" fill="#6b8aaa"  font-size="9.5"  font-style="italic">切勿在此階段放棄訓練</text>
+
+    <!-- Phase 3 panel -->
+    <rect x="504" y="300" width="213" height="90" rx="6" fill="#162238" stroke="#7bc3ff" stroke-width="1" stroke-opacity="0.5"/>
+    <text x="610" y="317" text-anchor="middle" fill="#7bc3ff"  font-size="10"   font-weight="700">神經機制</text>
+    <text x="610" y="331" text-anchor="middle" fill="#a8bed8"  font-size="9.5">神經代謝成本下降</text>
+    <text x="610" y="345" text-anchor="middle" fill="#a8bed8"  font-size="9.5">動作趨於自動化</text>
+    <line x1="504" y1="354" x2="717" y2="354" stroke="#264166" stroke-width="1"/>
+    <text x="610" y="368" text-anchor="middle" fill="#6b8aaa"  font-size="9.5"  font-style="italic">訓練特徵：表現穩定</text>
+    <text x="610" y="381" text-anchor="middle" fill="#6b8aaa"  font-size="9.5"  font-style="italic">可加載難度或轉移技術</text>
+  </svg>
   <div class="info-block">
     <strong>分散式練習（Distributed Practice）優於集中式練習（Massed Practice）</strong>
     每週 4 次 × 20 分鐘的訓練者，因課間記憶鞏固得以進行，進步速度比每週 1 次 × 90 分鐘快 2～3 倍。
