@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>托馬斯全旋運動科學報告 · Thomas Flare Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08101e;
+  --bg2:#0e1929;
+  --surface:#111f35;
+  --card:#162238;
+  --card2:#1a2a44;
+  --border:#1e3050;
+  --border2:#264166;
+  --accent:#4f9eff;
+  --accent2:#7bc3ff;
+  --gold:#f5b84b;
+  --gold2:#fdd888;
+  --green:#34d399;
+  --red:#f87171;
+  --purple:#a78bfa;
+  --text:#e8f1fc;
+  --text2:#a8bed8;
+  --text3:#6b8aaa;
+  --font:-apple-system,BlinkMacSystemFont,"Inter","PingFang TC","Noto Sans TC",sans-serif;
+  --serif:"Playfair Display","Georgia",serif;
+  --mono:"JetBrains Mono","Fira Code",monospace;
+  --r:10px;--r2:16px;
+  --shadow:0 4px 24px rgba(0,0,0,.45);
+  --shadow2:0 8px 48px rgba(0,0,0,.6);
+  --trans:.2s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.75;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+h1,h2,h3,h4{line-height:1.3;font-weight:700}
+h2{font-family:var(--serif);font-size:2rem;margin-bottom:1.5rem}
+h3{font-size:1.2rem;color:var(--accent2);margin:2rem 0 .8rem;padding-left:1rem;border-left:3px solid var(--accent)}
+h4{font-size:.85rem;color:var(--gold);margin:1.5rem 0 .6rem;text-transform:uppercase;letter-spacing:.08em}
+p{margin-bottom:1rem;color:var(--text2)}
+strong{color:var(--text);font-weight:600}
+em{color:var(--gold2);font-style:normal;font-weight:500}
+code{font-family:var(--mono);background:var(--card2);color:var(--accent2);padding:.15em .45em;border-radius:4px;font-size:.85em}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--trans)}
+a:hover{border-color:var(--accent)}
+
+/* Layout */
+.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;max-width:1440px;margin:0 auto}
+main{padding:0 3rem 6rem;max-width:900px;width:100%}
+
+/* Sidebar */
+aside{position:sticky;top:0;height:100vh;overflow-y:auto;padding:2rem 1.5rem;border-right:1px solid var(--border);background:var(--bg2)}
+.toc-logo{display:flex;align-items:center;gap:.6rem;margin-bottom:2.5rem;text-decoration:none;border:none}
+.toc-logo-icon{width:44px;height:44px;min-width:44px;display:grid;place-items:center}
+.toc-logo-icon img{width:44px;height:44px;object-fit:contain;filter:invert(1) brightness(2);opacity:.9}
+.toc-logo-text{font-weight:700;font-size:.95rem;line-height:1.2;color:var(--text)}
+.toc-logo-sub{font-size:.7rem;color:var(--text3);font-weight:400}
+nav ul{list-style:none}
+nav li{margin:.2rem 0}
+nav a{display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border-radius:6px;font-size:.82rem;color:var(--text2);transition:all var(--trans);text-decoration:none;border:none;line-height:1.4}
+nav a:hover{background:var(--surface);color:var(--text)}
+nav a.active{background:var(--surface);color:var(--accent);font-weight:600}
+nav .toc-num{font-size:.7rem;color:var(--text3);font-family:var(--mono);min-width:1.4rem}
+nav .toc-group{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);padding:.75rem .75rem .25rem;margin-top:.5rem}
+
+/* Hero */
+.hero{position:relative;padding:5rem 3rem 4rem;margin-bottom:0;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(79,158,255,.12) 0%,transparent 70%)}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.25);border-radius:20px;padding:.3rem .9rem;font-size:.78rem;color:var(--accent2);letter-spacing:.05em;margin-bottom:1.5rem}
+.hero-tag::before{content:'●';color:var(--green);font-size:.55rem}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);background:linear-gradient(135deg,#fff 30%,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+.hero-sub{font-size:1.05rem;color:var(--text3);margin-bottom:.5rem}
+.hero-date{font-size:.82rem;color:var(--text3);font-family:var(--mono)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem 1.4rem;position:relative;overflow:hidden;transition:border-color var(--trans)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-bar,var(--accent))}
+.stat-card:hover{border-color:var(--border2)}
+.stat-num{font-size:2rem;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1}
+.stat-label{font-size:.75rem;color:var(--text3);margin-top:.35rem}
+
+/* Section */
+section{padding:4rem 0 1rem;border-bottom:1px solid var(--border)}
+section:last-child{border-bottom:none}
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.section-num{font-size:.8rem;font-family:var(--mono);color:var(--accent);background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.2);padding:.25rem .6rem;border-radius:4px;white-space:nowrap}
+.section-title{font-family:var(--serif);font-size:1.9rem;color:var(--text)}
+
+/* Insight cards */
+.insight-grid{display:grid;gap:1rem}
+.insight-card{display:flex;gap:1.2rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.4rem 1.6rem;transition:all var(--trans)}
+.insight-card:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:var(--shadow)}
+.insight-n{width:2.5rem;height:2.5rem;min-width:2.5rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1rem;font-family:var(--mono)}
+.insight-body h4{color:var(--text);font-size:.95rem;text-transform:none;letter-spacing:0;margin:0 0 .35rem;font-family:var(--font)}
+.insight-body p{font-size:.9rem;margin:0;color:var(--text2)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border-radius:var(--r);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.875rem}
+thead tr{background:var(--surface)}
+thead th{padding:.8rem 1rem;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-weight:600;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,.018)}
+tbody td{padding:.75rem 1rem;vertical-align:top;color:var(--text2)}
+tbody td:first-child{color:var(--text);font-weight:500}
+tbody tr:hover td{background:rgba(79,158,255,.04)}
+
+/* Info blocks */
+.info-block{background:var(--card);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:1rem 1.4rem;margin:1.2rem 0;font-size:.9rem;color:var(--text2)}
+.info-block.gold{border-color:var(--gold)}
+.info-block.green{border-color:var(--green)}
+.info-block.red{border-color:var(--red)}
+.info-block.purple{border-color:var(--purple)}
+.info-block strong{display:block;color:var(--text);margin-bottom:.3rem}
+
+/* Big stats */
+.big-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+.big-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;text-align:center}
+.big-stat .num{font-size:2.8rem;font-weight:700;font-family:var(--mono);color:var(--gold);line-height:1}
+.big-stat .denom{font-size:1rem;color:var(--text3)}
+.big-stat .desc{font-size:.8rem;color:var(--text3);margin-top:.5rem}
+
+/* Stage cards */
+.stage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin:1.5rem 0}
+.stage-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.6rem;position:relative;overflow:hidden;transition:all var(--trans)}
+.stage-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.stage-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--stage-color,var(--accent))}
+.stage-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-family:var(--mono);color:var(--stage-color,var(--accent));background:rgba(79,158,255,.1);border:1px solid currentColor;padding:.2rem .6rem;border-radius:4px;margin-bottom:.8rem;opacity:.8}
+.stage-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.stage-en{font-size:.8rem;color:var(--text3);margin-bottom:.9rem;font-style:italic}
+.stage-card ul{padding-left:1.1rem;font-size:.85rem;color:var(--text2)}
+.stage-card ul li{margin:.3rem 0}
+.stage-tool{margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--text3)}
+.stage-tool span{color:var(--accent);font-weight:500}
+
+/* Strategy steps */
+.strategy-steps{display:flex;flex-direction:column;gap:.6rem;margin:1.2rem 0}
+.strategy-step{display:flex;align-items:flex-start;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;transition:border-color var(--trans)}
+.strategy-step:hover{border-color:var(--border2)}
+.step-rank{width:2rem;height:2rem;min-width:2rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;font-family:var(--mono)}
+.step-content{flex:1}
+.step-title{font-weight:600;color:var(--text);font-size:.92rem;margin-bottom:.2rem}
+.step-desc{font-size:.83rem;color:var(--text2)}
+
+/* Research card */
+.research-grid{display:grid;gap:1rem;margin:1.2rem 0}
+.research-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.4rem;transition:all var(--trans)}
+.research-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.research-journal{font-size:.72rem;font-family:var(--mono);color:var(--accent);opacity:.8;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em}
+.research-title{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.6rem}
+.research-title a{color:inherit;border-bottom:1px solid rgba(232,241,252,.35)}
+.research-title a:hover{border-color:var(--text)}
+.research-findings{display:flex;flex-direction:column;gap:.35rem}
+.research-finding{display:flex;gap:.6rem;font-size:.83rem;color:var(--text2)}
+.research-finding::before{content:'→';color:var(--accent);flex-shrink:0}
+
+/* Gap cards */
+.gap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+.gap-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.3rem;border-left:3px solid var(--red)}
+.gap-num{font-size:.7rem;font-family:var(--mono);color:var(--red);opacity:.7;margin-bottom:.3rem}
+.gap-title{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+.gap-desc{font-size:.8rem;color:var(--text2);line-height:1.5}
+
+/* Reference list */
+.ref-group{margin-bottom:2rem}
+.ref-group-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.ref-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px dashed var(--border)}
+.ref-item:last-child{border-bottom:none}
+.ref-num{font-family:var(--mono);font-size:.75rem;color:var(--accent);min-width:1.8rem;padding-top:.1rem}
+.ref-content{flex:1}
+.ref-title{font-size:.88rem;color:var(--text);font-weight:500;margin-bottom:.2rem}
+.ref-title a{color:inherit;border-bottom:1px solid rgba(232,241,252,.35)}
+.ref-title a:hover{border-color:var(--text)}
+.ref-meta{font-size:.78rem;color:var(--text3)}
+
+/* Content list */
+.content-list{padding-left:1.3rem;margin:.8rem 0}
+.content-list li{margin:.4rem 0;color:var(--text2);font-size:.92rem}
+.content-list li strong{color:var(--text)}
+
+/* Keyword pill */
+.kw{display:inline;background:rgba(79,158,255,.12);color:var(--accent2);border-radius:4px;padding:.1em .4em;font-size:.85em;font-weight:500}
+
+/* Footer */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3rem;grid-column:1/-1}
+.footer-inner{max-width:900px;margin:0 auto;display:flex;gap:2rem;align-items:flex-start}
+.footer-note{font-size:.82rem;color:var(--text3);line-height:1.7;flex:1}
+.footer-badge{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.7rem 1.2rem;font-size:.75rem;color:var(--text3);white-space:nowrap;font-family:var(--mono)}
+
+/* Mobile */
+.mobile-bar{display:none}
+.sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(2px)}
+.sidebar-backdrop.open{display:block}
+
+@media(max-width:900px){
+  .mobile-bar{display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;height:54px;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 1.2rem;gap:.8rem}
+  .mobile-bar-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;border:none}
+  .mobile-bar-logo img{width:32px;height:32px;object-fit:contain;filter:invert(1) brightness(2);opacity:.9}
+  .mobile-bar-text{font-weight:700;font-size:.88rem;color:var(--text)}
+  .mobile-bar-sub{font-size:.65rem;color:var(--text3)}
+  .hamburger{background:none;border:1px solid var(--border);border-radius:6px;padding:.4rem .55rem;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+  .hamburger span{display:block;width:18px;height:2px;background:var(--text2);border-radius:2px;transition:all .25s}
+  .hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  .page-wrap{grid-template-columns:1fr;padding-top:54px}
+  aside{position:fixed;top:0;left:-280px;height:100vh;width:260px;z-index:100;transition:left .28s cubic-bezier(.4,0,.2,1);border-right:1px solid var(--border2);box-shadow:var(--shadow2)}
+  aside.open{left:0}
+  main{padding:0 1.5rem 4rem}
+  .hero{padding:2.5rem 1.5rem 2rem}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .stage-grid{grid-template-columns:1fr}
+  .big-stat-row{grid-template-columns:1fr}
+  .gap-grid{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}
+  .footer-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Bar -->
+<div class="mobile-bar">
+  <a class="mobile-bar-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
+    <img src="../assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="mobile-bar-text">智動矩陣</div>
+      <div class="mobile-bar-sub">Thomas Flare Science Report</div>
+    </div>
+  </a>
+  <button class="hamburger" id="menuBtn" aria-label="開啟目錄">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<div class="sidebar-backdrop" id="backdrop"></div>
+
+<div class="page-wrap">
+
+<!-- Sidebar -->
+<aside>
+  <a class="toc-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
+    <div class="toc-logo-icon"><img src="../assets/imm-logo.png" alt="IMM Logo"></div>
+    <div>
+      <div class="toc-logo-text">智動矩陣-全旋科學</div>
+      <div class="toc-logo-sub">Thomas Flare Science Report</div>
+    </div>
+  </a>
+  <nav>
+    <div class="toc-group">概覽</div>
+    <ul>
+      <li><a href="#summary"><span class="toc-num">00</span>執行摘要</a></li>
+    </ul>
+    <div class="toc-group">核心研究</div>
+    <ul>
+      <li><a href="#biomechanics"><span class="toc-num">01</span>生物力學</a></li>
+      <li><a href="#emg"><span class="toc-num">02</span>肌電圖分析</a></li>
+      <li><a href="#training"><span class="toc-num">03</span>訓練系統</a></li>
+    </ul>
+    <div class="toc-group">Breaking 視角</div>
+    <ul>
+      <li><a href="#injury"><span class="toc-num">04</span>傷害流行病學</a></li>
+      <li><a href="#performance"><span class="toc-num">05</span>運動表現模型</a></li>
+    </ul>
+    <div class="toc-group">前沿視野</div>
+    <ul>
+      <li><a href="#frontier"><span class="toc-num">06</span>前沿探索</a></li>
+      <li><a href="#gaps"><span class="toc-num">07</span>研究缺口</a></li>
+      <li><a href="#references"><span class="toc-num">REF</span>參考文獻</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div>
+<main>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">運動科學報告 · Thomas Flare / B-boy Flare</div>
+  <h1>托馬斯全旋<br>運動科學</h1>
+  <p class="hero-sub">體操鞍馬 × 霹靂舞地板 — 跨社群研究整合</p>
+  <p class="hero-date">// 2026.05 · 整合 27 篇文獻</p>
+  <div class="hero-stats">
+    <div class="stat-card" style="--accent-bar:var(--accent)">
+      <div class="stat-num">27</div>
+      <div class="stat-label">收錄文獻總數（體操 + Breaking 雙社群）</div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--red)">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Flare 動作直接研究（2007 年至今唯一）</div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--gold)">
+      <div class="stat-num">2.0×</div>
+      <div class="stat-label">腕部最大峰值力（體重倍數），各鞍馬技術中最高</div>
+    </div>
+  </div>
+</div>
+
+<!-- 00 Executive Summary -->
+<section id="summary">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <h2 class="section-title">執行摘要</h2>
+  </div>
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(248,113,113,.15);color:var(--red)">1</div>
+      <div class="insight-body">
+        <h4>直接研究極度稀缺</h4>
+        <p>2007 年 Prassas et al. 的案例研究（n=1）是迄今<strong>唯一</strong>直接以 Thomas Flare 為對象的生物力學論文。幾乎所有知識必須從鞍馬雙腿併攏圓圈（DLC）研究間接推論，或從 Breaking 整體傷害研究中萃取。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(245,184,75,.15);color:var(--gold)">2</div>
+      <div class="insight-body">
+        <h4>腕部承受上肢動作最高衝擊</h4>
+        <p>Markolf et al.（1990）以儀器化鞍馬量測：Flare 峰值力達 <strong>1.5–2.0 倍體重</strong>，加載率 <strong>10.6 倍體重/秒</strong>——兩項均為鞍馬各技術中最高。這直接解釋了為何 B-boy 族群的腕部傷害率達 57–69%。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(79,158,255,.15);color:var(--accent)">3</div>
+      <div class="insight-body">
+        <h4>肱三頭肌是全週期主導肌群</h4>
+        <p>Qian et al.（2012）以 16 通道 EMG 量測鞍馬圓圈：<strong>肱三頭肌</strong>在整個週期輸出最高，雙手支撐過渡相達峰值；胸大肌在左手單撐相主導；背闊肌在右手單撐相與肱三頭肌共同達峰。Flare 張腿改變慣性分布，推估各肌群需求更高。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(52,211,153,.15);color:var(--green)">4</div>
+      <div class="insight-body">
+        <h4>Breaking 傷害率驚人，腕肩為高危部位</h4>
+        <p>六項流行病學研究（2009–2025）一致顯示傷害率 71–95%，職業選手每人中位數 3.5 起傷害。腕部（57–69%）、肩部（52–61%）、膝部（62–64%）是最常受傷部位。精英選手肩旋轉力量比僅 78%（低於建議值 100%）。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(167,139,250,.15);color:var(--purple)">5</div>
+      <div class="insight-body">
+        <h4>奧運後研究加速，Flare 專項研究即將迎來爆發</h4>
+        <p>Breaking 在 2024 年巴黎奧運亮相後，德國、法國、義大利、美國多個研究團隊正系統性建立運動科學基礎。BRACE 數據集（ECCV 2022）與 Yamasaki et al.（2024）的力學模型為 Flare 自動化分析和最佳化軌跡計算開啟了技術門。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 Biomechanics -->
+<section id="biomechanics">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">生物力學分析</h2>
+  </div>
+
+  <h3>1.1 唯一的 Flare 直接研究</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">ISBS Conference · 2007</div>
+      <div class="research-title"><a href="https://ojs.ub.uni-konstanz.de/cpa/article/view/107" target="_blank">Thomas Flaires on the Pommel and Floor: A Case Study</a></div>
+      <div class="research-findings">
+        <div class="research-finding">Prassas, Ariel, Ostarello & Tsarouchas；兩台 60 Hz 攝影機 + APAS 系統</div>
+        <div class="research-finding">迄今唯一直接比較 Flare 在<strong>鞍馬與地板</strong>兩種器械的生物力學論文</div>
+        <div class="research-finding">高技術水平選手在兩器械的 Flare 力學高度相似，整體運動學輪廓差異較小，但存在細微時間差異</div>
+        <div class="research-finding">髖肩關節角度模式與先前 Magyar Spindle Flaire 文獻一致</div>
+        <div class="research-finding" style="color:var(--red)">侷限：n=1，個案研究，無法廣泛推論</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>1.2 鞍馬 vs. 地板 — 關鍵運動學差異</h3>
+  <p>Semenov et al.（2022）以 Qualisys 3D 動作捕捉比較俄羅斯圓圈（同屬大圓圈技術族群），揭示了地板與鞍馬在力學需求上的結構性差異：</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>參數</th><th>地板（Floor）</th><th>鞍馬（Pommel Horse）</th></tr></thead>
+      <tbody>
+        <tr><td>每個圓圈耗時</td><td>較短（快約 0.3 秒）</td><td>較長</td></tr>
+        <tr><td>骶骨垂直位移</td><td><strong>19 cm</strong>（需要大幅髖部抬升）</td><td>11 cm</td></tr>
+        <tr><td>旋轉速度需求</td><td>更高</td><td>較低</td></tr>
+        <tr><td>每次手支撐時長</td><td>0.3–0.4 秒</td><td>0.3–0.4 秒</td></tr>
+        <tr><td>肩關節角度範圍</td><td>4°–35°</td><td>9°–40°</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-block gold">
+    <strong>訓練含義</strong>
+    地板 Flare（Breaking 版本）需要更快的旋轉速度與更大的髖部垂直位移，對核心力量和時機把握的要求比鞍馬更高。體操選手切換至地板時常需重新適應節奏。
+  </div>
+
+  <h3>1.3 腕部負荷量測（傷害機制核心）</h3>
+  <p>Markolf et al.（1990）是目前唯一以<strong>儀器化鞍馬（load cell）</strong>系統性量測各技術腕部負荷的研究，樣本為 17 位精英男子體操選手。</p>
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">1.5–2.0<span class="denom">×BW</span></div>
+      <div class="desc">Flare 腕部峰值力（體重倍數）<br>各鞍馬技術中並列最高</div>
+    </div>
+    <div class="big-stat">
+      <div class="num">10.6<span class="denom">×BW/s</span></div>
+      <div class="desc">平均加載率<br>各技術中最高</div>
+    </div>
+    <div class="big-stat">
+      <div class="num">219<span class="denom">×BW/s</span></div>
+      <div class="desc">前剪（front scissors）局部最大加載率<br>暫態衝擊峰值</div>
+    </div>
+  </div>
+  <div class="info-block red">
+    <strong>臨床意義</strong>
+    這些衝擊力對「正常情況下不承重的上肢關節」而言異常高。腕關節在 Flare 中承受類似踝關節在跑步中的週期性負荷，但缺乏相應的生理適應時間——這是 B-boy/體操選手腕部慢性傷害的主要致病機制。
+  </div>
+
+  <h3>1.4 動態平衡理論模型</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">Scientific Reports · 2024</div>
+      <div class="research-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11380692/" target="_blank">Dynamic balance of circles with one support point on pommel horse exercise</a></div>
+      <div class="research-findings">
+        <div class="research-finding">Yamasaki et al.；建立單支撐點剛體力學模型（Newton-Euler 方程）</div>
+        <div class="research-finding"><strong>動態平衡條件</strong>：腕關節與肩關節力矩同時為零</div>
+        <div class="research-finding">圓圈速度越快，腳尖位置越高、振幅越大——速度是「浮起」的關鍵</div>
+        <div class="research-finding">身體縱軸旋轉（rolling）有助於腳尖抬高，是 Flare 技術中身體縱軸旋轉的力學解釋</div>
+        <div class="research-finding">此模型為計算 Flare 最佳動作軌跡開啟可能，但 Flare 張腿版本尚未建模</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>1.5 高分選手的運動學特徵</h3>
+  <p>Fujihara & Gervais（2015）分析鞍馬圓圈的向心力與重心速度，歸納出區分高低水平選手的關鍵指標：</p>
+  <ul class="content-list">
+    <li><strong>單手支撐相</strong>：高分選手維持更大的重心速度與向心力，形成「流暢連續」的旋轉感</li>
+    <li><strong>雙手過渡相</strong>：力學上最複雜困難，即使高水平選手仍有優化空間</li>
+    <li><strong>Fujihara & Gervais（2009）</strong>：垂直反作用力在雙手支撐階段達峰值；重心速度在單手支撐階段最高</li>
+  </ul>
+</section>
+
+<!-- 02 EMG -->
+<section id="emg">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">肌電圖與肌肉分析</h2>
+  </div>
+
+  <h3>2.1 研究現況</h3>
+  <div class="info-block red">
+    <strong>目前沒有針對 Flare（張腿圓圈）的專項 EMG 研究</strong>
+    現有肌電圖知識完全來自 Qian et al.（2012）對鞍馬<strong>雙腿併攏圓圈（DLC）</strong>的量測，再依 Flare 動作特性（腿部張開改變整體慣性分布）進行推估調整。此為目前文獻中最重要的知識缺口之一。
+  </div>
+
+  <h3>2.2 肌肉活化相位圖（基於 DLC EMG 推估）</h3>
+  <p>Qian et al.（2012）以 16 通道 1000 Hz 表面 EMG 量測，結合 LifeMOD/ADAMS 多剛體動力學模型驗證，量測了五條上肢關鍵肌群：</p>
+
+  <!-- SVG Muscle Activation Chart -->
+  <svg viewBox="0 0 760 310" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;max-width:760px;display:block;margin:1.5rem auto;border-radius:12px;border:1px solid #1e3050;font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif">
+    <rect width="760" height="310" fill="#0e1929" rx="12"/>
+
+    <!-- Phase background tints -->
+    <rect x="145" y="40" width="152" height="195" fill="#4f9eff" fill-opacity="0.06"/>
+    <rect x="297" y="40" width="152" height="195" fill="#34d399" fill-opacity="0.06"/>
+    <rect x="449" y="40" width="152" height="195" fill="#f5b84b" fill-opacity="0.06"/>
+    <rect x="601" y="40" width="114" height="195" fill="#a78bfa" fill-opacity="0.06"/>
+
+    <!-- Phase dividers -->
+    <line x1="297" y1="40" x2="297" y2="235" stroke="#264166" stroke-width="1" stroke-dasharray="4,3"/>
+    <line x1="449" y1="40" x2="449" y2="235" stroke="#264166" stroke-width="1" stroke-dasharray="4,3"/>
+    <line x1="601" y1="40" x2="601" y2="235" stroke="#264166" stroke-width="1" stroke-dasharray="4,3"/>
+
+    <!-- Phase labels -->
+    <text x="221" y="28" text-anchor="middle" fill="#7bc3ff" font-size="10" font-weight="700">雙手支撐</text>
+    <text x="373" y="28" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">左手單撐</text>
+    <text x="525" y="28" text-anchor="middle" fill="#f5b84b" font-size="10" font-weight="700">右手單撐</text>
+    <text x="658" y="28" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">雙手過渡</text>
+
+    <!-- Row labels (muscle names) -->
+    <text x="140" y="68"  text-anchor="end" fill="#e8f1fc" font-size="9.5" font-weight="600">肱三頭肌</text>
+    <text x="140" y="108" text-anchor="end" fill="#e8f1fc" font-size="9.5" font-weight="600">胸大肌</text>
+    <text x="140" y="148" text-anchor="end" fill="#e8f1fc" font-size="9.5" font-weight="600">背闊肌</text>
+    <text x="140" y="188" text-anchor="end" fill="#e8f1fc" font-size="9.5" font-weight="600">三角肌（中）</text>
+    <text x="140" y="228" text-anchor="end" fill="#e8f1fc" font-size="9.5" font-weight="600">肱二頭肌</text>
+    <text x="140" y="78"  text-anchor="end" fill="#6b8aaa" font-size="8">Triceps</text>
+    <text x="140" y="118" text-anchor="end" fill="#6b8aaa" font-size="8">Pec. Major</text>
+    <text x="140" y="158" text-anchor="end" fill="#6b8aaa" font-size="8">Lat. Dorsi</text>
+    <text x="140" y="198" text-anchor="end" fill="#6b8aaa" font-size="8">Deltoid</text>
+    <text x="140" y="238" text-anchor="end" fill="#6b8aaa" font-size="8">Biceps</text>
+
+    <!-- Triceps (blue) - HIGH / MED / HIGH / HIGH -->
+    <rect x="145" y="52" width="152" height="22" fill="#4f9eff" fill-opacity="0.85" rx="3"/>
+    <rect x="297" y="52" width="152" height="22" fill="#4f9eff" fill-opacity="0.4"  rx="3"/>
+    <rect x="449" y="52" width="152" height="22" fill="#4f9eff" fill-opacity="0.85" rx="3"/>
+    <rect x="601" y="52" width="114" height="22" fill="#4f9eff" fill-opacity="0.85" rx="3"/>
+    <text x="221" y="67" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+    <text x="373" y="67" text-anchor="middle" fill="#a8bed8" font-size="8.5">MED</text>
+    <text x="525" y="67" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+    <text x="658" y="67" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+
+    <!-- Pec Major (green) - LOW / HIGH / LOW / MED -->
+    <rect x="145" y="92" width="152" height="22" fill="#34d399" fill-opacity="0.2"  rx="3"/>
+    <rect x="297" y="92" width="152" height="22" fill="#34d399" fill-opacity="0.85" rx="3"/>
+    <rect x="449" y="92" width="152" height="22" fill="#34d399" fill-opacity="0.2"  rx="3"/>
+    <rect x="601" y="92" width="114" height="22" fill="#34d399" fill-opacity="0.45" rx="3"/>
+    <text x="221" y="107" text-anchor="middle" fill="#6b8aaa" font-size="8.5">LOW</text>
+    <text x="373" y="107" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+    <text x="525" y="107" text-anchor="middle" fill="#6b8aaa" font-size="8.5">LOW</text>
+    <text x="658" y="107" text-anchor="middle" fill="#a8bed8" font-size="8.5">MED</text>
+
+    <!-- Latissimus (gold) - MED / LOW / HIGH / MED -->
+    <rect x="145" y="132" width="152" height="22" fill="#f5b84b" fill-opacity="0.45" rx="3"/>
+    <rect x="297" y="132" width="152" height="22" fill="#f5b84b" fill-opacity="0.2"  rx="3"/>
+    <rect x="449" y="132" width="152" height="22" fill="#f5b84b" fill-opacity="0.85" rx="3"/>
+    <rect x="601" y="132" width="114" height="22" fill="#f5b84b" fill-opacity="0.45" rx="3"/>
+    <text x="221" y="147" text-anchor="middle" fill="#a8bed8" font-size="8.5">MED</text>
+    <text x="373" y="147" text-anchor="middle" fill="#6b8aaa" font-size="8.5">LOW</text>
+    <text x="525" y="147" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+    <text x="658" y="147" text-anchor="middle" fill="#a8bed8" font-size="8.5">MED</text>
+
+    <!-- Deltoid (purple) - HIGH / MED / HIGH / HIGH -->
+    <rect x="145" y="172" width="152" height="22" fill="#a78bfa" fill-opacity="0.8"  rx="3"/>
+    <rect x="297" y="172" width="152" height="22" fill="#a78bfa" fill-opacity="0.4"  rx="3"/>
+    <rect x="449" y="172" width="152" height="22" fill="#a78bfa" fill-opacity="0.8"  rx="3"/>
+    <rect x="601" y="172" width="114" height="22" fill="#a78bfa" fill-opacity="0.8"  rx="3"/>
+    <text x="221" y="187" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+    <text x="373" y="187" text-anchor="middle" fill="#a8bed8" font-size="8.5">MED</text>
+    <text x="525" y="187" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+    <text x="658" y="187" text-anchor="middle" fill="#e8f1fc" font-size="8.5" font-weight="600">HIGH</text>
+
+    <!-- Biceps (red) - LOW / MED / LOW / LOW -->
+    <rect x="145" y="212" width="152" height="22" fill="#f87171" fill-opacity="0.2"  rx="3"/>
+    <rect x="297" y="212" width="152" height="22" fill="#f87171" fill-opacity="0.45" rx="3"/>
+    <rect x="449" y="212" width="152" height="22" fill="#f87171" fill-opacity="0.2"  rx="3"/>
+    <rect x="601" y="212" width="114" height="22" fill="#f87171" fill-opacity="0.2"  rx="3"/>
+    <text x="221" y="227" text-anchor="middle" fill="#6b8aaa" font-size="8.5">LOW</text>
+    <text x="373" y="227" text-anchor="middle" fill="#a8bed8" font-size="8.5">MED</text>
+    <text x="525" y="227" text-anchor="middle" fill="#6b8aaa" font-size="8.5">LOW</text>
+    <text x="658" y="227" text-anchor="middle" fill="#6b8aaa" font-size="8.5">LOW</text>
+
+    <!-- Footer note -->
+    <rect x="10" y="246" width="740" height="54" rx="6" fill="#111f35"/>
+    <text x="380" y="261" text-anchor="middle" fill="#6b8aaa" font-size="9">數據基於 Qian et al. (2012) 鞍馬雙腿圓圈 EMG 研究推估。HIGH ≈ 峰值活化；MED ≈ 中等持續出力；LOW ≈ 低水平活化。</text>
+    <text x="380" y="276" text-anchor="middle" fill="#6b8aaa" font-size="9">Flare 腿部張開增加下肢慣性矩，預期各肌群實際需求高於此圖。此相位圖不適用於 Flare 專項 EMG 數據，後者目前尚不存在。</text>
+    <text x="380" y="291" text-anchor="middle" fill="#4f9eff" font-size="9" font-weight="600">⚠ 推估圖 — 待 Flare 專項 EMG 研究發表後更新</text>
+  </svg>
+
+  <h3>2.3 關鍵力學需求總結</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>肌群</th><th>英文名</th><th>主要功能</th><th>Flare 中的角色</th></tr></thead>
+      <tbody>
+        <tr><td><strong>肱三頭肌</strong></td><td>Triceps brachii</td><td>肘關節伸展、支撐穩定</td><td>全週期最高輸出，雙手支撐過渡相達峰——<em>最關鍵肌群</em></td></tr>
+        <tr><td><strong>胸大肌</strong></td><td>Pectoralis major</td><td>肩關節水平內收、推力</td><td>左手單撐相主導，負責推離鞍馬/地板</td></tr>
+        <tr><td><strong>背闊肌</strong></td><td>Latissimus dorsi</td><td>肩關節伸展、內旋</td><td>右手單撐相與肱三頭肌共同達峰</td></tr>
+        <tr><td><strong>三角肌（中束）</strong></td><td>Middle deltoid</td><td>肩關節外展穩定</td><td>各過渡相均高度活化，穩定支撐點</td></tr>
+        <tr><td><strong>肱二頭肌</strong></td><td>Biceps brachii</td><td>肘屈曲、前臂旋後</td><td>整體中低水平，左單撐相相對提高</td></tr>
+        <tr><td><strong>外腹斜肌</strong></td><td>External oblique</td><td>軀幹旋轉、側屈</td><td>參與髖部旋轉加速（DLC rolling 研究推論）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 03 Training -->
+<section id="training">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">訓練進階系統</h2>
+  </div>
+
+  <h3>3.1 四階段漸進架構</h3>
+  <p>基於現有文獻與主流訓練社群實踐，Flare 的學習可分為四個明確階段。每個階段需要前一階段的力學基礎才能安全推進：</p>
+  <div class="stage-grid">
+    <div class="stage-card" style="--stage-color:var(--accent)">
+      <div class="stage-badge">Stage 01</div>
+      <div class="stage-name">基礎圓圈</div>
+      <div class="stage-en">Double-Leg Circle（雙腿併攏）</div>
+      <ul>
+        <li>建立手腕承重適應（漸進加載）</li>
+        <li>學習重心旋轉與縱軸自轉的協調</li>
+        <li>建立雙手過渡相的節律感</li>
+        <li>評估基準：連續 5 個 DLC 不落地</li>
+      </ul>
+      <div class="stage-tool">工具：<span>鞍馬 / 平行棒 / 地板鞍馬座</span></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--green)">
+      <div class="stage-badge">Stage 02</div>
+      <div class="stage-name">半張腿圓圈</div>
+      <div class="stage-en">Partial Flare（漸進張腿）</div>
+      <ul>
+        <li>逐步增加腿部張開角度（建議以 30° 為遞增單位）</li>
+        <li>FIG 規定 Flare 最低 135° 張角</li>
+        <li>髖部抬高需求隨張腿角度增加</li>
+        <li>開始訓練縱軸 rolling 動作</li>
+      </ul>
+      <div class="stage-tool">工具：<span>懸掛輔助器（減少腕部峰值力 25%）</span></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--gold)">
+      <div class="stage-badge">Stage 03</div>
+      <div class="stage-name">完整 Flare</div>
+      <div class="stage-en">Full Thomas Flare（獨立執行）</div>
+      <ul>
+        <li>達到完整張腿（135°–180°）</li>
+        <li>地板版本：強調更高的骶骨垂直位移（19 cm 目標）</li>
+        <li>鞍馬版本：強調雙手過渡相的節律精準度</li>
+        <li>評估基準：踝部軌跡直徑與身體對齊（Baudry 2009）</li>
+      </ul>
+      <div class="stage-tool">工具：<span>視頻分析 + 踝部軌跡評估</span></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--purple)">
+      <div class="stage-badge">Stage 04</div>
+      <div class="stage-name">連續序列</div>
+      <div class="stage-en">Consecutive Flares + Combinations</div>
+      <ul>
+        <li>多個連續 Flare（鞍馬規定動作需求）</li>
+        <li>Breaking：Flare 與 windmill、headspin 等的銜接</li>
+        <li>能量管理：肱三頭肌耐力訓練</li>
+        <li>加入風格化變形（freestyle 表達）</li>
+      </ul>
+      <div class="stage-tool">工具：<span>組合訓練、節拍訓練（Breaking）</span></div>
+    </div>
+  </div>
+
+  <h3>3.2 懸掛輔助器的科學依據</h3>
+  <p>Fujihara & Gervais 發表的三篇系列研究（2012）是目前<strong>唯一有科學數據支持的 Flare 輔助訓練工具研究</strong>：</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>研究</th><th>主要發現</th><th>訓練含義</th></tr></thead>
+      <tbody>
+        <tr><td>反作用力研究（Sports Biomechanics）</td><td>左手峰值力：1.13 BW → 0.85 BW（↓25%）；右手同樣降低</td><td>適合腕傷復健與初學者保護</td></tr>
+        <tr><td>髖關節力矩研究（J Sports Sciences）</td><td>輔助器不改變力矩<em>模式</em>，但改變<em>幅度</em>；淨髖關節力矩發生改變</td><td>使用前需理解動力學改變，不能直接等同正式執行</td></tr>
+        <tr><td>時空特性研究（J Sports Sciences）</td><td>18 人比較；輔助器提供適當動作模式經驗，具運動學習效果</td><td>有助於建立動作程式，但需逐步撤除輔助</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>3.3 客觀評估指標</h3>
+  <p>Baudry et al.（2009）比較 6 位專家與 6 位非專家的鞍馬圓圈，歸納出兩個最能區分技術水平的客觀指標：</p>
+  <div class="strategy-steps">
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(79,158,255,.15);color:var(--accent)">1</div>
+      <div class="step-content">
+        <div class="step-title">踝部軌跡直徑（Ankle Trajectory Diameter）</div>
+        <div class="step-desc">高水平選手腳踝在空中劃出更大、更圓的軌跡。直徑越大代表旋轉半徑更大，通常對應更好的速度與協調。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(245,184,75,.15);color:var(--gold)">2</div>
+      <div class="step-content">
+        <div class="step-title">身體對齊一致性（Body Alignment Consistency）</div>
+        <div class="step-desc">整個圓圈週期中軀幹與下肢的對齊穩定性。偏差過大代表核心控制不足，是最常見的技術缺陷。</div>
+      </div>
+    </div>
+  </div>
+  <div class="info-block green">
+    <strong>實踐建議</strong>
+    使用側面視頻追蹤踝部軌跡，配合 2D 角度量測工具（如 Kinovea），可以低成本實現 Baudry 指標的現場評估，無需實驗室設備。
+  </div>
+</section>
+
+<!-- 04 Injury -->
+<section id="injury">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">傷害流行病學</h2>
+  </div>
+
+  <h3>4.1 整體傷害數據</h3>
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">94.8<span class="denom">%</span></div>
+      <div class="desc">傷害盛行率<br>Italy Study 2025（n=97）</div>
+    </div>
+    <div class="big-stat">
+      <div class="num">71<span class="denom">%+</span></div>
+      <div class="desc">過去 12 個月有傷<br>Tsiouti & Wyon 2021（n=320）</div>
+    </div>
+    <div class="big-stat">
+      <div class="num">3.5</div>
+      <div class="desc">中位數傷害次數/選手<br>精英 B-boy/B-girl（Arundale 2023）</div>
+    </div>
+  </div>
+
+  <h3>4.2 各部位傷害率比較</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>受傷部位</th><th>Cho 2009<br>n=42</th><th>Tsiouti 2021<br>n=320</th><th>Italy 2025<br>n=97</th><th>與 Flare 的關聯</th></tr></thead>
+      <tbody>
+        <tr><td><strong>腕 / 手</strong></td><td>69%</td><td>41%</td><td>58%</td><td>直接相關：峰值力 1.5–2.0× BW</td></tr>
+        <tr><td><strong>肩</strong></td><td>52%</td><td>36%</td><td>61%</td><td>相關：肱三頭肌、三角肌過度負荷</td></tr>
+        <tr><td><strong>膝</strong></td><td>62%</td><td>32%</td><td>64%</td><td>間接相關：著地衝擊與落地機制</td></tr>
+        <tr><td><strong>手指</strong></td><td>62%</td><td>—</td><td>—</td><td>相關：地板 Flare 手指支撐壓力</td></tr>
+        <tr><td><strong>腰椎</strong></td><td>50%</td><td>—</td><td>—</td><td>相關：髖過伸代償</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.3 精英選手生理數據（Arundale et al., 2023）</h3>
+  <p>首篇發表精英 Breaking 選手功能性與生理數據的研究（14 位精英選手：10 B-boy、4 B-girl）：</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>指標</th><th>數值</th><th>參考意義</th></tr></thead>
+      <tbody>
+        <tr><td>訓練年資</td><td>中位數 11 年</td><td>高技術動作需要長期累積</td></tr>
+        <tr><td>每週訓練量</td><td>24.4 小時</td><td>接近職業體操選手負荷</td></tr>
+        <tr><td>VO₂max</td><td>47.8 ml/kg/min</td><td>接近女子韻律體操選手水平</td></tr>
+        <tr><td><strong>肩外旋/內旋力量比</strong></td><td><strong>78%</strong></td><td><strong>低於建議值 100%——肩部傷害風險指標</strong></td></tr>
+        <tr><td>中位數傷害次數</td><td>3.5 起/人</td><td>膝部最常受傷</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.4 特殊傷害案例</h3>
+  <div class="info-block red">
+    <strong>Guyon's Canal Syndrome Type III（Hu et al., 2015）</strong>
+    23 歲男性業餘霹靂舞者（練習 10 個月），因反覆執行 powermoves（含 Flare 類動作）導致<strong>尺神經感覺壓迫</strong>（無名指與小指掌側疼痛性感覺異常）。首例記錄霹靂舞造成周邊神經損傷的案例報告。治療：4 週類固醇注射 + NSAIDs，症狀完全緩解。
+  </div>
+  <div class="info-block red">
+    <strong>雙側 Stener Lesion（Trauma Case Reports, 2023）</strong>
+    20 歲男性因地板 footwork「雙手交替著地」動作造成<strong>雙側拇指 MCP 關節尺側副韌帶撕裂</strong>。右手術後 1 年，未進行傷害預防訓練，同樣機制再傷及左手。直接指出 Breaking 上肢傷害預防程序的嚴重不足。
+  </div>
+
+  <h3>4.5 腕部保護策略</h3>
+  <div class="info-block green">
+    <strong>基於生物力學證據的建議</strong>
+    腕關節在 Flare 中承受 1.5–2.0× BW 的週期性衝擊（Markolf 1990）。建議：
+    <ul class="content-list" style="margin-top:.5rem">
+      <li><strong>漸進加載</strong>：初學者從懸掛輔助器開始（峰值力降低 25%），避免突然全負荷</li>
+      <li><strong>腕部力量訓練</strong>：強化橈側屈腕肌、尺側屈腕肌、伸腕肌群</li>
+      <li><strong>手腕貼紮 / 護具</strong>：在高訓練量時期提供額外支撐</li>
+      <li><strong>休息管理</strong>：訓練時數是唯一顯著傷害危險因子（Joka 2015），需設計合理的恢復週期</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 05 Performance -->
+<section id="performance">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">運動表現模型（Breaking 視角）</h2>
+  </div>
+
+  <h3>5.1 競技 Breaking 表現建模</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">Frontiers in Sports and Active Living · 2024</div>
+      <div class="research-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11685194/" target="_blank">From Theory to Practice: Modeling Performance in Breaking</a></div>
+      <div class="research-findings">
+        <div class="research-finding">Lerebourg & Guignard；首個將 Breaking 表現系統化建模的框架</div>
+        <div class="research-finding">整合 WDSF Level A 五個判分標準：Technique、Vocabulary、Originality、Execution、Musicality</div>
+        <div class="research-finding">競技 Breaking 包含「問答式」對戰，每回合約 30–45 秒，裁判主觀評分</div>
+        <div class="research-finding">Flare 屬於「Powermoves」技術詞彙，在 Vocabulary 與 Execution 兩項評分中權重最高</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>5.2 職業選手訓練結構</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">German Journal of Exercise and Sport Research · 2024</div>
+      <div class="research-title">Analysis and Systematization of the Training Structure of Professional Breakers</div>
+      <div class="research-findings">
+        <div class="research-finding">Lindner et al.；12 位職業霹靂舞者（平均年齡 29.8 歲，平均 15.1 年經驗）</div>
+        <div class="research-finding">每週訓練量：24 ± 10.2 小時</div>
+        <div class="research-finding">職業選手以<strong>自主組織訓練</strong>為主，無固定教練監督——系統化訓練科學正在起步</div>
+        <div class="research-finding">訓練結構分三階段：暖身、Breaking 主訓練、緩和</div>
+        <div class="research-finding">Breaking 成為奧運項目後，訓練科學化程度正快速提升</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-block gold">
+    <strong>體操 vs. Breaking 的訓練文化差異</strong>
+    體操：高度系統化、教練主導、早期專項化，訓練量相似（每週 20–30 小時）但有精細的週期化設計。Breaking：自主學習文化強，技術知識在 cypher（圓圈練習場）中口耳相傳，傷害預防意識相對薄弱——這解釋了為何 Breaking 的傷害率顯著高於競技體操。
+  </div>
+</section>
+
+<!-- 06 Frontier -->
+<section id="frontier">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">前沿探索</h2>
+  </div>
+
+  <h3>6.1 機器學習與動作捕捉</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">ECCV 2022 · Computer Vision</div>
+      <div class="research-title"><a href="https://arxiv.org/abs/2207.10120" target="_blank">BRACE: The Breakdancing Competition Dataset for Dance Motion Synthesis</a></div>
+      <div class="research-findings">
+        <div class="research-finding">Moltisanti, Wu, Dai & Loy；超過 3.5 小時 Breaking 競賽視頻（Red Bull BC One）密集標注姿態序列</div>
+        <div class="research-finding">使用深度學習模型與人工標注的混合流程進行關鍵點估計</div>
+        <div class="research-finding">破壞了現有動作合成模型的假設，為複雜姿態（如 Flare）分析提供新基準</div>
+        <div class="research-finding">可用於微調姿態估計模型，未來可自動識別並量化 Flare 的動作質量</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>6.2 理論模型的深化潛力</h3>
+  <p>Yamasaki et al.（2024）的單支撐點剛體力學模型目前以雙腿併攏圓圈為對象。若延伸至 Flare（張腿版本），需要處理：</p>
+  <ul class="content-list">
+    <li><strong>張腿的慣性矩變化</strong>：腿部展開使橫向慣性矩大幅增加，整體旋轉動力學根本改變</li>
+    <li><strong>非對稱質量分布</strong>：Flare 動作中兩腿位置持續不對稱，需要全三維建模</li>
+    <li><strong>最佳軌跡計算</strong>：基於已有的動態平衡條件，理論上可計算「最省力」的 Flare 軌跡</li>
+  </ul>
+
+  <h3>6.3 無標記動作捕捉（Markerless MoCap）</h3>
+  <p>AI 驅動的無標記動作捕捉技術（如 OpenPose、MediaPipe、SMPL 系列）正快速成熟，未來可以：</p>
+  <ul class="content-list">
+    <li>在訓練環境（而非實驗室）中即時分析 Flare 動作，無需貼標記點</li>
+    <li>自動計算骶骨垂直位移、踝部軌跡直徑等 Baudry 指標</li>
+    <li>建立個別選手的動作「指紋」，追蹤學習進展</li>
+    <li>與 BRACE 數據集結合，建立 Flare 質量自動評分系統</li>
+  </ul>
+
+  <h3>6.4 奧運後研究加速</h3>
+  <div class="info-block purple">
+    <strong>預測：2025–2028 年研究爆發期</strong>
+    Breaking 在 2024 年巴黎奧運亮相後，儘管 LA 2028 未列入正式項目，整個研究社群的興趣已被激活。義大利（2025 年流行病學研究）、德國（2024 年訓練結構分析）、法國（2024 年表現建模）、美國（2023 年精英生理數據）已形成多中心研究網絡。Flare 作為最具代表性的 powermove，將會是最早獲得系統性科學研究的動作之一。
+  </div>
+</section>
+
+<!-- 07 Research Gaps -->
+<section id="gaps">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">研究缺口</h2>
+  </div>
+  <p>以下八個領域目前幾乎沒有直接研究，是這個動作運動科學的主要空白：</p>
+  <div class="gap-grid">
+    <div class="gap-card">
+      <div class="gap-num">GAP-01</div>
+      <div class="gap-title">Flare 專項 EMG 研究</div>
+      <div class="gap-desc">沒有任何以 Flare（張腿圓圈）為對象的表面或細線電極 EMG 研究。關鍵肌群的精確活化時序、%MVIC 值完全未被量化。</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-num">GAP-02</div>
+      <div class="gap-title">Flare 的三維逆向動力學</div>
+      <div class="gap-desc">現有鞍馬研究均以 DLC（雙腿併攏）為對象。Flare 張腿改變整體慣性分布，多關節力矩尚未系統研究。</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-num">GAP-03</div>
+      <div class="gap-title">B-boy Flare 的生物力學研究</div>
+      <div class="gap-desc">從霹靂舞視角對 Flare 的任何生物力學分析幾乎付之闕如（目前只有 2017 年一篇學生演講）。</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-num">GAP-04</div>
+      <div class="gap-title">神經肌肉協調時序研究</div>
+      <div class="gap-desc">各肌群的活化序列（onset/offset）、協同肌與拮抗肌的時序關係完全未被研究。</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-num">GAP-05</div>
+      <div class="gap-title">能量代謝需求量化</div>
+      <div class="gap-desc">Flare 在訓練中的心率、耗氧量、乳酸反應、肌肉疲勞動態完全未被量化，無法設計科學化訓練強度。</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-num">GAP-06</div>
+      <div class="gap-title">傷害機制特異性研究</div>
+      <div class="gap-desc">雖然知道腕肩膝是主要傷害部位，但沒有研究將特定傷害與 Flare 執行缺陷（如技術偏差）直接關聯。</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-num">GAP-07</div>
+      <div class="gap-title">地板 vs. 鞍馬系統性比較</div>
+      <div class="gap-desc">Prassas et al.（2007）為 n=1 個案研究。需要大樣本、多層次的系統性比較，確認兩器械的力學差異量。</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-num">GAP-08</div>
+      <div class="gap-title">訓練科學設計研究</div>
+      <div class="gap-desc">沒有隨機對照試驗評估不同 Flare 訓練漸進方式的有效性。輔助器撤除的最佳時機、訓練量的安全閾值均未被研究。</div>
+    </div>
+  </div>
+</section>
+
+<!-- REF References -->
+<section id="references">
+  <div class="section-header">
+    <span class="section-num">REF</span>
+    <h2 class="section-title">參考文獻</h2>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">Flare 直接研究</div>
+    <div class="ref-item">
+      <div class="ref-num">1</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://ojs.ub.uni-konstanz.de/cpa/article/view/107" target="_blank">Thomas Flaires on the Pommel and Floor: A Case Study</a></div>
+        <div class="ref-meta">Prassas, Ariel, Ostarello & Tsarouchas · ISBS Conference Proceedings · 2007 · 迄今唯一直接以 Flare 為對象的生物力學研究</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">鞍馬圓圈生物力學（DLC — 對 Flare 有直接參考價值）</div>
+    <div class="ref-item">
+      <div class="ref-num">2</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3588664/" target="_blank">A Comparison of a Multi-body Model and 3D Kinematics and EMG of Double-leg Circle on Pommel Horse</a></div>
+        <div class="ref-meta">Qian, Su, Song, Qiang & Zhang · Journal of Human Kinetics · 2012 · DOI: 10.2478/v10078-012-0005-9 · 唯一含 EMG 的鞍馬圓圈研究；肱三頭肌全週期最高輸出</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">3</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/19391492/" target="_blank">Biomechanical analysis of circles on pommel horse</a></div>
+        <div class="ref-meta">Fujihara, Fuchimoto & Gervais · Sports Biomechanics · 2009 · DOI: 10.1080/14763140802629974</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">4</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11380692/" target="_blank">Dynamic balance of circles with one support point on pommel horse exercise</a></div>
+        <div class="ref-meta">Yamasaki et al. · Scientific Reports · 2024 · DOI: 10.1038/s41598-024-70698-8 · 單支撐點剛體力學模型；動態平衡條件推導</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">5</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://ojs.ub.uni-konstanz.de/cpa/article/view/6547" target="_blank">Toward an ideal performance of circles on pommel horse — Centrifugal force and mass-centre velocity</a></div>
+        <div class="ref-meta">Fujihara, Yamamoto & Gervais · ISBS Conference · 2015/2016 · 高分選手單手支撐相重心速度特徵</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">6</div>
+      <div class="ref-content">
+        <div class="ref-title">Kinematics of side and cross circles on pommel horse</div>
+        <div class="ref-meta">Fujihara & Gervais · European Journal of Sport Science · 2010 · DOI: 10.1080/17461390903108133</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">7</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/2229083/" target="_blank">Wrist loading patterns during pommel horse exercises</a></div>
+        <div class="ref-meta">Markolf, Shapiro, Mandelbaum & Teurlings · Journal of Biomechanics · 1990 · PMID: 2229083 · Flare 峰值力 1.5–2.0× BW，加載率 10.6× BW/s</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">8</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://sjsp.aearedo.es/index.php/sjsp/article/view/kinematic-analysis-russian-circles-gymnastics" target="_blank">Kinematic analysis of "Russian" circles in gymnastics</a></div>
+        <div class="ref-meta">Semenov, Shlyakhtov & Rumyantsev · Scientific Journal of Sport and Performance · 2022 · 地板骶骨垂直位移 19 cm vs. 鞍馬 11 cm</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">9</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/19387411/" target="_blank">Amplitude variables of circle on the pedagogic pommel horse in gymnastics</a></div>
+        <div class="ref-meta">Baudry et al. · J Strength and Conditioning Research · 2009 · 踝部軌跡直徑與身體對齊為最佳客觀評估指標</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">訓練輔助器具研究</div>
+    <div class="ref-item">
+      <div class="ref-num">10</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/22518943/" target="_blank">Circles with a suspended aid: reducing pommel reaction forces</a></div>
+        <div class="ref-meta">Fujihara & Gervais · Sports Biomechanics · 2012 · DOI: 10.1080/14763141.2011.637124 · 輔助器降低腕部峰值力 25%</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">11</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/22697492/" target="_blank">Circles on pommel horse with a suspended aid: mass-centre rotation and hip joint moment</a></div>
+        <div class="ref-meta">Fujihara & Gervais · Journal of Sports Sciences · 2012</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">12</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/22313144/" target="_blank">Circles on pommel horse with a suspended aid: Spatio-temporal characteristics</a></div>
+        <div class="ref-meta">Fujihara & Gervais · Journal of Sports Sciences · 2012 · DOI: 10.1080/02640414.2012.658842</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">Breaking / 霹靂舞：傷害流行病學</div>
+    <div class="ref-item">
+      <div class="ref-num">13</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/19204362/" target="_blank">Breakdance injuries and overuse syndromes in amateurs and professionals</a></div>
+        <div class="ref-meta">Kauther et al. · American Journal of Sports Medicine · 2009 · 144 人，380,588 訓練小時</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">14</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/19540489/" target="_blank">Musculoskeletal injuries in break-dancers</a></div>
+        <div class="ref-meta">Cho et al. · Injury · 2009 · 42 人；腕（69%）、手指（62%）、膝（62%）</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">15</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/25369274/" target="_blank">Etiology of musculoskeletal injuries in amateur breakdancers</a></div>
+        <div class="ref-meta">Joka et al. · J Sports Medicine and Physical Fitness · 2015 · 傷害率 4.02/1000小時；訓練時數為唯一顯著危險因子</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">16</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/33706849/" target="_blank">Injury occurrence in break dance: An online cross-sectional cohort study of breakers</a></div>
+        <div class="ref-meta">Tsiouti & Wyon · Journal of Dance Medicine and Science · 2021 · 320 人；71% 以上過去 12 個月有傷</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">17</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10547081/" target="_blank">Injury, training, biomechanical, and physiological profiles of professional breakdancers</a></div>
+        <div class="ref-meta">Arundale et al. · International Journal of Sports Physical Therapy · 2023 · 首篇精英霹靂舞者生理數據；肩旋轉力量比 78%</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">18</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://www.mdpi.com/2411-5142/11/1/73" target="_blank">The Most Common Affected Body Regions in Breakdancers: A Descriptive Epidemiological Study in Italy</a></div>
+        <div class="ref-meta">Sports (MDPI) · 2025 · 97 人；傷害盛行率 94.84%</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">19</div>
+      <div class="ref-content">
+        <div class="ref-title">Injuries in breaking: An overview and synthesis of case reports and letters to the editor</div>
+        <div class="ref-meta">Brborović et al. · Journal of Dance Medicine & Science · 2025 · DOI: 10.1177/1089313X251380406 · 納入 41 篇文獻的系統性綜述</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">特殊傷害案例</div>
+    <div class="ref-item">
+      <div class="ref-num">20</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4847497/" target="_blank">Type III Guyon Syndrome in 'B Boy' Break-Dancer: A Case Report</a></div>
+        <div class="ref-meta">Hu, Choi & Son · Korean Journal of Neurotrauma · 2015 · 首例霹靂舞周邊神經損傷（尺神經壓迫）</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">21</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://www.sciencedirect.com/article/pii/S2772964823000175" target="_blank">Underdeveloped injury prevention in breakdancing may cause consecutive occurrence of a bilateral Stener lesion</a></div>
+        <div class="ref-meta">Trauma Case Reports · 2023 · 雙側拇指 MCP 關節尺側副韌帶撕裂</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">Breaking 運動表現與訓練科學</div>
+    <div class="ref-item">
+      <div class="ref-num">22</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11685194/" target="_blank">From Theory to Practice: Modeling Performance in Breaking</a></div>
+        <div class="ref-meta">Lerebourg & Guignard · Frontiers in Sports and Active Living · 2024 · 首個 Breaking 表現系統化建模框架</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">23</div>
+      <div class="ref-content">
+        <div class="ref-title">Analysis and Systematization of the Training Structure of Professional Breakers</div>
+        <div class="ref-meta">Lindner et al. · German Journal of Exercise and Sport Research · 2024 · DOI: 10.1007/s12662-024-00977-z · 12 位職業選手訓練結構分析</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">前沿：機器學習與動作捕捉</div>
+    <div class="ref-item">
+      <div class="ref-num">24</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://arxiv.org/abs/2207.10120" target="_blank">BRACE: The Breakdancing Competition Dataset for Dance Motion Synthesis</a></div>
+        <div class="ref-meta">Moltisanti, Wu, Dai & Loy · ECCV 2022 · 3.5 小時 Breaking 競賽姿態序列標注數據集</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">體操生物力學綜述</div>
+    <div class="ref-item">
+      <div class="ref-num">25</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/16939157/" target="_blank">Biomechanical research in artistic gymnastics: A review</a></div>
+        <div class="ref-meta">Prassas, Kwon & Sands · Sports Biomechanics · 2006 · DOI: 10.1080/14763140608522878</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">26</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="http://www.teoriya.ru/en/node/7146" target="_blank">Thomas Flair in Aerobic Gymnastics: Technique and Mastering Procedure</a></div>
+        <div class="ref-meta">Teoriya i Praktika Fizicheskoy Kultury（俄羅斯體育理論與實踐）· 有氧體操中 Flare 的技術分析與學習程序</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">個案研究（非同儕審查）</div>
+    <div class="ref-item">
+      <div class="ref-num">27</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://phys.au.dk/en/news/item/artikel/studenterkollokvium-adnan-hidic-biomechanical-analysis-of-the-breakdance-move-flare-1" target="_blank">Biomechanical analysis of the breakdance move Flare</a></div>
+        <div class="ref-meta">Hidic · Student Colloquium, Aarhus University · 2017 · 非同儕審查；學生研討課演講，以視頻記錄分析 Flare 力學</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-note">本報告整合截至 2026 年 5 月之學術研究成果，涵蓋體操生物力學與霹靂舞運動科學兩個研究社群共 27 篇文獻。由於 Flare 動作的直接科學研究極度稀缺，部分內容依鞍馬雙腿圓圈研究間接推論，已於文中明確標注。訓練建議基於現有文獻，個人實際訓練應結合自身狀況，並考慮尋求合格教練或物理治療師的指導。</p>
+    <div class="footer-badge">Thomas Flare Science · 2026.05</div>
+  </div>
+</footer>
+
+</div><!-- end page-wrap inner -->
+</div><!-- end page-wrap -->
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.querySelector('aside');
+const backdrop = document.getElementById('backdrop');
+function openSidebar(){sidebar.classList.add('open');backdrop.classList.add('open');menuBtn.classList.add('active')}
+function closeSidebar(){sidebar.classList.remove('open');backdrop.classList.remove('open');menuBtn.classList.remove('active')}
+menuBtn.addEventListener('click',()=>sidebar.classList.contains('open')?closeSidebar():openSidebar());
+backdrop.addEventListener('click',closeSidebar);
+navLinks.forEach(a=>a.addEventListener('click',()=>{if(window.innerWidth<=900)closeSidebar()}));
+</script>
+</body>
+</html>
