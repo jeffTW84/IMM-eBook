@@ -178,6 +178,7 @@ tbody tr:hover td{background:rgba(79,158,255,.04)}
 .ref-title a{color:inherit;border-bottom:1px solid rgba(232,241,252,.35)}
 .ref-title a:hover{border-color:var(--text)}
 .ref-meta{font-size:.78rem;color:var(--text3)}
+sup.cite{font-size:.72em;color:var(--accent);font-weight:700;margin-left:.15rem;white-space:nowrap;letter-spacing:-.01em}
 
 /* Content list */
 .content-list{padding-left:1.3rem;margin:.8rem 0}
@@ -341,7 +342,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
       <div class="insight-n" style="background:rgba(167,139,250,.15);color:var(--purple)">5</div>
       <div class="insight-body">
         <h4>奧運後研究加速，Flare 專項研究即將迎來爆發</h4>
-        <p>Breaking 在 2024 年巴黎奧運亮相後，德國、法國、義大利、美國多個研究團隊正系統性建立運動科學基礎。BRACE 數據集（ECCV 2022）與 Yamasaki et al.（2024）的力學模型為 Flare 自動化分析和最佳化軌跡計算開啟了技術門。</p>
+        <p>Breaking 在 2024 年巴黎奧運亮相後，德國、義大利、美國多個研究團隊正系統性建立運動科學基礎。BRACE 數據集（ECCV 2022）與 Yamasaki et al.（2024）的力學模型為 Flare 自動化分析和最佳化軌跡計算開啟了技術門。</p>
       </div>
     </div>
   </div>
@@ -357,7 +358,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <h3>1.1 唯一的 Flare 直接研究</h3>
   <div class="research-grid">
     <div class="research-card">
-      <div class="research-journal">ISBS Conference · 2007</div>
+      <div class="research-journal">ISBS Conference · 2007 <sup class="cite">[1]</sup></div>
       <div class="research-title"><a href="https://ojs.ub.uni-konstanz.de/cpa/article/view/107" target="_blank">Thomas Flaires on the Pommel and Floor: A Case Study</a></div>
       <div class="research-findings">
         <div class="research-finding">Prassas, Ariel, Ostarello & Tsarouchas；兩台 60 Hz 攝影機 + APAS 系統</div>
@@ -370,7 +371,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <h3>1.2 鞍馬 vs. 地板 — 關鍵運動學差異</h3>
-  <p>Semenov et al.（2022）以 Qualisys 3D 動作捕捉比較俄羅斯圓圈（同屬大圓圈技術族群），揭示了地板與鞍馬在力學需求上的結構性差異：</p>
+  <p>Semenov et al.（2022）<sup class="cite">[8]</sup> 以 Qualisys 3D 動作捕捉比較俄羅斯圓圈（同屬大圓圈技術族群），揭示了地板與鞍馬在力學需求上的結構性差異：</p>
   <div class="table-wrap">
     <table>
       <thead><tr><th>參數</th><th>地板（Floor）</th><th>鞍馬（Pommel Horse）</th></tr></thead>
@@ -389,7 +390,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <h3>1.3 腕部負荷量測（傷害機制核心）</h3>
-  <p>Markolf et al.（1990）是目前唯一以<strong>儀器化鞍馬（load cell）</strong>系統性量測各技術腕部負荷的研究，樣本為 17 位精英男子體操選手。</p>
+  <p>Markolf et al.（1990）<sup class="cite">[7]</sup> 是目前唯一以<strong>儀器化鞍馬（load cell）</strong>系統性量測各技術腕部負荷的研究，樣本為 17 位精英男子體操選手。</p>
   <div class="big-stat-row">
     <div class="big-stat">
       <div class="num">1.5–2.0<span class="denom">×BW</span></div>
@@ -412,7 +413,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <h3>1.4 動態平衡理論模型</h3>
   <div class="research-grid">
     <div class="research-card">
-      <div class="research-journal">Scientific Reports · 2024</div>
+      <div class="research-journal">Scientific Reports · 2024 <sup class="cite">[4]</sup></div>
       <div class="research-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11380692/" target="_blank">Dynamic balance of circles with one support point on pommel horse exercise</a></div>
       <div class="research-findings">
         <div class="research-finding">Yamasaki et al.；建立單支撐點剛體力學模型（Newton-Euler 方程）</div>
@@ -425,11 +426,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <h3>1.5 高分選手的運動學特徵</h3>
-  <p>Fujihara & Gervais（2015）分析鞍馬圓圈的向心力與重心速度，歸納出區分高低水平選手的關鍵指標：</p>
+  <p>Fujihara & Gervais（2015）<sup class="cite">[5]</sup> 分析鞍馬圓圈的向心力與重心速度，歸納出區分高低水平選手的關鍵指標：</p>
   <ul class="content-list">
     <li><strong>單手支撐相</strong>：高分選手維持更大的重心速度與向心力，形成「流暢連續」的旋轉感</li>
     <li><strong>雙手過渡相</strong>：力學上最複雜困難，即使高水平選手仍有優化空間</li>
-    <li><strong>Fujihara & Gervais（2009）</strong>：垂直反作用力在雙手支撐階段達峰值；重心速度在單手支撐階段最高</li>
+    <li><strong>Fujihara & Gervais（2009）</strong><sup class="cite">[3]</sup>：垂直反作用力在雙手支撐階段達峰值；重心速度在單手支撐階段最高</li>
   </ul>
 </section>
 
@@ -443,11 +444,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <h3>2.1 研究現況</h3>
   <div class="info-block red">
     <strong>目前沒有針對 Flare（張腿圓圈）的專項 EMG 研究</strong>
-    現有肌電圖知識完全來自 Qian et al.（2012）對鞍馬<strong>雙腿併攏圓圈（DLC）</strong>的量測，再依 Flare 動作特性（腿部張開改變整體慣性分布）進行推估調整。此為目前文獻中最重要的知識缺口之一。
+    現有肌電圖知識完全來自 Qian et al.（2012）<sup class="cite">[2]</sup> 對鞍馬<strong>雙腿併攏圓圈（DLC）</strong>的量測，再依 Flare 動作特性（腿部張開改變整體慣性分布）進行推估調整。此為目前文獻中最重要的知識缺口之一。
   </div>
 
   <h3>2.2 肌肉活化相位圖（基於 DLC EMG 推估）</h3>
-  <p>Qian et al.（2012）以 16 通道 1000 Hz 表面 EMG 量測，結合 LifeMOD/ADAMS 多剛體動力學模型驗證，量測了五條上肢關鍵肌群：</p>
+  <p>Qian et al.（2012）<sup class="cite">[2]</sup> 以 16 通道 1000 Hz 表面 EMG 量測，結合 LifeMOD/ADAMS 多剛體動力學模型驗證，量測了五條上肢關鍵肌群：</p>
 
   <!-- SVG Muscle Activation Chart — corrected 4-phase cycle -->
   <!-- Correct sequence: 雙手支撐(DS) → 左手單撐(LSS) → 雙手過渡(DS) → 右手單撐(RSS) -->
@@ -556,7 +557,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
         <tr><td><strong>背闊肌</strong></td><td>Latissimus dorsi</td><td>肩關節伸展、內旋</td><td>右手單撐相與肱三頭肌共同達峰</td></tr>
         <tr><td><strong>三角肌（中束）</strong></td><td>Middle deltoid</td><td>肩關節外展穩定</td><td>各過渡相均高度活化，穩定支撐點</td></tr>
         <tr><td><strong>肱二頭肌</strong></td><td>Biceps brachii</td><td>肘屈曲、前臂旋後</td><td>整體中低水平，左單撐相相對提高</td></tr>
-        <tr><td><strong>外腹斜肌</strong></td><td>External oblique</td><td>軀幹旋轉、側屈</td><td>參與髖部旋轉加速（DLC rolling 研究推論）</td></tr>
+        <tr><td><strong>外腹斜肌</strong></td><td>External oblique</td><td>軀幹旋轉、側屈</td><td>參與髖部旋轉加速（DLC rolling 研究推論）<sup class="cite">[4]</sup></td></tr>
       </tbody>
     </table>
   </div>
@@ -594,7 +595,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
         <li>髖部抬高需求隨張腿角度增加</li>
         <li>開始訓練縱軸 rolling 動作</li>
       </ul>
-      <div class="stage-tool">工具：<span>懸掛輔助器（減少腕部峰值力 25%）</span></div>
+      <div class="stage-tool">工具：<span>懸掛輔助器（減少腕部峰值力 25%）<sup class="cite">[10]</sup></span></div>
     </div>
     <div class="stage-card" style="--stage-color:var(--gold)">
       <div class="stage-badge">Stage 03</div>
@@ -602,9 +603,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
       <div class="stage-en">Full Thomas Flare（獨立執行）</div>
       <ul>
         <li>達到完整張腿（135°–180°）</li>
-        <li>地板版本：強調更高的骶骨垂直位移（19 cm 目標）</li>
+        <li>地板版本：強調更高的骶骨垂直位移（19 cm 目標）<sup class="cite">[8]</sup></li>
         <li>鞍馬版本：強調雙手過渡相的節律精準度</li>
-        <li>評估基準：踝部軌跡直徑與身體對齊（Baudry 2009）</li>
+        <li>評估基準：踝部軌跡直徑與身體對齊（Baudry 2009）<sup class="cite">[9]</sup></li>
       </ul>
       <div class="stage-tool">工具：<span>視頻分析 + 踝部軌跡評估</span></div>
     </div>
@@ -623,7 +624,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <h3>3.2 懸掛輔助器的科學依據</h3>
-  <p>Fujihara & Gervais 發表的三篇系列研究（2012）是目前<strong>唯一有科學數據支持的 Flare 輔助訓練工具研究</strong>：</p>
+  <p>Fujihara & Gervais 發表的三篇系列研究（2012）<sup class="cite">[10][11][12]</sup> 是目前<strong>唯一有科學數據支持的 Flare 輔助訓練工具研究</strong>：</p>
   <div class="table-wrap">
     <table>
       <thead><tr><th>研究</th><th>主要發現</th><th>訓練含義</th></tr></thead>
@@ -636,7 +637,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <h3>3.3 客觀評估指標</h3>
-  <p>Baudry et al.（2009）比較 6 位專家與 6 位非專家的鞍馬圓圈，歸納出兩個最能區分技術水平的客觀指標：</p>
+  <p>Baudry et al.（2009）<sup class="cite">[9]</sup> 比較 6 位專家與 6 位非專家的鞍馬圓圈，歸納出兩個最能區分技術水平的客觀指標：</p>
   <div class="strategy-steps">
     <div class="strategy-step">
       <div class="step-rank" style="background:rgba(79,158,255,.15);color:var(--accent)">1</div>
@@ -670,22 +671,22 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <div class="big-stat-row">
     <div class="big-stat">
       <div class="num">94.8<span class="denom">%</span></div>
-      <div class="desc">傷害盛行率<br>Italy Study 2025（n=97）</div>
+      <div class="desc">傷害盛行率<br>Italy Study 2025（n=97）<sup class="cite">[18]</sup></div>
     </div>
     <div class="big-stat">
       <div class="num">71<span class="denom">%+</span></div>
-      <div class="desc">過去 12 個月有傷<br>Tsiouti & Wyon 2021（n=320）</div>
+      <div class="desc">過去 12 個月有傷<br>Tsiouti & Wyon 2021（n=320）<sup class="cite">[16]</sup></div>
     </div>
     <div class="big-stat">
       <div class="num">3.5</div>
-      <div class="desc">中位數傷害次數/選手<br>精英 B-boy/B-girl（Arundale 2023）</div>
+      <div class="desc">中位數傷害次數/選手<br>精英 B-boy/B-girl（Arundale 2023）<sup class="cite">[17]</sup></div>
     </div>
   </div>
 
   <h3>4.2 各部位傷害率比較</h3>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>受傷部位</th><th>Cho 2009<br>n=42</th><th>Tsiouti 2021<br>n=320</th><th>Italy 2025<br>n=97</th><th>與 Flare 的關聯</th></tr></thead>
+      <thead><tr><th>受傷部位</th><th>Cho 2009 <sup class="cite">[14]</sup><br>n=42</th><th>Tsiouti 2021 <sup class="cite">[16]</sup><br>n=320</th><th>Italy 2025 <sup class="cite">[18]</sup><br>n=97</th><th>與 Flare 的關聯</th></tr></thead>
       <tbody>
         <tr><td><strong>腕 / 手</strong></td><td>69%</td><td>41%</td><td>58%</td><td>直接相關：峰值力 1.5–2.0× BW</td></tr>
         <tr><td><strong>肩</strong></td><td>52%</td><td>36%</td><td>61%</td><td>相關：肱三頭肌、三角肌過度負荷</td></tr>
@@ -697,7 +698,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <h3>4.3 精英選手生理數據（Arundale et al., 2023）</h3>
-  <p>首篇發表精英 Breaking 選手功能性與生理數據的研究（14 位精英選手：10 B-boy、4 B-girl）：</p>
+  <p>首篇發表精英 Breaking 選手功能性與生理數據的研究<sup class="cite">[17]</sup>（14 位精英選手：10 B-boy、4 B-girl）：</p>
   <div class="table-wrap">
     <table>
       <thead><tr><th>指標</th><th>數值</th><th>參考意義</th></tr></thead>
@@ -713,23 +714,23 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 
   <h3>4.4 特殊傷害案例</h3>
   <div class="info-block red">
-    <strong>Guyon's Canal Syndrome Type III（Hu et al., 2015）</strong>
+    <strong>Guyon's Canal Syndrome Type III（Hu et al., 2015）<sup class="cite">[20]</sup></strong>
     23 歲男性業餘霹靂舞者（練習 10 個月），因反覆執行 powermoves（含 Flare 類動作）導致<strong>尺神經感覺壓迫</strong>（無名指與小指掌側疼痛性感覺異常）。首例記錄霹靂舞造成周邊神經損傷的案例報告。治療：4 週類固醇注射 + NSAIDs，症狀完全緩解。
   </div>
   <div class="info-block red">
-    <strong>雙側 Stener Lesion（Trauma Case Reports, 2023）</strong>
+    <strong>雙側 Stener Lesion（Trauma Case Reports, 2023）<sup class="cite">[21]</sup></strong>
     20 歲男性因地板 footwork「雙手交替著地」動作造成<strong>雙側拇指 MCP 關節尺側副韌帶撕裂</strong>。右手術後 1 年，未進行傷害預防訓練，同樣機制再傷及左手。直接指出 Breaking 上肢傷害預防程序的嚴重不足。
   </div>
 
   <h3>4.5 腕部保護策略</h3>
   <div class="info-block green">
     <strong>基於生物力學證據的建議</strong>
-    腕關節在 Flare 中承受 1.5–2.0× BW 的週期性衝擊（Markolf 1990）。建議：
+    腕關節在 Flare 中承受 1.5–2.0× BW 的週期性衝擊（Markolf 1990）<sup class="cite">[7]</sup>。建議：
     <ul class="content-list" style="margin-top:.5rem">
       <li><strong>漸進加載</strong>：初學者從懸掛輔助器開始（峰值力降低 25%），避免突然全負荷</li>
       <li><strong>腕部力量訓練</strong>：強化橈側屈腕肌、尺側屈腕肌、伸腕肌群</li>
       <li><strong>手腕貼紮 / 護具</strong>：在高訓練量時期提供額外支撐</li>
-      <li><strong>休息管理</strong>：訓練時數是唯一顯著傷害危險因子（Joka 2015），需設計合理的恢復週期</li>
+      <li><strong>休息管理</strong>：訓練時數是唯一顯著傷害危險因子（Joka 2015）<sup class="cite">[15]</sup>，需設計合理的恢復週期</li>
     </ul>
   </div>
 </section>
@@ -738,27 +739,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 <section id="performance">
   <div class="section-header">
     <span class="section-num">05</span>
-    <h2 class="section-title">運動表現模型（Breaking 視角）</h2>
+    <h2 class="section-title">職業訓練結構實證</h2>
   </div>
 
-  <h3>5.1 競技 Breaking 表現建模</h3>
+  <h3>5.1 職業選手訓練數據</h3>
   <div class="research-grid">
     <div class="research-card">
-      <div class="research-journal">Frontiers in Sports and Active Living · 2024</div>
-      <div class="research-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11685194/" target="_blank">From Theory to Practice: Modeling Performance in Breaking</a></div>
-      <div class="research-findings">
-        <div class="research-finding">Lerebourg & Guignard；首個將 Breaking 表現系統化建模的框架</div>
-        <div class="research-finding">整合 WDSF Level A 五個判分標準：Technique、Vocabulary、Originality、Execution、Musicality</div>
-        <div class="research-finding">競技 Breaking 包含「問答式」對戰，每回合約 30–45 秒，裁判主觀評分</div>
-        <div class="research-finding">Flare 屬於「Powermoves」技術詞彙，在 Vocabulary 與 Execution 兩項評分中權重最高</div>
-      </div>
-    </div>
-  </div>
-
-  <h3>5.2 職業選手訓練結構</h3>
-  <div class="research-grid">
-    <div class="research-card">
-      <div class="research-journal">German Journal of Exercise and Sport Research · 2024</div>
+      <div class="research-journal">German Journal of Exercise and Sport Research · 2024 <sup class="cite">[22]</sup></div>
       <div class="research-title">Analysis and Systematization of the Training Structure of Professional Breakers</div>
       <div class="research-findings">
         <div class="research-finding">Lindner et al.；12 位職業霹靂舞者（平均年齡 29.8 歲，平均 15.1 年經驗）</div>
@@ -786,7 +773,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <h3>6.1 機器學習與動作捕捉</h3>
   <div class="research-grid">
     <div class="research-card">
-      <div class="research-journal">ECCV 2022 · Computer Vision</div>
+      <div class="research-journal">ECCV 2022 · Computer Vision <sup class="cite">[23]</sup></div>
       <div class="research-title"><a href="https://arxiv.org/abs/2207.10120" target="_blank">BRACE: The Breakdancing Competition Dataset for Dance Motion Synthesis</a></div>
       <div class="research-findings">
         <div class="research-finding">Moltisanti, Wu, Dai & Loy；超過 3.5 小時 Breaking 競賽視頻（Red Bull BC One）密集標注姿態序列</div>
@@ -798,7 +785,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <h3>6.2 理論模型的深化潛力</h3>
-  <p>Yamasaki et al.（2024）的單支撐點剛體力學模型目前以雙腿併攏圓圈為對象。若延伸至 Flare（張腿版本），需要處理：</p>
+  <p>Yamasaki et al.（2024）<sup class="cite">[4]</sup> 的單支撐點剛體力學模型目前以雙腿併攏圓圈為對象。若延伸至 Flare（張腿版本），需要處理：</p>
   <ul class="content-list">
     <li><strong>張腿的慣性矩變化</strong>：腿部展開使橫向慣性矩大幅增加，整體旋轉動力學根本改變</li>
     <li><strong>非對稱質量分布</strong>：Flare 動作中兩腿位置持續不對稱，需要全三維建模</li>
@@ -817,7 +804,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <h3>6.4 奧運後研究加速</h3>
   <div class="info-block purple">
     <strong>預測：2025–2028 年研究爆發期</strong>
-    Breaking 在 2024 年巴黎奧運亮相後，儘管 LA 2028 未列入正式項目，整個研究社群的興趣已被激活。義大利（2025 年流行病學研究）、德國（2024 年訓練結構分析）、法國（2024 年表現建模）、美國（2023 年精英生理數據）已形成多中心研究網絡。Flare 作為最具代表性的 powermove，將會是最早獲得系統性科學研究的動作之一。
+    Breaking 在 2024 年巴黎奧運亮相後，儘管 LA 2028 未列入正式項目，整個研究社群的興趣已被激活。義大利（2025 年流行病學研究）、德國（2024 年訓練結構分析）、美國（2023 年精英生理數據）已形成多中心研究網絡。Flare 作為最具代表性的 powermove，將會是最早獲得系統性科學研究的動作之一。
   </div>
 </section>
 
@@ -1047,16 +1034,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   </div>
 
   <div class="ref-group">
-    <div class="ref-group-title">Breaking 運動表現與訓練科學</div>
+    <div class="ref-group-title">Breaking 職業訓練科學</div>
     <div class="ref-item">
       <div class="ref-num">22</div>
-      <div class="ref-content">
-        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11685194/" target="_blank">From Theory to Practice: Modeling Performance in Breaking</a></div>
-        <div class="ref-meta">Lerebourg & Guignard · Frontiers in Sports and Active Living · 2024 · 首個 Breaking 表現系統化建模框架</div>
-      </div>
-    </div>
-    <div class="ref-item">
-      <div class="ref-num">23</div>
       <div class="ref-content">
         <div class="ref-title">Analysis and Systematization of the Training Structure of Professional Breakers</div>
         <div class="ref-meta">Lindner et al. · German Journal of Exercise and Sport Research · 2024 · DOI: 10.1007/s12662-024-00977-z · 12 位職業選手訓練結構分析</div>
@@ -1067,7 +1047,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <div class="ref-group">
     <div class="ref-group-title">前沿：機器學習與動作捕捉</div>
     <div class="ref-item">
-      <div class="ref-num">24</div>
+      <div class="ref-num">23</div>
       <div class="ref-content">
         <div class="ref-title"><a href="https://arxiv.org/abs/2207.10120" target="_blank">BRACE: The Breakdancing Competition Dataset for Dance Motion Synthesis</a></div>
         <div class="ref-meta">Moltisanti, Wu, Dai & Loy · ECCV 2022 · 3.5 小時 Breaking 競賽姿態序列標注數據集</div>
@@ -1078,14 +1058,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <div class="ref-group">
     <div class="ref-group-title">體操生物力學綜述</div>
     <div class="ref-item">
-      <div class="ref-num">25</div>
+      <div class="ref-num">24</div>
       <div class="ref-content">
         <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/16939157/" target="_blank">Biomechanical research in artistic gymnastics: A review</a></div>
         <div class="ref-meta">Prassas, Kwon & Sands · Sports Biomechanics · 2006 · DOI: 10.1080/14763140608522878</div>
       </div>
     </div>
     <div class="ref-item">
-      <div class="ref-num">26</div>
+      <div class="ref-num">25</div>
       <div class="ref-content">
         <div class="ref-title"><a href="http://www.teoriya.ru/en/node/7146" target="_blank">Thomas Flair in Aerobic Gymnastics: Technique and Mastering Procedure</a></div>
         <div class="ref-meta">Teoriya i Praktika Fizicheskoy Kultury（俄羅斯體育理論與實踐）· 有氧體操中 Flare 的技術分析與學習程序</div>
@@ -1096,7 +1076,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
   <div class="ref-group">
     <div class="ref-group-title">個案研究（非同儕審查）</div>
     <div class="ref-item">
-      <div class="ref-num">27</div>
+      <div class="ref-num">26</div>
       <div class="ref-content">
         <div class="ref-title"><a href="https://phys.au.dk/en/news/item/artikel/studenterkollokvium-adnan-hidic-biomechanical-analysis-of-the-breakdance-move-flare-1" target="_blank">Biomechanical analysis of the breakdance move Flare</a></div>
         <div class="ref-meta">Hidic · Student Colloquium, Aarhus University · 2017 · 非同儕審查；學生研討課演講，以視頻記錄分析 Flare 力學</div>
