@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>單手 ICE & AIRCHAIR 升天 — 動作科學分析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1929;--bg2:#111f35;--card:#0f1e30;--border:#1e3050;--border2:#2a4070;
+  --text:#e8f1fc;--text2:#a8bed8;--text3:#6b8aaa;
+  --accent:#4f9eff;--gold:#f5b84b;--green:#34d399;--red:#f87171;--purple:#a78bfa;--teal:#2dd4bf;
+  --serif:'Playfair Display',Georgia,serif;--mono:'JetBrains Mono',monospace;
+  --r:8px;--r2:12px;--trans:.18s ease;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif;font-size:15px;line-height:1.75;min-height:100vh;display:flex}
+
+/* ── Sidebar ── */
+#sidebar{position:fixed;top:0;left:0;height:100vh;width:260px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform var(--trans)}
+.toc-logo{display:flex;align-items:center;gap:.6rem;padding:1.4rem 1.4rem 1rem;border-bottom:1px solid var(--border);text-decoration:none}
+.toc-logo-icon{width:40px;height:40px;min-width:40px;display:grid;place-items:center}
+.toc-logo-icon img{width:40px;height:40px;object-fit:contain;filter:invert(1) brightness(2);opacity:.85;transition:opacity var(--trans)}
+.toc-logo:hover .toc-logo-icon img{opacity:1}
+.toc-logo-text{font-weight:700;font-size:.88rem;line-height:1.2;color:var(--text)}
+.toc-logo-sub{font-size:.68rem;color:var(--text3);font-weight:400}
+nav{flex:1;overflow-y:auto;padding:1rem 0}
+nav a{display:flex;align-items:center;gap:.7rem;padding:.6rem 1.4rem;color:var(--text2);text-decoration:none;font-size:.82rem;letter-spacing:.02em;transition:all var(--trans);border-left:2px solid transparent}
+nav a:hover{color:var(--text);background:rgba(79,158,255,.06);border-left-color:var(--accent)}
+nav a.active{color:var(--accent);border-left-color:var(--accent);background:rgba(79,158,255,.08)}
+.toc-num{font-family:var(--mono);font-size:.7rem;color:var(--accent);min-width:1.6rem;opacity:.7}
+.sidebar-footer{padding:1rem 1.4rem;border-top:1px solid var(--border);font-size:.72rem;color:var(--text3)}
+
+/* ── Hamburger ── */
+#ham{display:none;position:fixed;top:.9rem;left:.9rem;z-index:200;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:.45rem .55rem;cursor:pointer;flex-direction:column;gap:4px}
+#ham span{display:block;width:20px;height:2px;background:var(--text2);border-radius:2px;transition:all var(--trans)}
+#overlay-nav{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:90}
+
+/* ── Main ── */
+main{margin-left:260px;flex:1;max-width:880px;padding:3rem 2.5rem 5rem}
+
+/* ── Hero ── */
+.hero{margin-bottom:3.5rem}
+.hero-tag{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem;opacity:.8}
+.hero h1{font-family:var(--serif);font-size:2.6rem;line-height:1.2;color:var(--text);margin-bottom:.8rem}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:.9rem;color:var(--text2);margin-bottom:1.4rem;line-height:1.6}
+.hero-authors{display:flex;gap:.5rem;flex-wrap:wrap}
+.hero-authors span{font-size:.75rem;font-family:var(--mono);padding:.2rem .7rem;border:1px solid var(--border2);border-radius:20px;color:var(--text3)}
+
+/* ── Section ── */
+section{margin-bottom:4rem;scroll-margin-top:2rem}
+.section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.section-num{font-family:var(--mono);font-size:2.2rem;color:var(--border2);font-weight:600;line-height:1}
+.section-title{font-family:var(--serif);font-size:1.9rem;color:var(--text)}
+h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.8rem 0 .9rem;letter-spacing:.01em}
+h4{font-size:.9rem;font-weight:700;color:var(--text2);margin:1.2rem 0 .6rem;text-transform:uppercase;letter-spacing:.07em}
+p{color:var(--text2);margin-bottom:1rem;font-size:.9rem}
+ul.content-list{padding-left:1.2rem;margin-bottom:1rem}
+ul.content-list li{color:var(--text2);font-size:.88rem;margin-bottom:.45rem;padding-left:.3rem}
+ul.content-list li strong{color:var(--text)}
+
+/* ── Info blocks ── */
+.info-block{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.1rem 1.3rem;margin:1.2rem 0;font-size:.85rem;color:var(--text2);line-height:1.65}
+.info-block strong{color:var(--text);display:block;margin-bottom:.35rem}
+.info-block.gold{border-left:3px solid var(--gold)}
+.info-block.red{border-left:3px solid var(--red)}
+.info-block.green{border-left:3px solid var(--green)}
+.info-block.purple{border-left:3px solid var(--purple)}
+.info-block.teal{border-left:3px solid var(--teal)}
+
+/* ── Big stats ── */
+.big-stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin:1.4rem 0}
+.big-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem 1.1rem;text-align:center}
+.big-stat .num{font-family:var(--mono);font-size:2rem;font-weight:600;color:var(--accent);line-height:1.1}
+.big-stat .denom{font-size:.72rem;color:var(--text3);margin-top:.2rem;text-transform:uppercase;letter-spacing:.05em}
+.big-stat .desc{font-size:.78rem;color:var(--text2);margin-top:.5rem;line-height:1.4}
+
+/* ── Tables ── */
+.table-wrap{overflow-x:auto;margin:1rem 0;border-radius:var(--r2);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+th{background:rgba(79,158,255,.07);color:var(--text);font-weight:600;padding:.65rem .9rem;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:.6rem .9rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.02)}
+
+/* ── Phase cards ── */
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.2rem 0}
+.phase-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem}
+.phase-badge{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase}
+.phase-name{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.6rem}
+.phase-desc{font-size:.82rem;color:var(--text2);line-height:1.6}
+.phase-desc strong{color:var(--gold)}
+
+/* ── Anatomy cards ── */
+.anatomy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.2rem 0}
+.anatomy-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem}
+.anatomy-joint{font-family:var(--mono);font-size:.7rem;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.anatomy-title{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.7rem}
+.anatomy-row{display:flex;justify-content:space-between;gap:.5rem;font-size:.8rem;padding:.3rem 0;border-bottom:1px solid var(--border)}
+.anatomy-row:last-child{border-bottom:none}
+.anatomy-row .label{color:var(--text3)}
+.anatomy-row .value{color:var(--text2);text-align:right;flex-shrink:0}
+
+/* ── Compare columns ── */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0}
+.compare-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.1rem}
+.compare-title{font-size:.85rem;font-weight:700;text-align:center;padding:.4rem;border-radius:var(--r);margin-bottom:.8rem}
+.compare-card.ice .compare-title{background:rgba(79,158,255,.12);color:var(--accent)}
+.compare-card.air .compare-title{background:rgba(245,184,75,.12);color:var(--gold)}
+.compare-card ul{padding-left:1rem;margin:0}
+.compare-card ul li{font-size:.81rem;color:var(--text2);margin-bottom:.35rem}
+.compare-card ul li strong{color:var(--text)}
+
+/* ── Purchase section ── */
+.purchase-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;text-align:center;margin-top:2rem}
+.purchase-title{font-family:var(--serif);font-size:1.5rem;color:var(--text);margin-bottom:.5rem}
+.purchase-sub{font-size:.85rem;color:var(--text2);margin-bottom:1.5rem}
+.purchase-options{display:flex;justify-content:center;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.ecpay-btn{cursor:pointer;display:inline-block;text-decoration:none}
+.ecpay-btn img{height:40px;border-radius:var(--r);transition:opacity var(--trans)}
+.ecpay-btn img:hover{opacity:.85}
+.pp-SRNADRN8U6FFQ{text-align:center;border:none;border-radius:.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer}
+.edition-note{font-size:.75rem;color:var(--text3);margin-top:.5rem}
+
+/* ── Payment modal ── */
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300}
+#paymentModal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);padding:2rem;z-index:400;width:min(360px,90vw);text-align:center}
+#paymentModal h3{color:var(--text);margin-bottom:1rem;font-size:1rem}
+#paymentOption{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border2);border-radius:var(--r);padding:.6rem .8rem;font-size:.88rem;margin-bottom:1rem;font-family:inherit}
+.modal-btn-row{display:flex;gap:.7rem;justify-content:center}
+.btn-confirm{background:var(--accent);color:#fff;border:none;border-radius:var(--r);padding:.6rem 1.4rem;cursor:pointer;font-size:.88rem;font-family:inherit;transition:opacity var(--trans)}
+.btn-confirm:hover{opacity:.85}
+.btn-cancel{background:transparent;color:var(--text3);border:1px solid var(--border);border-radius:var(--r);padding:.6rem 1.4rem;cursor:pointer;font-size:.88rem;font-family:inherit;transition:all var(--trans)}
+.btn-cancel:hover{border-color:var(--border2);color:var(--text2)}
+
+/* ── Ref ── */
+sup.cite{font-size:.72em;color:var(--accent);font-weight:700;margin-left:.15rem;white-space:nowrap}
+
+/* ── Mobile ── */
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #ham{display:flex}
+  #overlay-nav.show{display:block}
+  main{margin-left:0;padding:3.5rem 1.2rem 4rem}
+  .hero h1{font-size:1.9rem}
+  .compare-grid{grid-template-columns:1fr}
+  .purchase-options{flex-direction:column;gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Hamburger -->
+<button id="ham" aria-label="選單"><span></span><span></span><span></span></button>
+<div id="overlay-nav"></div>
+
+<!-- Sidebar -->
+<aside id="sidebar">
+  <a class="toc-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
+    <div class="toc-logo-icon"><img src="../assets/imm-logo.png" alt="IMM Logo"></div>
+    <div>
+      <div class="toc-logo-text">智動矩陣-ICE & AIRCHAIR</div>
+      <div class="toc-logo-sub">Breaking Science Report</div>
+    </div>
+  </a>
+  <nav>
+    <a href="#summary"><span class="toc-num">00</span>執行摘要</a>
+    <a href="#overview"><span class="toc-num">01</span>動作概述</a>
+    <a href="#biomechanics"><span class="toc-num">02</span>力學分析</a>
+    <a href="#anatomy"><span class="toc-num">03</span>解剖學</a>
+    <a href="#muscles"><span class="toc-num">04</span>肌群小結</a>
+    <a href="#science"><span class="toc-num">05</span>運動科學</a>
+    <a href="#purchase"><span class="toc-num">購</span>購買電子書</a>
+  </nav>
+  <div class="sidebar-footer">Breaking · 進階動作分析 · V1.0</div>
+</aside>
+
+<main>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">Breaking · 進階動作科學</div>
+  <h1>單手 <span>ICE</span> &<br>AIRCHAIR 升天</h1>
+  <p class="hero-sub">從生物力學、解剖學到運動科學——深度拆解兩個進階 powermove 的升天機制，<br>以科學視角理解動作背後的物理與肌肉邏輯。</p>
+  <div class="hero-authors">
+    <span>柯玠甫 Jeff</span>
+    <span>劉宗翰</span>
+    <span>施孟毅 Moe</span>
+    <span>IntelliMotionMatrix · 2024</span>
+  </div>
+</div>
+
+<!-- 00 執行摘要 -->
+<section id="summary">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <h2 class="section-title">執行摘要</h2>
+  </div>
+  <p>單手 Ice 與 Airchair 升天是霹靂舞中難度最高的 powermove 之一。兩者雖同屬「單手將身體從地面抬起至倒立」的動作族群，但在肩關節方向、軀幹傾斜、肌群激活模式上截然不同。本報告整合動作捕捉數據、解剖學分析與運動生理學原理，提供以下核心洞察：</p>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">1.6<span style="font-size:1rem">±0.2</span></div>
+      <div class="denom">秒</div>
+      <div class="desc">完成升天全程所需時間<br>（肩關節行程）</div>
+    </div>
+    <div class="big-stat">
+      <div class="num">0.3–0.4</div>
+      <div class="denom">秒</div>
+      <div class="desc">伸展蓄力→最大反作用力<br>（A→B 關鍵窗口）</div>
+    </div>
+    <div class="big-stat">
+      <div class="num">3</div>
+      <div class="denom">個關鍵相位</div>
+      <div class="desc">蓄力 → 爆發 → 補償<br>缺一不可</div>
+    </div>
+  </div>
+
+  <div class="info-block gold">
+    <strong>最核心的洞察</strong>
+    兩個動作都高度依賴<strong>肱三頭肌</strong>的持續力量輸出。升天困難的根本原因在於：爆發瞬間上肢必須在「高速收縮」狀態下維持力量（對應力速曲線右下角），這是人體肌肉力學的天然限制。
+  </div>
+  <div class="info-block teal">
+    <strong>Ice vs. Airchair 最關鍵的差異</strong>
+    Ice 需要<strong>肩關節屈曲</strong>（前三角肌、胸大肌主導）；Airchair 需要<strong>肩關節伸直</strong>（中後三角肌、闊背肌主導）。軀幹傾斜方向相反，造成完全不同的發力鏈。
+  </div>
+</section>
+
+<!-- 01 動作概述 -->
+<section id="overview">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">動作概述</h2>
+  </div>
+
+  <p>升天動作可拆解為三個緊密相連的相位，各相位有不同的生理需求和技術重點：</p>
+
+  <!-- Phase Flow SVG -->
+  <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;max-width:760px;display:block;margin:1.5rem auto;border-radius:12px;border:1px solid #1e3050;font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif">
+    <rect width="760" height="160" fill="#0e1929" rx="12"/>
+
+    <!-- Phase blocks -->
+    <rect x="30"  y="30" width="190" height="80" rx="8" fill="#162238" stroke="#34d399" stroke-width="1.5"/>
+    <rect x="285" y="30" width="190" height="80" rx="8" fill="#162238" stroke="#f5b84b" stroke-width="1.5"/>
+    <rect x="540" y="30" width="190" height="80" rx="8" fill="#162238" stroke="#a78bfa" stroke-width="1.5"/>
+
+    <!-- Arrows -->
+    <path d="M 222 70 L 283 70" stroke="#264166" stroke-width="2" marker-end="url(#arr)"/>
+    <path d="M 477 70 L 538 70" stroke="#264166" stroke-width="2" marker-end="url(#arr)"/>
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#264166"/>
+      </marker>
+    </defs>
+
+    <!-- Phase labels -->
+    <text x="125" y="54" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="JetBrains Mono,monospace">PHASE A</text>
+    <text x="125" y="70" text-anchor="middle" fill="#e8f1fc" font-size="12.5" font-weight="700">伸展蓄力</text>
+    <text x="125" y="88" text-anchor="middle" fill="#a8bed8" font-size="9.5">拉長肌肉 → 積蓄彈性能量</text>
+    <text x="125" y="102" text-anchor="middle" fill="#6b8aaa" font-size="9">SSC 離心階段</text>
+
+    <text x="380" y="54" text-anchor="middle" fill="#f5b84b" font-size="10" font-weight="700" font-family="JetBrains Mono,monospace">PHASE B</text>
+    <text x="380" y="70" text-anchor="middle" fill="#e8f1fc" font-size="12.5" font-weight="700">收縮發力</text>
+    <text x="380" y="88" text-anchor="middle" fill="#a8bed8" font-size="9.5">地面反作用力 → CoG 上升</text>
+    <text x="380" y="102" text-anchor="middle" fill="#6b8aaa" font-size="9">三關節爆發 + 上肢持續輸出</text>
+
+    <text x="635" y="54" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700" font-family="JetBrains Mono,monospace">PHASE C</text>
+    <text x="635" y="70" text-anchor="middle" fill="#e8f1fc" font-size="12.5" font-weight="700">力量補償</text>
+    <text x="635" y="88" text-anchor="middle" fill="#a8bed8" font-size="9.5">下肢收回 → 持續推升 CoG</text>
+    <text x="635" y="102" text-anchor="middle" fill="#6b8aaa" font-size="9">微調位置、建立倒立平衡</text>
+
+    <!-- Bottom note -->
+    <text x="380" y="145" text-anchor="middle" fill="#6b8aaa" font-size="9">完整行程：初始 → 穩定支撐期 → Phase A → Phase B（向上發力 + 軀幹轉面）→ Phase C（煞車）→ 結束</text>
+  </svg>
+
+  <div class="compare-grid">
+    <div class="compare-card ice">
+      <div class="compare-title">單手 ICE</div>
+      <ul>
+        <li><strong>伸展蓄力：</strong>胸口貼近地面，身體前傾，下肢向後蓄力</li>
+        <li><strong>收縮發力：</strong>延續前傾力量，下肢快速後勾向天空</li>
+        <li><strong>關鍵：</strong>前傾角度決定發力方向，時機控制至關重要</li>
+        <li><strong>軀幹傾向：</strong>前傾 → 肩關節屈曲主導</li>
+      </ul>
+    </div>
+    <div class="compare-card air">
+      <div class="compare-title">AIRCHAIR</div>
+      <ul>
+        <li><strong>伸展蓄力：</strong>身體後仰並擴胸，創造下肢向上發力空間</li>
+        <li><strong>收縮發力：</strong>延續後仰力量，下肢由地面向天空快速伸直</li>
+        <li><strong>關鍵：</strong>擴胸姿態維持，Nike 腳（勾腳踝）保持</li>
+        <li><strong>軀幹傾向：</strong>後仰 → 肩關節伸直主導</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <strong>心像訓練（Mental Practice）的重要性</strong>
+    三個相位緊密相連，從蓄力到正確爆發，再到精確微調的整個流程需要神經系統高度整合。研究顯示，心像訓練（腦中演練動作流程）能有效強化運動程式，配合漸進式系統訓練是安全且高效完成升天的關鍵。
+  </div>
+</section>
+
+<!-- 02 力學分析 -->
+<section id="biomechanics">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">力學分析</h2>
+  </div>
+
+  <h3>2.1 重心（CoG）高度變化</h3>
+  <p>升天的核心目標是將重心（Center of Gravity）從地面高度推升至倒立姿勢所需的高度。整個過程分為兩個動力來源：</p>
+
+  <!-- CoG trajectory SVG -->
+  <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;max-width:760px;display:block;margin:1.5rem auto;border-radius:12px;border:1px solid #1e3050;font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif">
+    <rect width="760" height="240" fill="#0e1929" rx="12"/>
+
+    <!-- Grid -->
+    <line x1="80" y1="40" x2="80" y2="190" stroke="#264166" stroke-width="1.5"/>
+    <line x1="80" y1="190" x2="720" y2="190" stroke="#264166" stroke-width="1.5"/>
+    <line x1="80" y1="100" x2="720" y2="100" stroke="#1e3050" stroke-width="1" stroke-dasharray="4,3"/>
+    <line x1="80" y1="145" x2="720" y2="145" stroke="#1e3050" stroke-width="1" stroke-dasharray="4,3"/>
+
+    <!-- Axis labels -->
+    <text x="50" y="195" text-anchor="middle" fill="#6b8aaa" font-size="9">低</text>
+    <text x="50" y="105" text-anchor="middle" fill="#6b8aaa" font-size="9">高</text>
+    <text x="76" y="205" text-anchor="end" fill="#6b8aaa" font-size="9">0</text>
+    <text x="400" y="210" text-anchor="middle" fill="#6b8aaa" font-size="10">時間 →</text>
+    <text x="18" y="120" text-anchor="middle" fill="#6b8aaa" font-size="10" transform="rotate(-90,18,120)">CoG 高度 ↑</text>
+
+    <!-- Phase dividers -->
+    <line x1="280" y1="40" x2="280" y2="190" stroke="#264166" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="480" y1="40" x2="480" y2="190" stroke="#264166" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <!-- Ice curve (blue) -->
+    <path d="M 90 185 C 150 185 220 180 280 160 C 340 140 380 100 440 75 C 500 55 580 50 720 48"
+          fill="none" stroke="#4f9eff" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Airchair curve (gold) -->
+    <path d="M 90 185 C 150 185 230 178 280 155 C 330 132 370 95 430 68 C 490 45 570 43 720 42"
+          fill="none" stroke="#f5b84b" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6,3"/>
+
+    <!-- Key points -->
+    <circle cx="280" cy="157" r="5" fill="#0e1929" stroke="#4f9eff" stroke-width="2"/>
+    <circle cx="280" cy="152" r="5" fill="#0e1929" stroke="#f5b84b" stroke-width="2"/>
+    <text x="285" y="140" fill="#a8bed8" font-size="9">最大反作用力（B點）</text>
+    <text x="285" y="150" fill="#6b8aaa" font-size="8.5">Ice ≈ 0.3s / Airchair ≈ 0.4s 到達</text>
+
+    <!-- Labels -->
+    <text x="170" y="55" fill="#a8bed8" font-size="9.5">PHASE A：蓄力</text>
+    <text x="360" y="55" fill="#a8bed8" font-size="9.5">PHASE B：爆發</text>
+    <text x="530" y="55" fill="#a8bed8" font-size="9.5">PHASE C：補償</text>
+
+    <!-- Legend -->
+    <line x1="550" y1="175" x2="580" y2="175" stroke="#4f9eff" stroke-width="2.5"/>
+    <text x="585" y="179" fill="#4f9eff" font-size="9">單手 ICE</text>
+    <line x1="550" y1="190" x2="580" y2="190" stroke="#f5b84b" stroke-width="2.5" stroke-dasharray="5,2"/>
+    <text x="585" y="194" fill="#f5b84b" font-size="9">AIRCHAIR</text>
+  </svg>
+
+  <h3>2.2 地面反作用力機制</h3>
+  <p>由 A（主要運動肌群伸展至最長）到 B（產生最大上升反作用力）的 0.3–0.4 秒窗口是升天成敗的關鍵。這段時間的反作用力同時完成兩件事：</p>
+
+  <ul class="content-list">
+    <li><strong>啟動 CoG 上升</strong>：下肢產生的推力使重心開始離地</li>
+    <li><strong>積累後續能量</strong>：為 B 點之後透過下肢收回（反作用力）持續推升 CoG 奠定基礎</li>
+  </ul>
+
+  <div class="info-block red">
+    <strong>升天最困難的物理原因</strong>
+    B 點之後，上肢需在「高速收縮」狀態下持續輸出力量，但根據力量－速度曲線，速度越快肌肉能產生的力量越小。這是升天無法「蠻力解決」的根本障礙——必須透過 SSC 機制（彈性位能釋放）來補償力量的損耗。
+  </div>
+</section>
+
+<!-- 03 解剖學 -->
+<section id="anatomy">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">解剖學分析</h2>
+  </div>
+
+  <p>動作捕捉數據顯示，升天過程涉及五大關節群的協同運作。以下依序分析各關節的角度變化、主要肌群，以及 Ice 和 Airchair 的差異：</p>
+
+  <h3>3.1 肩關節（最關鍵差異點）</h3>
+  <p>肩關節在 <strong>1.6±0.2 秒</strong>內完成升天行程，是 Ice 與 Airchair 生物力學差異的核心：</p>
+
+  <div class="compare-grid">
+    <div class="compare-card ice">
+      <div class="compare-title">ICE — 肩關節屈曲</div>
+      <ul>
+        <li><strong>主要肌群：</strong>前三角肌、胸大肌、喙肱肌</li>
+        <li><strong>訓練型態：</strong>夾角小 → 重量主導；夾角大 → 速度主導</li>
+        <li><strong>穩定肌群：</strong>旋轉肌袖（輕重量控制為主）</li>
+      </ul>
+    </div>
+    <div class="compare-card air">
+      <div class="compare-title">AIRCHAIR — 肩關節伸直</div>
+      <ul>
+        <li><strong>主要肌群：</strong>後三角肌、大圓肌、闊背肌、棘下肌</li>
+        <li><strong>訓練型態：</strong>同樣需分角度做力量與速度訓練</li>
+        <li><strong>穩定肌群：</strong>旋轉肌袖（同樣為控制角色，避免大重量）</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>3.2 肘關節</h3>
+  <p>兩個動作的右手肘均呈<strong>快速伸直（Extension）</strong>狀態，由三條肱三頭肌頭（長頭、內側頭、外側頭）共同負責：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>訓練需求</th><th>方法</th></tr></thead>
+      <tbody>
+        <tr><td><strong>小夾角高阻力</strong><br><small>肘近屈曲時的力量輸出</small></td><td>法式推舉（French Press）、窄距伏地挺身</td></tr>
+        <tr><td><strong>完整行程爆發</strong><br><small>從屈到伸的速度型訓練</small></td><td>速度導向的肱三頭肌訓練，完整伸直行程</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-block green">
+    <strong>SSC 在肘關節的體現</strong>
+    Figure 6（PDF原圖）所示的肘關節角度減少，即為 SSC 離心階段的彈性位能儲存。肘關節快速屈曲後隨即爆發伸直，是典型的伸展–收縮循環應用。
+  </div>
+
+  <h3>3.3 軀幹（傾斜方向決定整個動作走向）</h3>
+
+  <div class="compare-grid">
+    <div class="compare-card ice">
+      <div class="compare-title">ICE — 軀幹伸直肌群</div>
+      <ul>
+        <li>髂肋肌（Iliocostalis）</li>
+        <li>最長肌（Longissimus）</li>
+        <li>棘肌（Spinalis）</li>
+        <li>闊背肌、後鋸肌（協同）</li>
+      </ul>
+    </div>
+    <div class="compare-card air">
+      <div class="compare-title">AIRCHAIR — 軀幹屈曲肌群</div>
+      <ul>
+        <li>腹直肌（Rectus Abdominis）</li>
+        <li>腹外斜肌（External Oblique）</li>
+        <li>腹內斜肌（Internal Oblique）</li>
+        <li>兼備軀幹旋轉功能</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>3.4 髖關節與膝關節（三關節爆發的基礎）</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>關節</th><th>單手 ICE</th><th>AIRCHAIR</th><th>共同點</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>髖關節</strong></td>
+          <td>髖伸直主導<br><small>臀大肌、腿後肌</small></td>
+          <td>髖屈曲主導<br><small>髂腰肌、股直肌</small></td>
+          <td>需高爆發力輸出</td>
+        </tr>
+        <tr>
+          <td><strong>膝關節</strong></td>
+          <td>膝伸直<br><small>股四頭肌為主</small></td>
+          <td>膝屈曲（Phase C）<br><small>腿後肌群為主</small></td>
+          <td>三關節協同發力</td>
+        </tr>
+        <tr>
+          <td><strong>訓練重點</strong></td>
+          <td>三關節伸展爆發<br>（髖伸+膝伸+踝蹠屈）</td>
+          <td>三關節壓縮反應<br>（髖屈+膝屈+踝背屈）</td>
+          <td>速度主導型訓練</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 04 肌群小結 -->
+<section id="muscles">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">肌群小結</h2>
+  </div>
+
+  <p>以下整合各相位的主要用力肌群，依動作時序呈現：</p>
+
+  <!-- Muscle activation phase chart SVG -->
+  <svg viewBox="0 0 760 290" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;max-width:760px;display:block;margin:1.5rem auto;border-radius:12px;border:1px solid #1e3050;font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif">
+    <rect width="760" height="290" fill="#0e1929" rx="12"/>
+
+    <!-- Phase header -->
+    <rect x="200" y="10" width="110" height="25" rx="4" fill="#162238" stroke="#34d399" stroke-width="1"/>
+    <text x="255" y="27" text-anchor="middle" fill="#34d399" font-size="9.5" font-weight="700">穩定支撐期 &amp; 延伸</text>
+
+    <rect x="320" y="10" width="110" height="25" rx="4" fill="#162238" stroke="#f5b84b" stroke-width="1"/>
+    <text x="375" y="27" text-anchor="middle" fill="#f5b84b" font-size="9.5" font-weight="700">Phase1 向上發力</text>
+
+    <rect x="440" y="10" width="110" height="25" rx="4" fill="#162238" stroke="#a78bfa" stroke-width="1"/>
+    <text x="495" y="27" text-anchor="middle" fill="#a78bfa" font-size="9.5" font-weight="700">Phase2 軀幹轉面</text>
+
+    <rect x="560" y="10" width="110" height="25" rx="4" fill="#162238" stroke="#2dd4bf" stroke-width="1"/>
+    <text x="615" y="27" text-anchor="middle" fill="#2dd4bf" font-size="9.5" font-weight="700">Phase3 煞車</text>
+
+    <!-- Column dividers -->
+    <line x1="200" y1="40" x2="200" y2="270" stroke="#1e3050" stroke-width="1"/>
+    <line x1="320" y1="40" x2="320" y2="270" stroke="#1e3050" stroke-width="1"/>
+    <line x1="440" y1="40" x2="440" y2="270" stroke="#1e3050" stroke-width="1"/>
+    <line x1="560" y1="40" x2="560" y2="270" stroke="#1e3050" stroke-width="1"/>
+
+    <!-- Row headers -->
+    <text x="95" y="58" text-anchor="middle" fill="#a8bed8" font-size="9.5" font-weight="600">ICE 主要肌群</text>
+    <text x="95" y="138" text-anchor="middle" fill="#a8bed8" font-size="9.5" font-weight="600">AIRCHAIR 主要肌群</text>
+    <text x="95" y="218" text-anchor="middle" fill="#a8bed8" font-size="9.5" font-weight="600">共同肌群</text>
+
+    <!-- Row dividers -->
+    <line x1="10" y1="90" x2="750" y2="90" stroke="#1e3050" stroke-width="1"/>
+    <line x1="10" y1="170" x2="750" y2="170" stroke="#1e3050" stroke-width="1"/>
+
+    <!-- ICE row -->
+    <text x="255" y="58" text-anchor="middle" fill="#7bc3ff" font-size="8.5">肱三頭肌、前三角肌</text>
+    <text x="255" y="72" text-anchor="middle" fill="#7bc3ff" font-size="8.5">胸大肌、後側核心</text>
+    <text x="375" y="58" text-anchor="middle" fill="#7bc3ff" font-size="8.5">三關節伸展肌群</text>
+    <text x="375" y="72" text-anchor="middle" fill="#7bc3ff" font-size="8.5">（臀大肌、股四頭肌、腓腸肌）</text>
+    <text x="495" y="65" text-anchor="middle" fill="#7bc3ff" font-size="8.5">腹內/外斜肌</text>
+    <text x="615" y="65" text-anchor="middle" fill="#7bc3ff" font-size="8.5">—</text>
+
+    <!-- Airchair row -->
+    <text x="255" y="138" text-anchor="middle" fill="#fcd34d" font-size="8.5">肱三頭肌、中後三角肌</text>
+    <text x="255" y="152" text-anchor="middle" fill="#fcd34d" font-size="8.5">肩袖旋轉肌群、闊背肌、斜方肌</text>
+    <text x="375" y="138" text-anchor="middle" fill="#fcd34d" font-size="8.5">三關節壓縮肌群</text>
+    <text x="375" y="152" text-anchor="middle" fill="#fcd34d" font-size="8.5">（髂腰肌、腿後肌、脛前肌）</text>
+    <text x="495" y="145" text-anchor="middle" fill="#fcd34d" font-size="8.5">腹內/外斜肌</text>
+    <text x="615" y="145" text-anchor="middle" fill="#fcd34d" font-size="8.5">—</text>
+
+    <!-- Common row -->
+    <text x="255" y="218" text-anchor="middle" fill="#6ee7b7" font-size="8.5">肘定（肘關節穩定）</text>
+    <text x="375" y="211" text-anchor="middle" fill="#6ee7b7" font-size="8.5">肱三頭肌、三角肌</text>
+    <text x="375" y="225" text-anchor="middle" fill="#6ee7b7" font-size="8.5">（上肢持續發力）</text>
+    <text x="495" y="211" text-anchor="middle" fill="#6ee7b7" font-size="8.5">腹內/外斜肌</text>
+    <text x="495" y="225" text-anchor="middle" fill="#6ee7b7" font-size="8.5">（軀幹旋轉）</text>
+    <text x="615" y="211" text-anchor="middle" fill="#6ee7b7" font-size="8.5">三關節壓縮</text>
+    <text x="615" y="225" text-anchor="middle" fill="#6ee7b7" font-size="8.5">（煞車控制）</text>
+
+    <!-- Footer note -->
+    <rect x="10" y="258" width="740" height="25" rx="4" fill="#111f35"/>
+    <text x="380" y="274" text-anchor="middle" fill="#6b8aaa" font-size="8.5">⚑ 兩個動作都高度依賴肱三頭肌 — 是最關鍵的共同訓練目標</text>
+  </svg>
+
+  <div class="info-block gold">
+    <strong>肌群激活差異的實踐意義</strong>
+    Ice 與 Airchair 的肌群激活模式差異反映了兩者在運動學上的根本不同。這也解釋了為何熟悉 Ice 的舞者在學習 Airchair 時需要重新建立動作程式，無法直接「遷移」技術——軀幹傾向相反，整條發力鏈都需要重組。
+  </div>
+</section>
+
+<!-- 05 運動科學 -->
+<section id="science">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">運動科學原理</h2>
+  </div>
+
+  <h3>5.1 伸展–收縮循環（Stretch-Shortening Cycle, SSC）</h3>
+  <p>SSC 是升天動作最核心的生理機制。肌肉從<strong>離心伸展（蓄力）</strong>快速過渡到<strong>向心收縮（爆發）</strong>，利用肌肉與肌腱的彈性特性儲存並釋放彈性能量：</p>
+
+  <div class="phase-grid">
+    <div class="phase-card">
+      <div class="phase-badge">離心階段 — 蓄力</div>
+      <div class="phase-name">儲存彈性位能</div>
+      <p class="phase-desc">肌肉被拉長，肌腱儲存彈性能量。Ice：胸口前傾拉伸後側肌群；Airchair：後仰拉伸前側肌群。<strong>錯過此窗口將無法借用彈性能量。</strong></p>
+    </div>
+    <div class="phase-card">
+      <div class="phase-badge">向心階段 — 爆發</div>
+      <div class="phase-name">釋放彈性位能</div>
+      <p class="phase-desc">儲存的能量快速釋放，與肌肉主動收縮力疊加，顯著提升爆發力輸出。<strong>肘關節角度快速增大</strong>即為此階段的體現（SSC 離心→向心）。</p>
+    </div>
+    <div class="phase-card">
+      <div class="phase-badge">實際效益</div>
+      <div class="phase-name">能量效率提升</div>
+      <p class="phase-desc">有效利用 SSC 可<strong>減少代謝能耗</strong>、提高肌肉力量和速度輸出。這是為何「有節奏的蓄力」比「靜止後直接發力」更有效的物理原因。</p>
+    </div>
+  </div>
+
+  <h3>5.2 力量–速度曲線（Force-Velocity Curve）</h3>
+  <p>肌肉收縮速度增加，力量輸出降低——此關係是<strong>非線性的</strong>。這直接決定了升天訓練的重量與速度配置：</p>
+
+  <!-- Force-Velocity Curve SVG -->
+  <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;max-width:760px;display:block;margin:1.5rem auto;border-radius:12px;border:1px solid #1e3050;font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif">
+    <rect width="760" height="300" fill="#0e1929" rx="12"/>
+
+    <!-- Background zones -->
+    <rect x="80" y="40" width="160" height="195" fill="#34d399" fill-opacity="0.05" rx="4"/>
+    <rect x="240" y="40" width="200" height="195" fill="#f5b84b" fill-opacity="0.05" rx="4"/>
+    <rect x="440" y="40" width="260" height="195" fill="#a78bfa" fill-opacity="0.05" rx="4"/>
+
+    <!-- Axes -->
+    <line x1="80" y1="235" x2="720" y2="235" stroke="#264166" stroke-width="2"/>
+    <line x1="80" y1="40" x2="80" y2="235" stroke="#264166" stroke-width="2"/>
+    <polygon points="717,232 726,235 717,238" fill="#264166"/>
+    <polygon points="77,43 80,34 83,43" fill="#264166"/>
+    <text x="400" y="255" text-anchor="middle" fill="#6b8aaa" font-size="10">← 速度（Velocity） →</text>
+    <text x="22" y="140" text-anchor="middle" fill="#6b8aaa" font-size="10" transform="rotate(-90,22,140)">↑ 力量（Force）</text>
+
+    <!-- Baseline curve (yellow = before training) -->
+    <path d="M 90 45 C 120 48 180 80 240 120 C 310 168 380 200 500 220 C 580 230 660 234 720 235"
+          fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6,3" opacity="0.5"/>
+    <!-- Improved curve (blue = after training) -->
+    <path d="M 90 38 C 130 42 195 75 260 115 C 330 158 400 192 520 215 C 600 225 680 232 720 234"
+          fill="none" stroke="#4f9eff" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Key points -->
+    <!-- Upper limb in PHASE A (force dominant) -->
+    <circle cx="130" cy="52" r="7" fill="#0e1929" stroke="#34d399" stroke-width="2"/>
+    <text x="138" y="46" fill="#34d399" font-size="9" font-weight="700">上肢蓄力期</text>
+    <text x="138" y="58" fill="#6b8aaa" font-size="8.5">力量主導</text>
+
+    <!-- Upper limb in PHASE B (speed increases) -->
+    <circle cx="480" cy="216" r="7" fill="#0e1929" stroke="#f87171" stroke-width="2"/>
+    <text x="488" y="210" fill="#f87171" font-size="9" font-weight="700">上肢爆發期</text>
+    <text x="488" y="222" fill="#6b8aaa" font-size="8.5">高速→力量驟降 ⚠</text>
+
+    <!-- Lower limb (speed dominant throughout) -->
+    <circle cx="580" cy="224" r="7" fill="#0e1929" stroke="#a78bfa" stroke-width="2"/>
+    <text x="520" y="175" fill="#a78bfa" font-size="9" font-weight="700">下肢</text>
+    <text x="510" y="187" fill="#6b8aaa" font-size="8.5">全程速度主導</text>
+
+    <!-- Zone labels -->
+    <text x="160" y="82" text-anchor="middle" fill="#34d399" font-size="9">力量主導</text>
+    <text x="160" y="94" text-anchor="middle" fill="#6b8aaa" font-size="8.5">大力士 / 健力</text>
+    <text x="340" y="55" text-anchor="middle" fill="#f5b84b" font-size="9">力量+速度</text>
+    <text x="340" y="67" text-anchor="middle" fill="#6b8aaa" font-size="8.5">奧林匹亞舉重</text>
+    <text x="570" y="55" text-anchor="middle" fill="#a78bfa" font-size="9">速度主導</text>
+    <text x="570" y="67" text-anchor="middle" fill="#6b8aaa" font-size="8.5">衝刺短跑</text>
+
+    <!-- Legend -->
+    <line x1="100" y1="278" x2="130" y2="278" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5,2" opacity="0.5"/>
+    <text x="135" y="282" fill="#a8bed8" font-size="9">訓練前曲線</text>
+    <line x1="230" y1="278" x2="260" y2="278" stroke="#4f9eff" stroke-width="2.5"/>
+    <text x="265" y="282" fill="#a8bed8" font-size="9">訓練後曲線（整體右上移）</text>
+    <text x="450" y="282" fill="#6b8aaa" font-size="8.5">→ 訓練目標：將曲線往右上移動</text>
+  </svg>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>身體部位</th><th>升天相位</th><th>在力速曲線的位置</th><th>訓練策略</th></tr></thead>
+      <tbody>
+        <tr><td><strong>上肢</strong></td><td>伸展蓄力（穩定期）</td><td>左上角 — 力量主導</td><td>高阻力、低速度訓練</td></tr>
+        <tr><td><strong>上肢</strong></td><td>收縮發力（爆發）</td><td>右下角 — 速度急增</td><td>⚠ 力量驟降，需 SSC 補償</td></tr>
+        <tr><td><strong>下肢</strong></td><td>全程</td><td>右下角 — 速度主導</td><td>速度型爆發訓練（三關節）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-block purple">
+    <strong>SSC 與力速曲線的協同作用</strong>
+    當下肢向天空伸直時，前傾/後仰的軀幹將力量傳遞至支撐肌群，使其收縮變速甚至被拉長（SSC 儲能）。根據力速曲線，這種減速允許肌肉產生更大的力量。當動作進入爆發階段，儲存的彈性位能釋放，與肌肉主動收縮力疊加，有效完成 CoG 的快速抬升。
+  </div>
+</section>
+
+<!-- Purchase -->
+<section id="purchase">
+  <div class="section-header">
+    <span class="section-num">購</span>
+    <h2 class="section-title">購買完整電子書</h2>
+  </div>
+
+  <p>以上為電子書的理論分析部分（師範版 30 頁）。完整版包含：</p>
+  <ul class="content-list">
+    <li><strong>漸進式技巧訓練系統</strong>：單手 Ice、Airchair 各自的 A→C 級漸進動作（共 20 項動作）</li>
+    <li><strong>活動度訓練</strong>：6 項專項熱身與拉伸動作，含肩關節及脊柱伸展</li>
+    <li><strong>功能性肌力訓練</strong>：18 項肌力訓練，依穩定期→Phase 1→Phase 2→Phase 3 分類</li>
+    <li><strong>觸覺提示 SOP</strong>：教練用的手觸引導流程（Airchair 升天）</li>
+    <li><strong>安全注意事項</strong>：護具使用、疲勞管理、循序漸進指引</li>
+  </ul>
+
+  <div class="table-wrap" style="margin-bottom:1.5rem">
+    <table>
+      <thead><tr><th>版本</th><th>內容</th><th>頁數</th><th>價格</th></tr></thead>
+      <tbody>
+        <tr><td><strong>街頭版</strong></td><td>動作概述 + 解剖學 + 漸進技巧</td><td>10 頁</td><td>NT$ 179</td></tr>
+        <tr><td><strong>強化版</strong></td><td>街頭版 + 肌力訓練</td><td>21 頁</td><td>NT$ 249</td></tr>
+        <tr><td><strong>師範版</strong><span style="font-size:.7rem;color:var(--gold);margin-left:.4rem">推薦</span></td><td>完整內容 + 運動科學 + 觸覺提示 SOP</td><td>30 頁</td><td>NT$ 299</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="purchase-section">
+    <div class="purchase-title">立即取得完整電子書</div>
+    <p class="purchase-sub">選擇適合你的版本，即刻開始科學化升天訓練</p>
+    <div class="purchase-options">
+      <!-- eCPay -->
+      <div>
+        <a href="#" id="ecpayButton" class="ecpay-btn">
+          <img src="https://payment.ecpay.com.tw/Content/themes/WebStyle20170517/images/ecgo.png" alt="ECPay 綠界付款">
+        </a>
+        <div class="edition-note">台灣信用卡 / ATM / 超商</div>
+      </div>
+      <!-- PayPal -->
+      <div>
+        <style>.pp-SRNADRN8U6FFQ{text-align:center;border:none;border-radius:.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+        <form action="https://www.paypal.com/ncp/payment/SRNADRN8U6FFQ" method="post" target="_top" style="display:inline-grid;justify-items:center;align-content:start;gap:.5rem;">
+          <input class="pp-SRNADRN8U6FFQ" type="submit" value="PayPal 立即購" />
+          <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards"/>
+          <section>Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:.875rem;vertical-align:middle;"/></section>
+        </form>
+        <div class="edition-note">國際信用卡 / PayPal 帳戶</div>
+      </div>
+    </div>
+    <p style="font-size:.75rem;color:var(--text3)">購買後將於付款確認後提供下載連結 · 如有問題請聯繫 IntelliMotionMatrix</p>
+  </div>
+
+  <!-- eCPay overlay + modal -->
+  <div id="overlay"></div>
+  <div id="paymentModal">
+    <h3>選擇購買版本</h3>
+    <select id="paymentOption">
+      <option value="8759026">街頭版 — NT$ 179 TWD</option>
+      <option value="03D4B12">強化版 — NT$ 249 TWD</option>
+      <option value="67B200E">師範版 — NT$ 299 TWD</option>
+    </select>
+    <div class="modal-btn-row">
+      <button class="btn-confirm" id="confirmPayment">前往付款</button>
+      <button class="btn-cancel" id="closeModal">取消</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Sidebar active tracking
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if(active) active.classList.add('active');
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+sections.forEach(s=>observer.observe(s));
+
+// Hamburger
+const ham = document.getElementById('ham');
+const sidebar = document.getElementById('sidebar');
+const overlayNav = document.getElementById('overlay-nav');
+function toggleSidebar(){sidebar.classList.toggle('open');overlayNav.classList.toggle('show');}
+ham.addEventListener('click',toggleSidebar);
+overlayNav.addEventListener('click',toggleSidebar);
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{
+  if(window.innerWidth<=768){sidebar.classList.remove('open');overlayNav.classList.remove('show');}
+}));
+
+// eCPay modal
+document.getElementById('ecpayButton').addEventListener('click',function(e){
+  e.preventDefault();
+  document.getElementById('overlay').style.display='block';
+  document.getElementById('paymentModal').style.display='block';
+});
+document.getElementById('closeModal').addEventListener('click',function(){
+  document.getElementById('overlay').style.display='none';
+  document.getElementById('paymentModal').style.display='none';
+});
+document.getElementById('confirmPayment').addEventListener('click',function(){
+  var v = document.getElementById('paymentOption').value;
+  window.location.href = 'https://p.ecpay.com.tw/' + v;
+});
+document.getElementById('overlay').addEventListener('click',function(){
+  this.style.display='none';
+  document.getElementById('paymentModal').style.display='none';
+});
+</script>
+</body>
+</html>
