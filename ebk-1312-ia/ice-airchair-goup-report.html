@@ -17,10 +17,10 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif;font-size:15px;line-height:1.75;min-height:100vh;display:flex}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif;font-size:15px;line-height:1.75;min-height:100vh;display:flex;padding-top:56px}
 
 /* ── Sidebar ── */
-#sidebar{position:fixed;top:0;left:0;height:100vh;width:260px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform var(--trans)}
+#sidebar{position:fixed;top:56px;left:0;height:calc(100vh - 56px);width:260px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform var(--trans)}
 .toc-logo{display:flex;align-items:center;gap:.6rem;padding:1.4rem 1.4rem 1rem;border-bottom:1px solid var(--border);text-decoration:none}
 .toc-logo-icon{width:40px;height:40px;min-width:40px;display:grid;place-items:center}
 .toc-logo-icon img{width:40px;height:40px;object-fit:contain;filter:invert(1) brightness(2);opacity:.85;transition:opacity var(--trans)}
@@ -34,9 +34,21 @@ nav a.active{color:var(--accent);border-left-color:var(--accent);background:rgba
 .toc-num{font-family:var(--mono);font-size:.7rem;color:var(--accent);min-width:1.6rem;opacity:.7}
 .sidebar-footer{padding:1rem 1.4rem;border-top:1px solid var(--border);font-size:.72rem;color:var(--text3)}
 
-/* ── Hamburger ── */
-#ham{display:none;position:fixed;top:.9rem;left:.9rem;z-index:200;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:.45rem .55rem;cursor:pointer;flex-direction:column;gap:4px}
-#ham span{display:block;width:20px;height:2px;background:var(--text2);border-radius:2px;transition:all var(--trans)}
+/* ── Top Nav ── */
+#topnav{position:fixed;top:0;left:0;width:100%;z-index:300;background:rgba(14,25,41,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.8rem;height:56px}
+.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--text);border:none}
+.nav-brand img{height:28px;filter:invert(1) brightness(2);opacity:.85}
+.nav-brand-text{font-weight:700;font-size:.85rem;line-height:1.2}
+.nav-brand-sub{font-size:.63rem;color:var(--text3);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;padding:.36rem .78rem;border-radius:var(--r);border:1px solid transparent;transition:all var(--trans);white-space:nowrap}
+.nav-links a:hover{color:var(--text);border-color:var(--border2);background:rgba(79,158,255,.07)}
+.nav-links a.cta{color:var(--accent);border-color:rgba(79,158,255,.35);background:rgba(79,158,255,.08)}
+.nav-links a.cta:hover{background:rgba(79,158,255,.18)}
+#ham-top{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:.3rem}
+#ham-top span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
+/* ── Hamburger (legacy, hidden) ── */
+#ham{display:none}
 #overlay-nav{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:90}
 
 /* ── Main ── */
@@ -142,11 +154,12 @@ sup.cite{font-size:.72em;color:var(--accent);font-weight:700;margin-left:.15rem;
 
 /* ── Mobile ── */
 @media(max-width:768px){
+  .nav-links{display:none}
+  #ham-top{display:flex}
   #sidebar{transform:translateX(-100%)}
   #sidebar.open{transform:translateX(0)}
-  #ham{display:flex}
   #overlay-nav.show{display:block}
-  main{margin-left:0;padding:3.5rem 1.2rem 4rem}
+  main{margin-left:0;padding:2rem 1.2rem 4rem}
   .hero h1{font-size:1.9rem}
   .compare-grid{grid-template-columns:1fr}
   .purchase-options{flex-direction:column;gap:1rem}
@@ -156,18 +169,30 @@ sup.cite{font-size:.72em;color:var(--accent);font-weight:700;margin-left:.15rem;
 <body>
 
 <!-- Hamburger -->
-<button id="ham" aria-label="選單"><span></span><span></span><span></span></button>
+<!-- Top Nav -->
+<nav id="topnav">
+  <a class="nav-brand" href="https://ebook.intellimotionmatrix.com/">
+    <img src="../assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="nav-brand-text">智動矩陣電子書</div>
+      <div class="nav-brand-sub">Breaking Science</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="https://intellimotionmatrix.com/">首頁</a>
+    <a href="https://ebook.intellimotionmatrix.com/">電子書</a>
+    <a href="https://draco.intellimotionmatrix.com/">Draco 裝置</a>
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">Instagram</a>
+    <a href="mailto:jfiii2ofi@gmail.com" class="cta">聯絡我們</a>
+  </div>
+  <button id="ham-top" aria-label="選單">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 <div id="overlay-nav"></div>
 
 <!-- Sidebar -->
 <aside id="sidebar">
-  <a class="toc-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
-    <div class="toc-logo-icon"><img src="../assets/imm-logo.png" alt="IMM Logo"></div>
-    <div>
-      <div class="toc-logo-text">智動矩陣-ICE & AIRCHAIR</div>
-      <div class="toc-logo-sub">Breaking Science Report</div>
-    </div>
-  </a>
   <nav>
     <a href="#summary"><span class="toc-num">00</span>執行摘要</a>
     <a href="#overview"><span class="toc-num">01</span>動作概述</a>
@@ -747,11 +772,11 @@ const observer = new IntersectionObserver(entries=>{
 sections.forEach(s=>observer.observe(s));
 
 // Hamburger
-const ham = document.getElementById('ham');
+const hamTop = document.getElementById('ham-top');
 const sidebar = document.getElementById('sidebar');
 const overlayNav = document.getElementById('overlay-nav');
 function toggleSidebar(){sidebar.classList.toggle('open');overlayNav.classList.toggle('show');}
-ham.addEventListener('click',toggleSidebar);
+hamTop.addEventListener('click',toggleSidebar);
 overlayNav.addEventListener('click',toggleSidebar);
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{
   if(window.innerWidth<=768){sidebar.classList.remove('open');overlayNav.classList.remove('show');}

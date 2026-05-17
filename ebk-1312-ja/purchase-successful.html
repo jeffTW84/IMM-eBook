@@ -1,273 +1,151 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMM INC. 購買成功</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      color: rgb(197, 197, 197);
-      background-color: #000;
-      overflow-x: hidden;
-      line-height: 3;
-    }
+  <title>購買成功 — 智動矩陣電子書</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1929;--bg2:#111f35;--card:#0f1e30;--border:#1e3050;--border2:#2a4070;
+  --text:#e8f1fc;--text2:#a8bed8;--text3:#6b8aaa;
+  --accent:#4f9eff;--gold:#f5b84b;--green:#34d399;
+  --serif:'Playfair Display',Georgia,serif;--mono:'JetBrains Mono',monospace;
+  --r:8px;--r2:12px;--trans:.18s ease;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif;font-size:15px;line-height:1.75;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
 
-    h1, h2, h3, p {
-      line-height: 1.6;
-    }
+/* ── Top Nav ── */
+#topnav{position:fixed;top:0;left:0;width:100%;z-index:300;background:rgba(14,25,41,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.8rem;height:56px}
+.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--text);border:none}
+.nav-brand img{height:28px;filter:invert(1) brightness(2);opacity:.85}
+.nav-brand-text{font-weight:700;font-size:.85rem;line-height:1.2}
+.nav-brand-sub{font-size:.63rem;color:var(--text3);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;padding:.36rem .78rem;border-radius:var(--r);border:1px solid transparent;transition:all var(--trans);white-space:nowrap}
+.nav-links a:hover{color:var(--text);border-color:var(--border2);background:rgba(79,158,255,.07)}
+.nav-links a.cta{color:var(--accent);border-color:rgba(79,158,255,.35);background:rgba(79,158,255,.08)}
+.nav-links a.cta:hover{background:rgba(79,158,255,.18)}
+#ham-top{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:.3rem}
+#ham-top span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
+#mobile-menu{display:none;position:fixed;inset:0;top:56px;background:rgba(14,25,41,.97);z-index:190;padding:2rem;flex-direction:column;gap:1rem;border-top:1px solid var(--border)}
+#mobile-menu a{color:var(--text2);text-decoration:none;font-size:1.05rem;padding:.7rem 0;border-bottom:1px solid var(--border);display:block}
+#mobile-menu.open{display:flex}
 
+/* ── Main content ── */
+.page-body{flex:1;display:flex;align-items:center;justify-content:center;padding:5rem 2rem 4rem}
+.success-card{background:var(--card);border:1px solid var(--border);border-radius:16px;max-width:560px;width:100%;padding:3rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.success-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--accent))}
+.success-icon{width:64px;height:64px;border-radius:50%;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.success-icon svg{width:28px;height:28px;stroke:var(--green);stroke-width:2.5;fill:none}
+.success-title{font-family:var(--serif);font-size:1.8rem;color:var(--text);margin-bottom:.5rem}
+.success-sub{font-size:.88rem;color:var(--text2);margin-bottom:2rem;line-height:1.7}
+.info-row{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.2rem;margin-bottom:.7rem;text-align:left;display:flex;gap:.8rem;align-items:flex-start}
+.info-row-icon{font-size:1rem;margin-top:.1rem;flex-shrink:0}
+.info-row-text{font-size:.83rem;color:var(--text2);line-height:1.65}
+.info-row-text strong{color:var(--text);display:block;margin-bottom:.15rem}
+.btn-group{display:flex;gap:.7rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.btn-primary{display:inline-block;padding:.65rem 1.6rem;background:var(--accent);color:#fff;border-radius:var(--r);text-decoration:none;font-weight:700;font-size:.83rem;transition:all var(--trans)}
+.btn-primary:hover{background:#3a8ee8;transform:translateY(-1px)}
+.btn-outline{display:inline-block;padding:.65rem 1.6rem;border:1px solid var(--border2);color:var(--text2);border-radius:var(--r);text-decoration:none;font-size:.83rem;transition:all var(--trans)}
+.btn-outline:hover{color:var(--text);border-color:var(--accent)}
 
-    .section {
-      padding: 5rem 2rem;
-      margin-top: 10rem;
-      margin-bottom: 10rem;
-      color: rgb(197, 197, 197);
-    }
+/* ── Footer ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem;text-align:center}
+.footer-info{font-size:.78rem;color:var(--text3);line-height:2}
+.footer-info a{color:var(--text3);text-decoration:none;transition:color var(--trans)}
+.footer-info a:hover{color:var(--text2)}
+.footer-copy{font-size:.72rem;color:var(--border2);margin-top:.5rem}
 
-    .section h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-      color: rgb(220, 20, 60);
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-  </style>
-  <style>
-    .product {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      width: 300px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-    }
-
-    .product-card h3 {
-      margin: 0.5rem 0;
-      font-size: 1.5rem;
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-
-    .product-card p {
-      font-size: 1rem;
-      opacity: 0.8;
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-  </style>
-  <style>
-    .fixed-banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      /* 初始高度 */
-      background: black;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
-      font-family: Raleway, 'Noto Sans TC', sans-serif;
-      transition: height 0.3s ease, font-size 0.3s ease;
-    }
-
-    .fixed-banner.shrink {
-      height: 50px;
-      /* 滑動後縮小的高度 */
-      font-size: 1.2rem;
-      /* 滑動後的字體大小 */
-    }
-
-    .fixed-banner .highlight {
-      font-size: 2rem;
-      /* 特別放大的字體大小 */
-      font-weight: bold;
-      color: red;
-      /* 特別標記的顏色 */
-      margin: 0 0.3rem;
-      /* 與周圍文字保持間距 */
-    }
-
-    .fixed-banner a {
-      color: white;
-      /* 固定連結字體顏色 */
-      text-decoration: none;
-      /* 移除底線 */
-    }
-
-    .fixed-banner a:visited {
-      color: white;
-      /* 點擊過後的顏色 */
-    }
-
-    .fixed-banner a:hover {
-      color: rgb(127, 127, 127);
-      /* 滑鼠懸停時的顏色 */
-    }
-
-    .fixed-banner a:active {
-      color: rgb(62, 62, 62);
-      /* 點擊中的顏色 */
-    }
-  </style>
-  <style>
-    .footer {
-      background-color: #111;
-      color: #ccc;
-      padding: 2rem 1rem;
-      margin-top: 5rem;
-      padding-top: 5rem;
-      padding-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer .company-info {
-      flex: 1 1 40%;
-      text-align: left;
-    }
-
-    .footer .company-info a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer .company-info a:hover {
-      color: #fff;
-    }
-
-    .footer .social {
-      flex: 1 1 28%;
-      text-align: right;
-    }
-
-    .footer .social a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      position: relative;
-      display: inline-block;
-      transition: all 0.3s ease;
-      animation: neon-glow 1.5s infinite alternate;
-      background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer .social a:hover {
-      transform: scale(1.1);
-      text-shadow: 0 0 5px #ff00cc, 0 0 10px #3333ff, 0 0 15px #00ffcc;
-    }
-
-    @keyframes neon-glow {
-      0% {
-        text-shadow: 0 0 5px #ff00cc, 0 0 10px #3333ff, 0 0 15px #00ffcc;
-      }
-      100% {
-        text-shadow: 0 0 10px #00ffcc, 0 0 20px #3333ff, 0 0 30px #ff00cc;
-      }
-    }
-
-    .footer .copyright {
-      text-align: center;
-      font-size: 0.875rem;
-      margin-top: 1rem;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
-
-      50% {
-        transform: translate(10px, 10px);
-      }
-    }
-  </style>
+@media(max-width:768px){
+  .nav-links{display:none}
+  #ham-top{display:flex}
+  .success-card{padding:2rem 1.5rem}
+  .success-title{font-size:1.5rem}
+}
+</style>
 </head>
-
 <body>
-  <div class="fixed-banner" id="banner">
-    <a href="https://intellimotionmatrix.com/">IntelliMotionMatrix</a> <span class="highlight">X</span> <a
-      href="https://www.instagram.com/dongshangyin/">DongShangYin</a>
+
+<!-- Top Nav -->
+<nav id="topnav">
+  <a class="nav-brand" href="https://ebook.intellimotionmatrix.com/">
+    <img src="../assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="nav-brand-text">智動矩陣電子書</div>
+      <div class="nav-brand-sub">Breaking Science</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="https://intellimotionmatrix.com/">首頁</a>
+    <a href="https://ebook.intellimotionmatrix.com/">電子書</a>
+    <a href="https://draco.intellimotionmatrix.com/">Draco 裝置</a>
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">Instagram</a>
+    <a href="mailto:jfiii2ofi@gmail.com" class="cta">聯絡我們</a>
   </div>
+  <button id="ham-top" aria-label="選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <section class="section" style="margin-top: 0rem;">
-    <h2>感謝您的購買 / Thank You</h2>
-    <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
-      我們會在 24 小時內確認訂單並寄出電子書
-    </h3>
-    <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
-      若有任何疑慮，請和我們聯絡！
-    </h3>
-    <br>
-    <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
-      過年期間若有延誤請見諒！
-    </h3>
-    <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
-      歡迎利用IG、電話及信箱與我們聯絡
-    </h3>
-  </section>
+<div id="mobile-menu">
+  <a href="https://intellimotionmatrix.com/" onclick="toggleMenu()">首頁</a>
+  <a href="https://ebook.intellimotionmatrix.com/" onclick="toggleMenu()">電子書</a>
+  <a href="https://draco.intellimotionmatrix.com/" onclick="toggleMenu()">Draco 旋轉訓練裝置</a>
+  <a href="https://www.instagram.com/dongshangyin/" target="_blank" onclick="toggleMenu()">Instagram @dongshangyin</a>
+  <a href="mailto:jfiii2ofi@gmail.com" onclick="toggleMenu()">jfiii2ofi@gmail.com</a>
+</div>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="company-info">
-        智動矩陣有限公司<br>
-        地址：台灣新北市汐止區新台五路一段95號20樓之6<br>
-        統一編號：95465056<br>
-        聯絡電話：<a href="tel:0963820352">0963-820-352</a><br>
-        電子郵件：<a href="mailto:jeff@intellimotionmatrix.com">jeff@intellimotionmatrix.com</a><br>
-      </div>
-      <div class="social">
-        <a href="https://www.instagram.com/dongshangyin/" target="_blank" style="font-weight: bolder;">FOLLOW US ON INSTAGRAM !</a>
+<div class="page-body">
+  <div class="success-card">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1 class="success-title">感謝您的購買</h1>
+    <p class="success-sub">Thank you for your order.<br>我們收到您的訂單，將盡快為您處理。</p>
+
+    <div class="info-row">
+      <span class="info-row-icon">📬</span>
+      <div class="info-row-text">
+        <strong>電子書寄送</strong>
+        我們會在 24 小時內確認訂單並以電子郵件寄出電子書。若過了 24 小時仍未收到，請來信聯絡我們。
       </div>
     </div>
-    <div class="copyright">
-      &copy; 2025 IntelliMotionMatrix INC. All rights reserved.
+    <div class="info-row">
+      <span class="info-row-icon">💬</span>
+      <div class="info-row-text">
+        <strong>有任何問題？</strong>
+        歡迎透過 Email 或 Instagram 與我們聯絡，我們會盡快回覆。
+      </div>
     </div>
-  </footer>
+
+    <div class="btn-group">
+      <a href="https://ebook.intellimotionmatrix.com/" class="btn-primary">回到電子書平台</a>
+      <a href="mailto:jfiii2ofi@gmail.com" class="btn-outline">來信聯絡</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-info">
+    智動矩陣有限公司 &nbsp;·&nbsp;
+    地址：台灣新北市汐止區新台五路一段 95 號 20 樓之 6<br>
+    統一編號：95465056 &nbsp;·&nbsp;
+    電話：<a href="tel:0963820352">0963-820-352</a> &nbsp;·&nbsp;
+    Email：<a href="mailto:jfiii2ofi@gmail.com">jfiii2ofi@gmail.com</a> &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">@dongshangyin</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 IntelliMotionMatrix INC. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+</script>
 </body>
-
 </html>

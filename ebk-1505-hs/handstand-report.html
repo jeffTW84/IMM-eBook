@@ -58,11 +58,11 @@ a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;t
 a:hover{border-color:var(--accent)}
 
 /* ── Layout ────────────────────────────────────────── */
-.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;max-width:1440px;margin:0 auto}
+.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;max-width:1440px;margin:0 auto;padding-top:56px}
 main{padding:0 3rem 6rem;max-width:900px;width:100%}
 
 /* ── Sidebar / TOC ─────────────────────────────────── */
-aside{position:sticky;top:0;height:100vh;overflow-y:auto;padding:2rem 1.5rem;border-right:1px solid var(--border);background:var(--bg2)}
+aside{position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;padding:2rem 1.5rem;border-right:1px solid var(--border);background:var(--bg2)}
 .toc-logo{display:flex;align-items:center;gap:.6rem;margin-bottom:2.5rem;text-decoration:none;border:none}
 .toc-logo-icon{width:44px;height:44px;min-width:44px;display:grid;place-items:center}
 .toc-logo-icon img{width:44px;height:44px;object-fit:contain;filter:invert(1) brightness(2);opacity:.9}
@@ -224,39 +224,34 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 /* ── Keyword pill ──────────────────────────────────── */
 .kw{display:inline;background:rgba(79,158,255,.12);color:var(--accent2);border-radius:4px;padding:.1em .4em;font-size:.85em;font-weight:500}
 
-/* ── Mobile Top Bar ────────────────────────────────── */
+/* ── Top Nav ── */
+#topnav{position:fixed;top:0;left:0;width:100%;z-index:300;background:rgba(14,25,41,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.8rem;height:56px}
+.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--text);border:none}
+.nav-brand img{height:28px;filter:invert(1) brightness(2);opacity:.85}
+.nav-brand-text{font-weight:700;font-size:.85rem;line-height:1.2}
+.nav-brand-sub{font-size:.63rem;color:var(--text3);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;padding:.36rem .78rem;border-radius:var(--r);border:1px solid transparent;transition:all var(--trans);white-space:nowrap}
+.nav-links a:hover{color:var(--text);border-color:var(--border2);background:rgba(79,158,255,.07)}
+.nav-links a.cta{color:var(--accent);border-color:rgba(79,158,255,.35);background:rgba(79,158,255,.08)}
+.nav-links a.cta:hover{background:rgba(79,158,255,.18)}
+#ham-top{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:.3rem}
+#ham-top span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
 .mobile-bar{display:none}
-
-/* ── Backdrop ──────────────────────────────────────── */
 .sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(2px)}
 .sidebar-backdrop.open{display:block}
 
 /* ── Responsive ────────────────────────────────────── */
 @media(max-width:900px){
-  .mobile-bar{
-    display:flex;align-items:center;justify-content:space-between;
-    position:fixed;top:0;left:0;right:0;height:54px;z-index:100;
-    background:var(--bg2);border-bottom:1px solid var(--border);
-    padding:0 1.2rem;gap:.8rem;
-  }
-  .mobile-bar-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;border:none}
-  .mobile-bar-logo img{width:32px;height:32px;object-fit:contain;filter:invert(1) brightness(2);opacity:.9}
-  .mobile-bar-text{font-weight:700;font-size:.88rem;color:var(--text)}
-  .mobile-bar-sub{font-size:.65rem;color:var(--text3)}
-  .hamburger{background:none;border:1px solid var(--border);border-radius:6px;padding:.4rem .55rem;cursor:pointer;display:flex;flex-direction:column;gap:4px}
-  .hamburger span{display:block;width:18px;height:2px;background:var(--text2);border-radius:2px;transition:all .25s}
-  .hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-  .hamburger.active span:nth-child(2){opacity:0}
-  .hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-  .page-wrap{grid-template-columns:1fr;padding-top:54px}
+  .nav-links{display:none}
+  #ham-top{display:flex}
+  .page-wrap{grid-template-columns:1fr;padding-top:56px}
   aside{
-    position:fixed;top:0;left:-280px;height:100vh;width:260px;
+    position:fixed;top:56px;left:-280px;height:calc(100vh - 56px);width:260px;
     z-index:100;transition:left .28s cubic-bezier(.4,0,.2,1);
     border-right:1px solid var(--border2);box-shadow:var(--shadow2);
   }
   aside.open{left:0}
-
   main{padding:0 1.5rem 4rem}
   .hero{padding:2.5rem 1.5rem 2rem}
   .hero-stats{grid-template-columns:1fr 1fr}
@@ -270,19 +265,26 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 </head>
 <body>
 
-<!-- ── Mobile Top Bar ───────────────────────────────── -->
-<div class="mobile-bar">
-  <a class="mobile-bar-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
+<!-- Top Nav -->
+<nav id="topnav">
+  <a class="nav-brand" href="https://ebook.intellimotionmatrix.com/">
     <img src="../assets/imm-logo.png" alt="IMM Logo">
     <div>
-      <div class="mobile-bar-text">智動矩陣</div>
-      <div class="mobile-bar-sub">Handstand Science Report</div>
+      <div class="nav-brand-text">智動矩陣電子書</div>
+      <div class="nav-brand-sub">Breaking Science</div>
     </div>
   </a>
-  <button class="hamburger" id="menuBtn" aria-label="開啟目錄">
+  <div class="nav-links">
+    <a href="https://intellimotionmatrix.com/">首頁</a>
+    <a href="https://ebook.intellimotionmatrix.com/">電子書</a>
+    <a href="https://draco.intellimotionmatrix.com/">Draco 裝置</a>
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">Instagram</a>
+    <a href="mailto:jfiii2ofi@gmail.com" class="cta">聯絡我們</a>
+  </div>
+  <button id="ham-top" aria-label="選單">
     <span></span><span></span><span></span>
   </button>
-</div>
+</nav>
 
 <!-- ── Sidebar Backdrop ──────────────────────────────── -->
 <div class="sidebar-backdrop" id="backdrop"></div>
@@ -291,13 +293,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3
 
 <!-- ── Sidebar ──────────────────────────────────────── -->
 <aside>
-  <a class="toc-logo" href="https://ebook.intellimotionmatrix.com/" aria-label="返回首頁">
-    <div class="toc-logo-icon"><img src="../assets/imm-logo.png" alt="IMM Logo"></div>
-    <div>
-      <div class="toc-logo-text">智動矩陣-倒立科學</div>
-      <div class="toc-logo-sub">Handstand Science Report</div>
-    </div>
-  </a>
   <nav>
     <div class="toc-group">概覽</div>
     <ul>
@@ -1120,22 +1115,20 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(s => observer.observe(s));
 
 // Mobile sidebar toggle
-const menuBtn = document.getElementById('menuBtn');
 const sidebar = document.querySelector('aside');
 const backdrop = document.getElementById('backdrop');
+const hamTop = document.getElementById('ham-top');
 
 function openSidebar() {
   sidebar.classList.add('open');
   backdrop.classList.add('open');
-  menuBtn.classList.add('active');
 }
 function closeSidebar() {
   sidebar.classList.remove('open');
   backdrop.classList.remove('open');
-  menuBtn.classList.remove('active');
 }
 
-menuBtn.addEventListener('click', () =>
+hamTop.addEventListener('click', () =>
   sidebar.classList.contains('open') ? closeSidebar() : openSidebar()
 );
 backdrop.addEventListener('click', closeSidebar);
