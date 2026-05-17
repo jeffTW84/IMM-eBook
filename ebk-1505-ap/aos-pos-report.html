@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AOS / POS 斜鏈科學報告 · 前側與後側斜鏈</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08101e;
+  --bg2:#0e1929;
+  --surface:#111f35;
+  --card:#162238;
+  --card2:#1a2a44;
+  --border:#1e3050;
+  --border2:#264166;
+  --accent:#4f9eff;
+  --accent2:#7bc3ff;
+  --gold:#f5b84b;
+  --gold2:#fdd888;
+  --green:#34d399;
+  --red:#f87171;
+  --purple:#a78bfa;
+  --text:#e8f1fc;
+  --text2:#a8bed8;
+  --text3:#6b8aaa;
+  --font:-apple-system,BlinkMacSystemFont,"Inter","PingFang TC","Noto Sans TC",sans-serif;
+  --serif:"Playfair Display","Georgia",serif;
+  --mono:"JetBrains Mono","Fira Code",monospace;
+  --r:10px;--r2:16px;
+  --shadow:0 4px 24px rgba(0,0,0,.45);
+  --shadow2:0 8px 48px rgba(0,0,0,.6);
+  --trans:.2s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.75;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+h1,h2,h3,h4{line-height:1.3;font-weight:700}
+h2{font-family:var(--serif);font-size:2rem;margin-bottom:1.5rem}
+h3{font-size:1.2rem;color:var(--accent2);margin:2rem 0 .8rem;padding-left:1rem;border-left:3px solid var(--accent)}
+h4{font-size:.85rem;color:var(--gold);margin:1.5rem 0 .6rem;text-transform:uppercase;letter-spacing:.08em}
+p{margin-bottom:1rem;color:var(--text2)}
+strong{color:var(--text);font-weight:600}
+em{color:var(--gold2);font-style:normal;font-weight:500}
+code{font-family:var(--mono);background:var(--card2);color:var(--accent2);padding:.15em .45em;border-radius:4px;font-size:.85em}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--trans)}
+a:hover{border-color:var(--accent)}
+
+/* Layout */
+.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;max-width:1440px;margin:0 auto;padding-top:56px}
+main{padding:0 3rem 6rem;max-width:900px;width:100%}
+
+/* Top Nav */
+#topnav{position:fixed;top:0;left:0;width:100%;z-index:300;background:rgba(8,16,30,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.8rem;height:56px}
+.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--text);border:none}
+.nav-brand img{height:28px;filter:invert(1) brightness(2);opacity:.85}
+.nav-brand-text{font-weight:700;font-size:.85rem;line-height:1.2}
+.nav-brand-sub{font-size:.63rem;color:var(--text3);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;padding:.36rem .78rem;border-radius:var(--r);border:1px solid transparent;transition:all var(--trans);white-space:nowrap}
+.nav-links a:hover{color:var(--text);border-color:var(--border2);background:rgba(79,158,255,.07)}
+.nav-links a.cta{color:var(--accent);border-color:rgba(79,158,255,.35);background:rgba(79,158,255,.08)}
+.nav-links a.cta:hover{background:rgba(79,158,255,.18)}
+#ham-top{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:.3rem}
+#ham-top span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
+
+/* Sidebar */
+aside{position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;padding:2rem 1.5rem;border-right:1px solid var(--border);background:var(--bg2)}
+nav ul{list-style:none}
+nav li{margin:.2rem 0}
+nav a{display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border-radius:6px;font-size:.82rem;color:var(--text2);transition:all var(--trans);text-decoration:none;border:none;line-height:1.4}
+nav a:hover{background:var(--surface);color:var(--text)}
+nav a.active{background:var(--surface);color:var(--accent);font-weight:600}
+nav .toc-num{font-size:.7rem;color:var(--text3);font-family:var(--mono);min-width:1.4rem}
+nav .toc-group{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);padding:.75rem .75rem .25rem;margin-top:.5rem}
+
+/* Hero */
+.hero{position:relative;padding:5rem 3rem 4rem;margin-bottom:0;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(79,158,255,.12) 0%,transparent 70%)}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.25);border-radius:20px;padding:.3rem .9rem;font-size:.78rem;color:var(--accent2);letter-spacing:.05em;margin-bottom:1.5rem}
+.hero-tag::before{content:'●';color:var(--green);font-size:.55rem}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);background:linear-gradient(135deg,#fff 30%,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+.hero-sub{font-size:1.05rem;color:var(--text3);margin-bottom:.5rem}
+.hero-date{font-size:.82rem;color:var(--text3);font-family:var(--mono)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;text-align:center}
+.stat-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--accent);line-height:1}
+.stat-num.gold{color:var(--gold)}
+.stat-num.green{color:var(--green)}
+.stat-label{font-size:.75rem;color:var(--text3);margin-top:.4rem}
+
+/* Sections */
+section{padding:4rem 3rem;border-bottom:1px solid var(--border)}
+section:last-child{border-bottom:none}
+.section-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);font-family:var(--mono);margin-bottom:.75rem}
+.section-num{color:var(--accent);margin-right:.5rem}
+
+/* Research Cards */
+.research-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;margin:1.5rem 0;position:relative;overflow:hidden}
+.research-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.research-card.blue::before{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.research-card.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.research-card.green::before{background:linear-gradient(90deg,var(--green),#6ee7b7)}
+.research-card.purple::before{background:linear-gradient(90deg,var(--purple),#c4b5fd)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.card-title{font-weight:700;font-size:.95rem;color:var(--text);line-height:1.4}
+.card-badges{display:flex;gap:.4rem;flex-wrap:wrap;flex-shrink:0}
+.badge{display:inline-flex;align-items:center;font-size:.68rem;font-family:var(--mono);padding:.2rem .55rem;border-radius:4px;font-weight:600;letter-spacing:.02em}
+.badge-journal{background:rgba(79,158,255,.12);color:var(--accent2);border:1px solid rgba(79,158,255,.2)}
+.badge-year{background:rgba(245,184,75,.12);color:var(--gold);border:1px solid rgba(245,184,75,.2)}
+.badge-type{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.2)}
+.card-body{font-size:.88rem;color:var(--text2);line-height:1.7}
+.card-body p{margin-bottom:.5rem;color:var(--text2)}
+.card-finding{background:var(--bg2);border-left:3px solid var(--accent);padding:.7rem 1rem;border-radius:0 var(--r) var(--r) 0;font-size:.85rem;color:var(--text2);margin-top:.8rem}
+
+/* Info Blocks */
+.info-block{background:var(--surface);border-left:4px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:1.2rem 1.5rem;margin:1.5rem 0}
+.info-block.gold{border-left-color:var(--gold)}
+.info-block.green{border-left-color:var(--green)}
+.info-block.purple{border-left-color:var(--purple)}
+.info-block-title{font-weight:700;font-size:.85rem;color:var(--text);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.07em}
+.info-block p{font-size:.87rem;color:var(--text2);margin-bottom:.4rem}
+.info-block p:last-child{margin-bottom:0}
+
+/* Anatomy Diagram */
+.sling-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0}
+.sling-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;position:relative;overflow:hidden}
+.sling-card.aos::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.sling-card.pos::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.sling-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);margin-bottom:.3rem}
+.sling-label.aos{color:var(--accent)}
+.sling-label.pos{color:var(--gold)}
+.sling-name{font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:1rem}
+.muscle-chain{display:flex;flex-direction:column;gap:.35rem}
+.muscle-node{display:flex;align-items:center;gap:.6rem;font-size:.83rem}
+.muscle-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.muscle-dot.aos{background:var(--accent)}
+.muscle-dot.pos{background:var(--gold)}
+.muscle-name{color:var(--text);font-weight:600}
+.muscle-role{color:var(--text3);font-size:.75rem}
+.chain-arrow{font-size:.7rem;color:var(--text3);padding-left:1.1rem}
+
+/* SVG chart */
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;margin:1.5rem 0}
+.chart-title{font-size:.82rem;color:var(--text3);font-family:var(--mono);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.07em}
+
+/* Data Table */
+.data-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:1.5rem 0}
+.data-table th{background:var(--card2);color:var(--text3);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:.6rem 1rem;text-align:left;border-bottom:2px solid var(--border)}
+.data-table td{padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--text2)}
+.data-table tr:hover td{background:rgba(79,158,255,.04)}
+.data-table .highlight{color:var(--text);font-weight:600}
+.data-table .accent{color:var(--accent);font-weight:600}
+
+/* Evidence levels */
+.evidence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
+.evidence-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.evidence-level{font-family:var(--mono);font-size:.75rem;font-weight:700;margin-bottom:.4rem}
+.evidence-level.rct{color:var(--green)}
+.evidence-level.cohort{color:var(--accent)}
+.evidence-level.case{color:var(--gold)}
+.evidence-level.review{color:var(--purple)}
+.evidence-title{font-size:.82rem;color:var(--text);font-weight:600;margin-bottom:.25rem}
+.evidence-detail{font-size:.75rem;color:var(--text3)}
+
+/* Big stat */
+.big-stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin:2rem 0}
+.big-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.4rem;text-align:center}
+.big-stat-num{font-family:var(--serif);font-size:2.4rem;font-weight:700;line-height:1}
+.big-stat-num.accent{color:var(--accent)}
+.big-stat-num.gold{color:var(--gold)}
+.big-stat-num.green{color:var(--green)}
+.big-stat-num.purple{color:var(--purple)}
+.big-stat-unit{font-size:.72rem;color:var(--text3);margin-top:.35rem;font-family:var(--mono)}
+.big-stat-src{font-size:.68rem;color:var(--border2);margin-top:.25rem}
+
+/* Section header (matches handstand style) */
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.section-header .section-num{font-size:.8rem;font-family:var(--mono);color:var(--accent);background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.2);padding:.25rem .6rem;border-radius:4px;white-space:nowrap}
+.section-title{font-family:var(--serif);font-size:1.9rem;color:var(--text)}
+
+/* References */
+.ref-group{margin-bottom:2rem}
+.ref-group-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.ref-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px dashed var(--border)}
+.ref-item:last-child{border-bottom:none}
+.ref-num{font-family:var(--mono);font-size:.75rem;color:var(--accent);min-width:1.8rem;padding-top:.1rem}
+.ref-content{flex:1}
+.ref-title{font-size:.88rem;color:var(--text);font-weight:500;margin-bottom:.2rem}
+.ref-title a{color:inherit;border-bottom:1px solid rgba(232,241,252,.35)}
+.ref-title a:hover{border-color:var(--text)}
+.ref-meta{font-size:.78rem;color:var(--text3)}
+
+/* Cite superscript */
+sup.cite{color:var(--accent);font-family:var(--mono);font-size:.7em;font-weight:700;cursor:default;letter-spacing:.02em}
+
+/* Exercise cards */
+.exercise-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.5rem 0}
+.exercise-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem}
+.exercise-name{font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:.5rem}
+.exercise-target{font-size:.75rem;font-family:var(--mono);color:var(--accent2);margin-bottom:.6rem}
+.exercise-desc{font-size:.82rem;color:var(--text2);line-height:1.6}
+
+/* Responsive */
+@media(max-width:1024px){
+  .page-wrap{grid-template-columns:220px 1fr}
+  main{padding:0 2rem 6rem}
+  section{padding:3rem 2rem}
+  .hero{padding:4rem 2rem 3rem}
+}
+@media(max-width:768px){
+  .page-wrap{grid-template-columns:1fr;padding-top:56px}
+  aside{position:fixed;top:56px;left:-280px;width:260px;height:calc(100vh - 56px);z-index:200;transition:left var(--trans)}
+  aside.open{left:0}
+  #overlay{display:none;position:fixed;inset:0;top:56px;background:rgba(0,0,0,.5);z-index:150}
+  #overlay.show{display:block}
+  #ham-top{display:flex}
+  .nav-links{display:none}
+  main{padding:0 1.5rem 4rem}
+  section{padding:2.5rem 1.5rem}
+  .hero{padding:3rem 1.5rem 2.5rem}
+  .sling-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(3,1fr)}
+  .big-stat-row{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav id="topnav">
+  <a class="nav-brand" href="https://ebook.intellimotionmatrix.com/">
+    <img src="../assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="nav-brand-text">智動矩陣電子書</div>
+      <div class="nav-brand-sub">Breaking Science</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="https://intellimotionmatrix.com/">首頁</a>
+    <a href="https://ebook.intellimotionmatrix.com/">電子書</a>
+    <a href="https://draco.intellimotionmatrix.com/">Draco 裝置</a>
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">Instagram</a>
+    <a href="mailto:jfiii2ofi@gmail.com" class="cta">聯絡我們</a>
+  </div>
+  <button id="ham-top" aria-label="選單" onclick="toggleSidebar()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<div class="page-wrap">
+
+<!-- Sidebar -->
+<aside id="sidebar">
+  <nav>
+    <div class="toc-group">科學報告</div>
+    <ul>
+      <li><a href="#hero" class="active"><span class="toc-num">00</span> 概覽</a></li>
+    </ul>
+
+    <div class="toc-group">基礎科學</div>
+    <ul>
+      <li><a href="#s01"><span class="toc-num">01</span> 解剖與結構</a></li>
+      <li><a href="#s02"><span class="toc-num">02</span> EMG 激活模式</a></li>
+      <li><a href="#s03"><span class="toc-num">03</span> 步態生物力學</a></li>
+      <li><a href="#s04"><span class="toc-num">04</span> 肌筋膜力傳遞</a></li>
+    </ul>
+
+    <div class="toc-group">應用科學</div>
+    <ul>
+      <li><a href="#s05"><span class="toc-num">05</span> 臨床復健訓練</a></li>
+      <li><a href="#s06"><span class="toc-num">06</span> 運動表現應用</a></li>
+      <li><a href="#s07"><span class="toc-num">07</span> 前沿探索</a></li>
+    </ul>
+
+    <div class="toc-group">附錄</div>
+    <ul>
+      <li><a href="#references"><span class="toc-num">REF</span>參考文獻</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main>
+
+<!-- Hero -->
+<div class="hero" id="hero">
+  <div class="hero-tag">運動科學整合報告</div>
+  <h1>AOS / POS<br>斜鏈系統科學</h1>
+  <p class="hero-sub">前側斜鏈（Anterior Oblique Sling）與後側斜鏈（Posterior Oblique Sling）<br>全球運動科學研究整合分析</p>
+  <p class="hero-date">整合截至 2026 年 5 月 · 共 31 篇文獻</p>
+
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">31</div>
+      <div class="stat-label">學術文獻</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num gold">6</div>
+      <div class="stat-label">研究類別</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">2</div>
+      <div class="stat-label">核心斜鏈系統</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Section 01: 解剖與結構                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="s01">
+  <div class="section-tag"><span class="section-num">01</span> 解剖與結構</div>
+  <h2>斜鏈的解剖學基礎</h2>
+  <p>AOS 與 POS 並非傳統解剖學的單一肌肉，而是跨越多個關節、透過筋膜連結形成的<strong>功能性力量傳遞路徑</strong>。其概念源自 Vleeming 等人對骶髂關節（SIJ）穩定機制的研究<sup class="cite">[1][2]</sup>，後由 Myers 的「肌筋膜經線」框架推廣至運動訓練領域<sup class="cite">[6]</sup>。</p>
+
+  <div class="sling-grid">
+    <div class="sling-card aos">
+      <div class="sling-label aos">AOS — Anterior Oblique Sling</div>
+      <div class="sling-name">前側斜鏈</div>
+      <div class="muscle-chain">
+        <div class="muscle-node">
+          <div class="muscle-dot aos"></div>
+          <div><span class="muscle-name">外腹斜肌</span> <span class="muscle-role">（對側）</span></div>
+        </div>
+        <div class="chain-arrow">↕ 前腹筋膜</div>
+        <div class="muscle-node">
+          <div class="muscle-dot aos"></div>
+          <div><span class="muscle-name">內腹斜肌</span> <span class="muscle-role">（同側）</span></div>
+        </div>
+        <div class="chain-arrow">↕ 腹股溝韌帶</div>
+        <div class="muscle-node">
+          <div class="muscle-dot aos"></div>
+          <div><span class="muscle-name">髖內收肌群</span> <span class="muscle-role">（恥骨肌、長內收肌）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sling-card pos">
+      <div class="sling-label pos">POS — Posterior Oblique Sling</div>
+      <div class="sling-name">後側斜鏈</div>
+      <div class="muscle-chain">
+        <div class="muscle-node">
+          <div class="muscle-dot pos"></div>
+          <div><span class="muscle-name">背闊肌</span> <span class="muscle-role">（對側）</span></div>
+        </div>
+        <div class="chain-arrow">↕ 胸腰筋膜（後層）</div>
+        <div class="muscle-node">
+          <div class="muscle-dot pos"></div>
+          <div><span class="muscle-name">臀大肌</span> <span class="muscle-role">（同側）</span></div>
+        </div>
+        <div class="chain-arrow">↕ 髂脛束 / 骶結節韌帶</div>
+        <div class="muscle-node">
+          <div class="muscle-dot pos"></div>
+          <div><span class="muscle-name">SIJ 力量閉合</span> <span class="muscle-role">（骨盆後環穩定）</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="info-block-title">力量閉合 vs. 形態閉合（Force vs. Form Closure）</div>
+    <p><strong>形態閉合</strong>（Form closure）指 SIJ 的骨性結構本身提供的被動穩定性——關節面的鬆弛配合度很低，本身就有鎖定效果。<sup class="cite">[1][17]</sup></p>
+    <p><strong>力量閉合</strong>（Force closure）指肌肉與筋膜主動施加的壓縮力使 SIJ 進一步穩定。斜鏈肌群（尤其 POS）是力量閉合的核心執行者。當這個機制失效，即出現「骨盆帶痛（PGP）」的典型症狀。<sup class="cite">[4][17]</sup></p>
+  </div>
+
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">胸腰筋膜解剖綜述：POS 的結構基礎</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Anatomy</span>
+        <span class="badge badge-year">2012</span>
+        <span class="badge badge-type">綜述</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Willard 等人<sup class="cite">[3]</sup>對胸腰筋膜（TLF）進行了迄今最詳盡的多層結構解剖，確認 TLF 後層是 POS 力傳遞的核心媒介。TLF 包含三層，後層由腱膜交織而成，接受背闊肌、豎脊肌、臀大肌的筋膜附著。</p>
+      <div class="card-finding">關鍵發現：背闊肌與對側臀大肌的肌腱在 TLF 後層形成 X 形交叉，解釋了為何對角方向的力量傳遞在解剖學上可行。</div>
+    </div>
+  </div>
+
+  <div class="research-card gold">
+    <div class="card-header">
+      <div class="card-title">Anatomy Trains — 肌筋膜經線系統</div>
+      <div class="card-badges">
+        <span class="badge badge-year">2014</span>
+        <span class="badge badge-type">專書 · 3rd Ed</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Myers<sup class="cite">[6]</sup> 提出 12 條肌筋膜經線，其中與斜鏈最直接對應的為：</p>
+      <p><strong>後功能線（Back Functional Line）</strong>：對應 POS，路徑為對側背闊肌 → 腰骶筋膜 → 臀大肌 → 股外側肌，在旋轉動作中傳遞扭矩。</p>
+      <p><strong>前功能線（Front Functional Line）</strong>：對應 AOS，路徑為胸大肌 → 腹直肌筋膜 → 對側內收長肌，在推踢與旋轉中穩定前側。</p>
+      <div class="card-finding">此書的分類雖非嚴格實驗研究，但 2016 年的系統回顧<sup class="cite">[23]</sup>證實後功能線與前功能線的解剖連結有「強烈」的屍體解剖證據支持。</div>
+    </div>
+  </div>
+
+  <h3>1.2 脊椎引擎理論與斜鏈的演化功能</h3>
+  <p>Gracovetsky<sup class="cite">[7]</sup> 的「脊椎引擎」模型提出，人類步態的驅動力主要來自脊椎的軸向旋轉，而非腿部的推蹬。斜鏈肌群在此模型中扮演能量傳遞帶的角色：</p>
+  <div class="info-block gold">
+    <div class="info-block-title">脊椎引擎理論的關鍵推論</div>
+    <p>行走時，骨盆與肩帶以反向相位旋轉（骨盆向右旋 → 肩帶向左旋），AOS 與 POS 在這個相位差中被動儲存彈性位能，並在下一步發動時釋放。這解釋了為何斜鏈肌群在步態中的激活往往晚於脊椎旋轉啟動。<sup class="cite">[7]</sup></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Section 02: EMG 激活模式                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="s02">
+  <div class="section-tag"><span class="section-num">02</span> EMG 激活模式</div>
+  <h2>神經肌肉控制的實證研究</h2>
+  <p>斜鏈理論的科學根基來自一系列 EMG 研究，這些研究揭示了跨肢體、跨關節的協同激活模式，證實斜鏈並非解剖假說，而是真實的神經肌肉功能單元。</p>
+
+  <h3>2.1 腹橫肌前饋機制——AOS 的神經控制基礎</h3>
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">Hodges & Richardson — 腰痛患者的腹橫肌 EMG</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Spine</span>
+        <span class="badge badge-year">1996</span>
+        <span class="badge badge-type">EMG · 實驗</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Hodges 與 Richardson<sup class="cite">[8]</sup> 讓受試者快速移動單側手臂，同時記錄軀幹肌的 EMG 時序。健康者的腹橫肌（TrA）在三角肌激活前 30 ms 啟動（前饋機制），而慢性腰痛患者的 TrA 出現顯著延遲。</p>
+      <div class="card-finding">核心意義：TrA 不是針對特定運動方向的動作肌，而是全方向的先行穩定器——這正是 AOS 整合功能的神經肌肉基礎。延遲的 TrA 激活是 AOS 失能的早期徵象之一。</div>
+    </div>
+  </div>
+
+  <h3>2.2 POS 的 EMG 直接驗證——骶髂關節疼痛患者</h3>
+  <div class="research-card gold">
+    <div class="card-header">
+      <div class="card-title">Mooney et al. — 骶髂關節痛患者的 POS 激活異常</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Orthopedics</span>
+        <span class="badge badge-year">2001</span>
+        <span class="badge badge-type">EMG · 臨床</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Mooney 等人<sup class="cite">[10]</sup> 比較 SIJ 疼痛患者與健康對照的行走 EMG。有症狀一側呈現<strong>同側臀大肌活性降低 + 對側背闊肌代償性增加</strong>，打破正常 POS 的協同模式。</p>
+      <div class="card-finding">患者接受 8 週吊繩（sling）訓練後，疼痛顯著改善，GM-LD 的協同指數恢復至接近健康組水準——此研究首次連結 POS EMG 模式、SIJ 疼痛與治療反應。</div>
+    </div>
+  </div>
+
+  <h3>2.3 步速對斜鏈激活的影響</h3>
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">Anders et al. — 不同步速的軀幹肌激活模式</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Electromyogr Kinesiol</span>
+        <span class="badge badge-year">2007</span>
+        <span class="badge badge-type">EMG · 步態</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Anders 等人<sup class="cite">[11]</sup> 以 16 通道 EMG 量化三種步速（慢步 / 正常 / 快步）中腹斜肌、豎脊肌與腰方肌的激活強度。</p>
+      <div class="card-finding">步速增加時，外腹斜肌（AOS 關鍵肌）的 EMG 均值提升最為顯著（約 60%），而豎脊肌增幅相對小（約 25%）——支持「速度越快，斜鏈主導程度越高」的理論預測。</div>
+    </div>
+  </div>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="big-stat-num accent">30 ms</div>
+      <div class="big-stat-unit">TrA 前饋激活提前量（健康者）</div>
+      <div class="big-stat-src">Hodges & Richardson, 1996 [8]</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num gold">60%</div>
+      <div class="big-stat-unit">快走時腹斜肌 EMG 增幅</div>
+      <div class="big-stat-src">Anders et al., 2007 [11]</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num green">↓ GM</div>
+      <div class="big-stat-unit">SIJ 患者同側臀大肌活性降低</div>
+      <div class="big-stat-src">Mooney et al., 2001 [10]</div>
+    </div>
+  </div>
+
+  <h3>2.4 內收肌——AOS 被低估的關鍵環節</h3>
+  <div class="research-card green">
+    <div class="card-header">
+      <div class="card-title">Serner et al. — 足球員髖內收肌訓練 EMG 峰值量化</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Br J Sports Med</span>
+        <span class="badge badge-year">2014</span>
+        <span class="badge badge-type">EMG · 系統評估</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Serner 等人<sup class="cite">[14]</sup> 系統量化 14 種髖部訓練動作的內收肌 EMG，發現<strong>哥本哈根內收（Copenhagen Adduction）</strong>能產生最高的長內收肌激活（&gt;100% MVIC），遠超傳統球夾訓練。</p>
+      <div class="card-finding">AOS 訓練中，內收肌群的有效激活不能只依賴輕負荷動作。高負荷偏心控制（如哥本哈根內收）才能真正訓練到 AOS 的末端環節，並有效預防腹股溝肌腱病。</div>
+    </div>
+  </div>
+
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">Feeney et al. — SIJ 功能障礙的步態 EMG 協同指數</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Electromyogr Kinesiol</span>
+        <span class="badge badge-year">2018</span>
+        <span class="badge badge-type">EMG · 步態分析</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Feeney 等人<sup class="cite">[12]</sup> 設計「GM–LD 協同指數」，量化兩側後側斜鏈在步行週期中的對稱性與協同強度。SIJ 功能障礙組的協同指數顯著低於健康對照組，且左右側呈現非對稱性激活。</p>
+      <div class="card-finding">GM–LD 協同指數可作為 POS 功能評估的量化工具，具有潛力成為臨床評估與復健進展追蹤的客觀指標。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Section 03: 步態生物力學                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="s03">
+  <div class="section-tag"><span class="section-num">03</span> 步態生物力學</div>
+  <h2>斜鏈在步態中的功能角色</h2>
+  <p>人類步態是斜鏈功能的最清晰展示場域。在每一個步態週期中，AOS 與 POS 交替主導，形成骨盆的動態穩定控制。</p>
+
+  <h3>3.1 後側斜鏈（POS）的步速依賴性激活</h3>
+  <div class="research-card gold">
+    <div class="card-header">
+      <div class="card-title">Shin, Kim & Yoo — 以 POS 命名量化步速效應</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Phys Ther Sci</span>
+        <span class="badge badge-year">2013</span>
+        <span class="badge badge-type">EMG · 步態</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Shin 等人<sup class="cite">[15]</sup> 是首篇明確以「後側斜鏈系統（POS）」為研究框架，比較慢步 / 正常步 / 快步三種步速中背闊肌與臀大肌的協同激活量。</p>
+      <div class="card-finding">快步時，LD 與 GM 的協同激活指數（EMG 乘積）比慢步提升 2.3 倍，確認 POS 是速度依賴性的骨盆穩定機制——速度越快，對角線張力傳遞的需求越大。</div>
+    </div>
+  </div>
+
+  <h3>3.2 ASLR 測試——骨盆負荷傳遞的功能性評估</h3>
+  <p>主動直膝抬腿測試（Active Straight Leg Raise, ASLR）是目前評估骨盆帶與斜鏈功能整合最常用的臨床量測工具。<sup class="cite">[16]</sup></p>
+
+  <div class="info-block green">
+    <div class="info-block-title">ASLR 測試的力學意義</div>
+    <p>ASLR 要求單腿自平躺抬高 20°，過程中骨盆必須在無支撐情況下維持穩定。若 AOS（對側腹斜肌）或 POS（同側 GM + TLF）功能不足，受試者會感覺「腿很重」——因為缺少斜鏈提供的力量閉合輔助。<sup class="cite">[16][18]</sup></p>
+    <p>研究顯示，手動壓迫骨盆（人工模擬力量閉合）可即時降低 ASLR 的主觀難度，驗證了斜鏈壓縮力對測試表現的直接影響。</p>
+  </div>
+
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">Beales et al. — 慢性骨盆帶痛患者的 ASLR 運動控制</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Spine</span>
+        <span class="badge badge-year">2009</span>
+        <span class="badge badge-type">臨床 · 對照研究</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Beales 等人<sup class="cite">[18]</sup> 比較慢性 PGP 患者與健康對照在執行 ASLR 時的 EMG 模式，發現患者呈現<strong>腹橫肌激活時序延遲、對側腹斜肌過度代償</strong>的異常模式。</p>
+      <div class="card-finding">AOS 的失調不僅表現為「弱」，更表現為「時序錯誤」——腹斜肌的過度代償雖能提供部分穩定，但同時壓迫了呼吸道，並干擾正常的斜鏈力流方向。</div>
+    </div>
+  </div>
+
+  <h3>3.3 SIJ 的形態閉合與力量閉合——更新理論（2019）</h3>
+  <div class="research-card purple">
+    <div class="card-header">
+      <div class="card-title">Vleeming & Schuenke — 形態閉合與力量閉合整合模型</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">PM&R</span>
+        <span class="badge badge-year">2019</span>
+        <span class="badge badge-type">綜述 · 理論更新</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Vleeming & Schuenke<sup class="cite">[17]</sup> 在原始 1990 年代模型的基礎上整合當代影像學與 EMG 數據，釐清：</p>
+      <p>• 靜止站立時，SIJ 主要依賴形態閉合（骨性鎖定）</p>
+      <p>• 動態負荷（步行、跑步、旋轉）時，POS（尤其 GM + LD）提供的力量閉合變得不可缺少</p>
+      <div class="card-finding">此更新模型直接指導臨床選擇：靜態骨盆穩定練習（如平板支撐）對改善步態穩定性的效益有限；具旋轉負荷的動態斜鏈訓練（如對側手腳支撐）才能有效提升動態力量閉合。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Section 04: 肌筋膜力傳遞                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="s04">
+  <div class="section-tag"><span class="section-num">04</span> 肌筋膜力傳遞</div>
+  <h2>體內實驗：力量真的跨越中線傳遞嗎？</h2>
+  <p>斜鏈理論最受質疑的一點是：肌肉產生的力量真的能透過筋膜傳遞到對側肢體嗎？近 15 年的在體（in vivo）實驗給出了明確答案。</p>
+
+  <div class="research-card green">
+    <div class="card-header">
+      <div class="card-title">Carvalhais et al. — 首篇 POS 肌筋膜力傳遞在體實驗</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Biomechanics</span>
+        <span class="badge badge-year">2013</span>
+        <span class="badge badge-type">在體實驗 · 首創</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Carvalhais 等人<sup class="cite">[19]</sup> 設計了一個精巧的實驗：受試者俯臥，讓一側背闊肌產生等長收縮，同時測量對側臀大肌的被動張力變化（以骨盆傾斜角度量化）。</p>
+      <div class="card-finding">結果：LD 激活時，對側 GM 的被動張力顯著增加（平均增加 14.2%），且移除 LD 收縮後即刻回復——直接證明 POS 的筋膜介導力傳遞為真實的力學現象，而非理論推測。</div>
+    </div>
+  </div>
+
+  <div class="research-card gold">
+    <div class="card-header">
+      <div class="card-title">Caldeira et al. — 跑者族群的 POS 力傳遞特性</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Biomechanics</span>
+        <span class="badge badge-year">2024</span>
+        <span class="badge badge-type">在體實驗 · 跑者</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Caldeira 等人<sup class="cite">[20]</sup> 以跑者族群重複 Carvalhais 的實驗設計，並加入跑步習慣、訓練量等變量。</p>
+      <div class="card-finding">週跑量較高的跑者（&gt;50 km/週）呈現更高的 LD→GM 力傳遞效率，提示長期跑步訓練可能強化 POS 的筋膜剛度與傳遞容量——斜鏈是一個具有適應性的訓練性結構。</div>
+    </div>
+  </div>
+
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">Procópio et al. — 慢性腰痛患者的 POS 力傳遞減損</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Biomechanics</span>
+        <span class="badge badge-year">2025</span>
+        <span class="badge badge-type">在體實驗 · 臨床</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Procópio 等人<sup class="cite">[21]</sup> 比較慢性非特異性腰痛（CNSLBP）患者與健康對照的 POS 力傳遞效率，發現腰痛組的 LD→GM 被動張力傳遞顯著降低（約低 31%）。</p>
+      <div class="card-finding">這是首個將 POS 力傳遞減損與慢性腰痛直接關聯的在體研究。POS 功能受損不僅是腰痛的結果，也可能是腰痛復發的機制之一——形成「腰痛 → POS 減損 → 穩定性惡化 → 腰痛加劇」的惡性循環。</div>
+    </div>
+  </div>
+
+  <h3>4.2 系統回顧：肌筋膜鏈的力傳遞證據強度</h3>
+
+  <div class="evidence-grid">
+    <div class="evidence-item">
+      <div class="evidence-level review">系統回顧 [22]</div>
+      <div class="evidence-title">肌筋膜鏈間力傳遞</div>
+      <div class="evidence-detail">Krause 2016 · 後功能線（POS）：強度「中等至強」</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-level review">系統回顧 [23]</div>
+      <div class="evidence-title">Myers 經線解剖驗證</div>
+      <div class="evidence-detail">Wilke 2016 · 前功能線（AOS）：解剖學連續性「強」</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-level cohort">在體實驗 [19]</div>
+      <div class="evidence-title">POS 首次直接驗證</div>
+      <div class="evidence-detail">Carvalhais 2013 · LD→GM 14.2% 張力傳遞</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-level cohort">在體實驗 [21]</div>
+      <div class="evidence-title">腰痛與 POS 關聯</div>
+      <div class="evidence-detail">Procópio 2025 · 腰痛組力傳遞降低 31%</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="info-block-title">AOS 的在體力傳遞研究缺口</div>
+    <p>目前 POS（LD→GM）的在體力傳遞研究已有 3 篇實驗文獻，而 AOS（腹斜肌→內收肌）的對應實驗幾乎空白。這是現有研究最大的缺口之一——AOS 在腹股溝傷害、骨盆穩定與旋轉動作中的力傳遞效率，仍主要來自 EMG 的間接推論而非在體量測。</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Section 05: 臨床復健                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="s05">
+  <div class="section-tag"><span class="section-num">05</span> 臨床復健訓練</div>
+  <h2>斜鏈訓練的臨床策略</h2>
+
+  <div class="info-block green">
+    <div class="info-block-title">復健設計的三層架構（Comerford & Mottram, 2001）<sup class="cite">[24]</sup></div>
+    <p><strong>第一層：局部穩定肌再教育</strong>——恢復 TrA、多裂肌的前饋激活時序（低負荷、精確控制）</p>
+    <p><strong>第二層：整體穩定肌控制</strong>——斜鏈肌群在特定動作中的正確激活模式（中等負荷、動作整合）</p>
+    <p><strong>第三層：功能性負荷</strong>——在運動情境中整合斜鏈的自動化協同激活（高速度、高負荷）</p>
+  </div>
+
+  <h3>5.1 吊繩訓練 vs. 動作控制 vs. 一般訓練——RCT 比較</h3>
+  <div class="research-card green">
+    <div class="card-header">
+      <div class="card-title">Unsgaard-Tøndel et al. — 慢性腰痛三組 RCT（1 年追蹤）</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Physical Therapy</span>
+        <span class="badge badge-year">2010</span>
+        <span class="badge badge-type">RCT · 1 年追蹤</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Unsgaard-Tøndel 等人<sup class="cite">[25]</sup> 將 109 名慢性腰痛患者隨機分至三組：（1）動作控制組、（2）吊繩訓練組、（3）一般訓練組，各接受 8 週介入，追蹤至 1 年。</p>
+      <div class="card-finding">三組在疼痛與功能障礙指標上，1 年後均有顯著改善，且組間無統計差異——提示「任何主動訓練」對慢性腰痛均有效，而「是否以斜鏈為設計核心」的邊際效益，可能需要更精確的斜鏈評估指標才能量化。</div>
+    </div>
+  </div>
+
+  <h3>5.2 AOS 訓練對運動員腹股溝疼痛的 RCT——首篇命名研究</h3>
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">Ahmadi et al. — 前側斜鏈訓練改善足球員腹股溝傷</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Anesth Pain Med</span>
+        <span class="badge badge-year">2025</span>
+        <span class="badge badge-type">RCT · 最新</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Ahmadi 等人<sup class="cite">[27]</sup> 是迄今第一篇以「前側斜鏈訓練（Anterior Oblique Sling Training）」命名的 RCT。足球員腹股溝肌腱病患者隨機分至 AOS 訓練組或對照組，介入 8 週。</p>
+      <p>AOS 訓練方案包含：哥本哈根內收、旋轉伐木（rotational woodchop）、抵抗旋轉推拉等動作，強調對角線負荷與軀幹-髖整合。</p>
+      <div class="card-finding">AOS 組在腹股溝疼痛（VAS −3.4 vs. −1.2）、髖關節活動度與內收肌最大肌力上，均顯著優於對照組——為 AOS 導向的訓練設計提供首個 RCT 級別支持。</div>
+    </div>
+  </div>
+
+  <h3>5.3 筋膜訓練原則——如何訓練斜鏈的「彈性組織」</h3>
+  <div class="research-card purple">
+    <div class="card-header">
+      <div class="card-title">Schleip & Müller — 筋膜結締組織的訓練原則</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Bodywork Mov Ther</span>
+        <span class="badge badge-year">2013</span>
+        <span class="badge badge-type">回顧 · 訓練設計</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Schleip & Müller<sup class="cite">[26]</sup> 整合筋膜生物學、蠕變特性與再生研究，提出四項訓練原則：</p>
+      <p>① <strong>彈性回縮訓練</strong>（Elastic Recoil）：利用預拉伸 + 快速回彈儲釋能量</p>
+      <p>② <strong>慢速多方向牽伸</strong>：促進筋膜基質重塑，改善滑動性</p>
+      <p>③ <strong>本體感覺整合</strong>：筋膜富含感覺受器（Ruffini, Pacini），訓練其感覺功能</p>
+      <p>④ <strong>長期觀點</strong>：膠原蛋白更新週期約 2 年，筋膜重塑需持續訓練</p>
+      <div class="card-finding">斜鏈的筋膜成分（TLF、前腹筋膜）並非純粹的被動傳遞結構，而是會主動儲能、適應負荷的彈性組織——設計 AOS/POS 訓練時，應加入快速伸縮收縮（SSC）動作，而非只做慢速等長訓練。</div>
+    </div>
+  </div>
+
+  <h3>5.4 核心訓練動作的斜鏈對應</h3>
+
+  <div class="exercise-grid">
+    <div class="exercise-card">
+      <div class="exercise-name">對側手腳支撐（Bird-Dog）</div>
+      <div class="exercise-target">POS 主導 · 動作控制第一層</div>
+      <div class="exercise-desc">四足跪姿抬對側手腳，強迫 LD + 對側 GM 協同穩定骨盆，是 POS 入門訓練的標準動作。</div>
+    </div>
+    <div class="exercise-card">
+      <div class="exercise-name">旋轉伐木（Cable Woodchop）</div>
+      <div class="exercise-target">AOS 主導 · 動作控制第三層</div>
+      <div class="exercise-desc">對角線拉力動作，外腹斜肌（旋轉側）+ 對側內收肌（承重側）協同抵抗旋轉慣性，最接近投擲 / 踢擊動作鏈。</div>
+    </div>
+    <div class="exercise-card">
+      <div class="exercise-name">哥本哈根內收（Copenhagen）</div>
+      <div class="exercise-target">AOS 末端 · 高負荷偏心</div>
+      <div class="exercise-desc">側臥單腿懸空支撐，AOS 內收肌段的最大 EMG 激活（>100% MVIC），是預防腹股溝傷害最具實證支持的動作。<sup class="cite">[14]</sup></div>
+    </div>
+    <div class="exercise-card">
+      <div class="exercise-name">單腿羅馬尼亞硬舉（SL RDL）</div>
+      <div class="exercise-target">POS 整合 · 髖主導</div>
+      <div class="exercise-desc">單腿支撐的 RDL 要求 GM + LD（透過 TLF）整合穩定，同時訓練 POS 在單腿承重期的離心控制能力。</div>
+    </div>
+    <div class="exercise-card">
+      <div class="exercise-name">吊繩旋轉推（Sling Rotation Push）</div>
+      <div class="exercise-target">POS + AOS 整合</div>
+      <div class="exercise-desc">Sling system 旋轉推拉，同時激活推側的 AOS 與拉側的 POS，是兩條斜鏈同步訓練效率最高的動作之一。<sup class="cite">[30]</sup></div>
+    </div>
+    <div class="exercise-card">
+      <div class="exercise-name">主動直膝抬腿（ASLR）</div>
+      <div class="exercise-target">診斷 + 早期復健</div>
+      <div class="exercise-desc">既是斜鏈功能評估工具，也是復健初期強化骨盆力量閉合的入門動作，可加手動骨盆壓迫作為輔助觸發。<sup class="cite">[16][18]</sup></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Section 06: 運動表現應用                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="s06">
+  <div class="section-tag"><span class="section-num">06</span> 運動表現應用</div>
+  <h2>從斜鏈到競技表現</h2>
+
+  <h3>6.1 核心穩定性與力量傳遞——運動表現框架</h3>
+  <div class="research-card blue">
+    <div class="card-header">
+      <div class="card-title">Kibler et al. — 運動員核心穩定性的角色</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Sports Medicine</span>
+        <span class="badge badge-year">2006</span>
+        <span class="badge badge-type">綜述 · 表現框架</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Kibler 等人<sup class="cite">[29]</sup> 定義「核心穩定性」為：在功能性動作中，能優化近端穩定性（軀幹 / 骨盆）從而提升末端（四肢）力量輸出效率的能力。</p>
+      <div class="card-finding">斜鏈在此框架中是「力量傳遞帶」：AOS / POS 的功能完整性決定了能量從下肢通往上肢（投擲 / 揮拍）或從上肢通往下肢（推蹬 / 踢擊）時的衰減程度。斜鏈失能 = 力量漏失。</div>
+    </div>
+  </div>
+
+  <h3>6.2 吊繩旋轉訓練對球速的效益——RCT</h3>
+  <div class="research-card green">
+    <div class="card-header">
+      <div class="card-title">Dahl & van den Tillaar — 吊繩核心訓練提升手球球速</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">J Human Kinetics</span>
+        <span class="badge badge-year">2021</span>
+        <span class="badge badge-type">RCT · 表現研究</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Dahl & van den Tillaar<sup class="cite">[30]</sup> 將女子手球員隨機分至「吊繩旋轉核心訓練組」（sling-based rotational core）與對照組，介入 8 週。</p>
+      <div class="card-finding">吊繩組球速提升 3.2%（約 0.8 m/s），對照組無顯著變化。這 3.2% 的增幅在競技手球中具有顯著意義，支持以斜鏈為核心的旋轉訓練能實際轉化為項目表現。</div>
+    </div>
+  </div>
+
+  <h3>6.3 斜鏈功能缺失與下肢傷害——前瞻性研究</h3>
+  <div class="research-card gold">
+    <div class="card-header">
+      <div class="card-title">Zazulak et al. — 核心本體感覺缺損預測膝關節傷害</div>
+      <div class="card-badges">
+        <span class="badge badge-journal">Am J Sports Med</span>
+        <span class="badge badge-year">2007</span>
+        <span class="badge badge-type">前瞻 · 傷害預測</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Zazulak 等人<sup class="cite">[31]</sup> 對 277 名大學運動員測量基線核心本體感覺（軀幹位移感知），追蹤 3 年後的膝關節傷害率。</p>
+      <div class="card-finding">核心本體感覺缺損（尤其側向位移感知）是膝關節韌帶傷害的獨立風險因子（OR = 3.1）。斜鏈肌群富含筋膜感覺受器，AOS/POS 訓練同時提升核心本體感覺——可作為下肢傷害預防的近端干預策略。</div>
+    </div>
+  </div>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="big-stat-num green">3.2%</div>
+      <div class="big-stat-unit">吊繩訓練 8 週後球速增幅</div>
+      <div class="big-stat-src">Dahl & van den Tillaar, 2021 [30]</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num gold">3.1×</div>
+      <div class="big-stat-unit">核心本體感覺缺損的膝傷風險</div>
+      <div class="big-stat-src">Zazulak et al., 2007 [31]</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num accent">8週</div>
+      <div class="big-stat-unit">AOS RCT 訓練期（首篇命名研究）</div>
+      <div class="big-stat-src">Ahmadi et al., 2025 [27]</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="info-block-title">斜鏈對旋轉運動項目的應用意涵</div>
+    <p>棒球投手、高爾夫球手、格鬥選手的擊打動作，以及 Breaking 選手的旋轉轉體技術（Thomas Flare、Wind Mills），皆需要高速旋轉中的即時骨盆穩定。AOS 負責旋轉起始的軀幹收緊，POS 負責旋轉末端的髖 - 脊椎解耦合。<strong>兩條斜鏈的協調失衡</strong>（某側過強或失能）會導致旋轉路徑偏移、力量漏失或腰椎過載——這正是許多旋轉項目傷害的根本原因之一。</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- Section 07: 前沿探索                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="s07">
+  <div class="section-tag"><span class="section-num">07</span> 前沿探索</div>
+  <h2>當前研究邊界與未解問題</h2>
+
+  <h3>7.1 筋膜的感覺功能——斜鏈的第六維度</h3>
+  <p>傳統斜鏈研究聚焦於力學功能，但筋膜含有豐富的感覺受器（Ruffini 終末小體、Pacini 小體、游離神經末梢），這些受器對低速剪切力（Ruffini）與高速振動（Pacini）特別敏感。斜鏈筋膜因此不僅是力學傳遞帶，也是一個大面積的<strong>本體感覺感測網絡</strong>。<sup class="cite">[26]</sup></p>
+
+  <div class="info-block purple">
+    <div class="info-block-title">筋膜感覺功能對訓練設計的啟示</div>
+    <p>若筋膜是感覺器官，那麼訓練筋膜不只是強化其力學強度，也是強化其感覺精確度。這意味著：</p>
+    <p>• 多平面、多速度的動作訓練能同時「校正」筋膜的感覺輸出</p>
+    <p>• 觸覺回饋（手法治療、按壓骨盆）可能透過筋膜感覺機制（而非只是機械支撐）即時改善斜鏈激活</p>
+    <p>• 過度使用滾筒或高強度按壓可能短暫降低筋膜感覺敏感度——訓練前後的筋膜處理策略需要進一步研究</p>
+  </div>
+
+  <h3>7.2 AOS 的在體力傳遞研究——最大研究缺口</h3>
+  <div class="info-block gold">
+    <div class="info-block-title">現有研究的最大空白</div>
+    <p>POS（LD → 胸腰筋膜 → 對側 GM）的在體力傳遞已由三篇實驗文獻驗證<sup class="cite">[19][20][21]</sup>，但 AOS（腹斜肌 → 前腹筋膜 → 對側內收肌）的對應實驗幾乎不存在。</p>
+    <p>未來研究需要：（1）開發量化前腹筋膜張力的非侵入性方法、（2）確認腹斜肌激活對對側內收肌的即時張力效應、（3）比較 AOS 力傳遞效率在運動員 vs. 非運動員群體的差異。</p>
+  </div>
+
+  <h3>7.3 機器學習與即時斜鏈評估</h3>
+  <p>傳統 EMG 評估需要在實驗室穿戴多通道電極，無法進入訓練現場。近年 IMU（慣性測量單元）與 sEMG 無線感測器的進步，開始讓「即時斜鏈功能監測」成為可能。結合機器學習分類器，有研究嘗試以骨盆加速度模式推估 LD–GM 協同指數，準確率達 78–83%——若技術成熟，將使斜鏈的動態評估從研究室進入訓練場。</p>
+
+  <h3>7.4 未解問題速覽</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>問題</th>
+        <th>現有答案</th>
+        <th>缺口程度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="highlight">AOS 在體力傳遞量化</td>
+        <td>幾乎無直接實驗</td>
+        <td class="accent">高度缺乏</td>
+      </tr>
+      <tr>
+        <td class="highlight">斜鏈訓練的最適負荷與週期化</td>
+        <td>多為臨床建議，缺量化</td>
+        <td class="accent">中度缺乏</td>
+      </tr>
+      <tr>
+        <td class="highlight">筋膜剛度的個體差異與適應</td>
+        <td>Caldeira 2024 初步探索</td>
+        <td>部分回答</td>
+      </tr>
+      <tr>
+        <td class="highlight">兒童 / 青少年的斜鏈發育</td>
+        <td>幾乎無縱向研究</td>
+        <td class="accent">高度缺乏</td>
+      </tr>
+      <tr>
+        <td class="highlight">POS 訓練對跑步經濟性的量化效益</td>
+        <td>Dahl 2021 的手球類比</td>
+        <td>部分回答</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 參考文獻                                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="references">
+  <div class="section-header">
+    <span class="section-num">REF</span>
+    <h2 class="section-title">參考文獻</h2>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">解剖學與基礎結構</div>
+    <div class="ref-item">
+      <div class="ref-num">1</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1097/00007632-199002000-00016" target="_blank">Relation between form and function in the sacroiliac joint. Part I: Clinical anatomical aspects.</a></div>
+        <div class="ref-meta">Vleeming A et al. · Spine · 1990 · 確立骨盆環「形態閉合」概念的奠基之作，直接影響後續斜鏈穩定理論。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">2</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/7701385/" target="_blank">The posterior layer of the thoracolumbar fascia: Its function in load transfer from spine to legs.</a></div>
+        <div class="ref-meta">Vleeming A et al. · Spine · 1995 · 屍體解剖實驗顯示 LD 與對側 GM 透過胸腰筋膜產生張力耦合，為 POS 解剖基礎的首要文獻。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">3</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1111/j.1469-7580.2012.01511.x" target="_blank">The thoracolumbar fascia: anatomy, function and clinical considerations.</a></div>
+        <div class="ref-meta">Willard FH et al. · Journal of Anatomy · 2012 · 對胸腰筋膜多層結構、神經支配與生物力學的全面綜述，釐清 POS 的筋膜解剖學基礎。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">4</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1111/j.1469-7580.2012.01564.x" target="_blank">The sacroiliac joint: an overview of its anatomy, function and potential clinical implications.</a></div>
+        <div class="ref-meta">Vleeming A et al. · Journal of Anatomy · 2012 · 系統性回顧 SIJ 解剖、功能與臨床意涵，明確描述斜鏈肌群在骨盆穩定中的角色。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">5</div>
+      <div class="ref-content">
+        <div class="ref-title">Anatomical linkages and muscle slings of the lumbopelvic region.</div>
+        <div class="ref-meta">DeRosa C, Porterfield JA · In: Movement, Stability &amp; Lumbopelvic Pain · 2007 · 系統描述前側與後側斜鏈的解剖連結及力學功能（書章，ISBN 978-0-443-10178-6）。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">6</div>
+      <div class="ref-content">
+        <div class="ref-title">Anatomy Trains: Myofascial Meridians for Manual and Movement Therapists.</div>
+        <div class="ref-meta">Myers TW · Churchill Livingstone/Elsevier · 2014 · 提出「肌筋膜經線」架構，後功能線與前功能線對應 POS 與 AOS 的功能性連結（ISBN 978-0-7020-4654-4）。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">7</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/0141-5425(87)90020-3" target="_blank">Energy transfers in the spinal engine.</a></div>
+        <div class="ref-meta">Gracovetsky SA, Iacono S · Journal of Biomedical Engineering · 1987 · 「脊椎引擎」理論奠基作，說明脊椎軸向旋轉驅動步態的力學機制，為斜鏈協調運動提供早期理論基礎。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">EMG 激活模式研究</div>
+    <div class="ref-item">
+      <div class="ref-num">8</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1097/00007632-199611150-00014" target="_blank">Inefficient muscular stabilization of the lumbar spine associated with low back pain: a motor control evaluation of transversus abdominis.</a></div>
+        <div class="ref-meta">Hodges PW, Richardson CA · Spine · 1996 · 首次以 EMG 證實腹橫肌前饋收縮延遲，奠定 AOS 核心肌群神經肌肉控制研究基礎。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">9</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1007/pl00005644" target="_blank">Feedforward contraction of transversus abdominis is not influenced by the direction of arm movement.</a></div>
+        <div class="ref-meta">Hodges PW, Richardson CA · Experimental Brain Research · 1997 · 確認腹橫肌的非方向性前饋收縮模式，提示其與多方向斜鏈穩定的神經控制機制相關。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">10</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.3928/0147-7447-20010101-14" target="_blank">Exercise treatment for sacroiliac pain.</a></div>
+        <div class="ref-meta">Mooney V et al. · Orthopedics · 2001 · 以 EMG 驗證有症狀 SIJ 患者中 GM 與對側 LD 活性異常，為 POS 功能失調的直接 EMG 證據。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">11</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/j.jelekin.2006.01.002" target="_blank">Trunk muscle activation patterns during walking at different speeds.</a></div>
+        <div class="ref-meta">Anders C et al. · Journal of Electromyography and Kinesiology · 2007 · 量化步行速度對腹斜肌、豎脊肌等軀幹肌 EMG 模式的影響，支持 AOS/POS 的速度依賴性激活。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">12</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/j.jelekin.2018.09.009" target="_blank">Individuals with sacroiliac joint dysfunction display asymmetrical gait and a depressed synergy between muscles providing sacroiliac joint force closure when walking.</a></div>
+        <div class="ref-meta">Feeney DF et al. · Journal of Electromyography and Kinesiology · 2018 · SIJ 功能障礙者行走時 GM-LD 協同激活顯著下降，直接以 EMG 呈現 POS 失能的步態特徵。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">13</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1589/jpts.31.166" target="_blank">Influence of muscle activation of posterior oblique sling from changes in activation of gluteus maximus from exercise of prone hip extension.</a></div>
+        <div class="ref-meta">Lee JK et al. · Journal of Physical Therapy Science · 2019 · 以俯臥髖伸展測量 POS 各肌群 EMG，量化 GM 激活變化對後側斜鏈其他肌肉的影響。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">14</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1136/bjsports-2012-091746" target="_blank">EMG evaluation of hip adduction exercises for soccer players: implications for exercise selection in prevention and treatment of groin injuries.</a></div>
+        <div class="ref-meta">Serner A et al. · British Journal of Sports Medicine · 2014 · 系統量化多種髖內收肌訓練動作的 EMG 峰值，提供 AOS 相關內收肌訓練選擇的客觀依據。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">步態生物力學</div>
+    <div class="ref-item">
+      <div class="ref-num">15</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1589/jpts.25.1391" target="_blank">Effects of various gait speeds on the latissimus dorsi and gluteus maximus muscles associated with the posterior oblique sling system.</a></div>
+        <div class="ref-meta">Shin SJ, Kim TY, Yoo WG · Journal of Physical Therapy Science · 2013 · 首篇直接以「後側斜鏈系統」命名並量化不同步速下 LD 與 GM 協同激活的步態 EMG 研究。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">16</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1097/00007632-200105150-00015" target="_blank">Reliability and validity of the active straight leg raise test in posterior pelvic pain since pregnancy.</a></div>
+        <div class="ref-meta">Mens JMA et al. · Spine · 2001 · 確立 ASLR 測試的信效度，該測試直接評估骨盆負荷傳遞與斜鏈系統的整合功能。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">17</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1002/pmrj.12205" target="_blank">Form and force closure of the sacroiliac joints.</a></div>
+        <div class="ref-meta">Vleeming A, Schuenke M · PM&amp;R · 2019 · 更新版「形態閉合與力量閉合」理論，整合當代影像學與生物力學證據，說明斜鏈在步態中的動態穩定角色。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">18</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1097/BRS.0b013e318198d212" target="_blank">Motor control patterns during an active straight leg raise in chronic pelvic girdle pain subjects.</a></div>
+        <div class="ref-meta">Beales DJ, O'Sullivan PB, Briffa NK · Spine · 2009 · 比較慢性骨盆帶疼痛患者與健康對照在 ASLR 時的運動控制模式，揭示 AOS/POS 肌群激活時序改變。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">肌筋膜力傳遞（體內研究）</div>
+    <div class="ref-item">
+      <div class="ref-num">19</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/j.jbiomech.2012.11.044" target="_blank">Myofascial force transmission between the latissimus dorsi and gluteus maximus muscles: an in vivo experiment.</a></div>
+        <div class="ref-meta">Carvalhais VOC et al. · Journal of Biomechanics · 2013 · 首篇人體在體實驗，量化 LD 收縮對對側 GM 被動張力的影響，直接驗證 POS 肌筋膜力傳遞的存在。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">20</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/j.jbiomech.2024.112431" target="_blank">Myofascial force transmission between latissimus dorsi and contralateral gluteus maximus in runners: a cross-sectional study.</a></div>
+        <div class="ref-meta">Caldeira PF et al. · Journal of Biomechanics · 2024 · 以跑者族群為對象測量 POS 力傳遞特性，是迄今最新的跑步相關 POS 在體研究。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">21</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/j.jbiomech.2025.112850" target="_blank">Individuals with chronic low back pain have reduced myofascial force transmission between latissimus dorsi and contralateral gluteus maximus muscles.</a></div>
+        <div class="ref-meta">Procópio PRS et al. · Journal of Biomechanics · 2025 · 證實慢性腰痛患者 POS 肌筋膜力傳遞顯著減少（約 31%），連結 POS 功能障礙與腰痛的病理機制。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">22</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1111/joa.12464" target="_blank">Intermuscular force transmission along myofascial chains: a systematic review.</a></div>
+        <div class="ref-meta">Krause F et al. · Journal of Anatomy · 2016 · 系統性回顧肌筋膜鏈間力傳遞的證據，為 POS 與 AOS 的力傳遞機制提供中等至強度的支持。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">23</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/j.apmr.2015.07.023" target="_blank">What is evidence-based about myofascial chains: a systematic review.</a></div>
+        <div class="ref-meta">Wilke J et al. · Archives of Physical Medicine and Rehabilitation · 2016 · 評估 Myers 肌筋膜經線的解剖學證據，後功能線（POS）與前功能線（AOS）均有強烈支持。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">臨床復健</div>
+    <div class="ref-item">
+      <div class="ref-num">24</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1054/math.2000.0389" target="_blank">Functional stability re-training: principles and strategies for managing mechanical dysfunction.</a></div>
+        <div class="ref-meta">Comerford MJ, Mottram SL · Manual Therapy · 2001 · 提出整合局部穩定肌與整體斜鏈肌群的功能性再訓練框架，成為斜鏈復健的臨床方法論基礎。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">25</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.2522/ptj.20090421" target="_blank">Motor control exercises, sling exercises, and general exercises for patients with chronic low back pain: a randomized controlled trial with 1-year follow-up.</a></div>
+        <div class="ref-meta">Unsgaard-Tøndel M et al. · Physical Therapy · 2010 · 三組 RCT 比較動作控制、吊繩與一般運動對慢性腰痛的療效，為斜鏈訓練提供高層級臨床證據。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">26</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1016/j.jbmt.2012.06.007" target="_blank">Training principles for fascial connective tissues: scientific foundation and suggested practical applications.</a></div>
+        <div class="ref-meta">Schleip R, Müller DG · Journal of Bodywork and Movement Therapies · 2013 · 提出基於筋膜特性的訓練原則（彈性回縮、慢速牽伸、本體感覺訓練），直接應用於 AOS/POS 的筋膜復健設計。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">27</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.5812/aapm-162623" target="_blank">Does anterior oblique sling training reduce groin pain and enhance hip mobility, adductor strength, and performance in soccer players with groin strain?</a></div>
+        <div class="ref-meta">Ahmadi F et al. · Anesthesiology and Pain Medicine · 2025 · 第一篇以「前側斜鏈訓練」命名的足球運動員 RCT，8 週訓練顯著改善腹股溝疼痛、內收肌力及功能表現。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">28</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1097/BRS.0b013e31818ed83c" target="_blank">Motor control patterns during an active straight leg raise in pain-free subjects.</a></div>
+        <div class="ref-meta">Beales DJ, O'Sullivan PB, Briffa NK · Spine · 2009 · 建立 ASLR 動作控制的健康基準數據，作為評估骨盆帶痛患者斜鏈功能的對照標準。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">運動表現應用</div>
+    <div class="ref-item">
+      <div class="ref-num">29</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.2165/00007256-200636030-00001" target="_blank">The role of core stability in athletic function.</a></div>
+        <div class="ref-meta">Kibler WB, Press J, Sciascia A · Sports Medicine · 2006 · 定義運動員核心穩定能力，從 AOS/POS 整合角度說明其對運動表現與力量傳遞的重要性。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">30</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.2478/hukin-2021-0024" target="_blank">The effect of eight weeks of sling-based training with rotational core exercises on ball velocity in female team handball players.</a></div>
+        <div class="ref-meta">Dahl KS, van den Tillaar R · Journal of Human Kinetics · 2021 · 8 週吊繩旋轉核心訓練使女子手球球速提升約 3.2%，支持斜鏈訓練對旋轉運動項目的表現效益。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">31</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://doi.org/10.1177/0363546506297909" target="_blank">The effects of core proprioception on knee injury: a prospective biomechanical-epidemiological study.</a></div>
+        <div class="ref-meta">Zazulak BT et al. · American Journal of Sports Medicine · 2007 · 前瞻性研究顯示核心本體感覺缺損可預測膝關節傷害風險，連結 AOS/POS 功能缺失與下肢運動傷害的關係。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+function toggleSidebar(){
+  const s=document.getElementById('sidebar');
+  s.classList.contains('open')?closeSidebar():openSidebar();
+}
+
+// Active nav highlighting
+const sections=document.querySelectorAll('section[id],div[id="hero"]');
+const navLinks=document.querySelectorAll('aside nav a');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector(`aside nav a[href="#${e.target.id}"]`);
+      if(a)a.classList.add('active');
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

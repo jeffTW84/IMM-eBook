@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抓舉運動科學報告 · Snatch Biomechanics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08101e;--bg2:#0e1929;--surface:#111f35;--card:#162238;--card2:#1a2a44;
+  --border:#1e3050;--border2:#264166;--accent:#4f9eff;--accent2:#7bc3ff;
+  --gold:#f5b84b;--gold2:#fdd888;--green:#34d399;--red:#f87171;--purple:#a78bfa;
+  --text:#e8f1fc;--text2:#a8bed8;--text3:#6b8aaa;
+  --font:-apple-system,BlinkMacSystemFont,"Inter","PingFang TC","Noto Sans TC",sans-serif;
+  --serif:"Playfair Display","Georgia",serif;--mono:"JetBrains Mono","Fira Code",monospace;
+  --r:10px;--r2:16px;--shadow:0 4px 24px rgba(0,0,0,.45);--shadow2:0 8px 48px rgba(0,0,0,.6);
+  --trans:.2s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.75;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+h1,h2,h3,h4{line-height:1.3;font-weight:700}
+h2{font-family:var(--serif);font-size:2rem;margin-bottom:1.5rem}
+h3{font-size:1.2rem;color:var(--accent2);margin:2rem 0 .8rem;padding-left:1rem;border-left:3px solid var(--accent)}
+h4{font-size:.85rem;color:var(--gold);margin:1.5rem 0 .6rem;text-transform:uppercase;letter-spacing:.08em}
+p{margin-bottom:1rem;color:var(--text2)}
+strong{color:var(--text);font-weight:600}
+em{color:var(--gold2);font-style:normal;font-weight:500}
+code{font-family:var(--mono);background:var(--card2);color:var(--accent2);padding:.15em .45em;border-radius:4px;font-size:.85em}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--trans)}
+a:hover{border-color:var(--accent)}
+.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;max-width:1440px;margin:0 auto;padding-top:56px}
+main{padding:0 3rem 6rem;max-width:900px;width:100%}
+aside{position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;padding:2rem 1.5rem;border-right:1px solid var(--border);background:var(--bg2)}
+nav ul{list-style:none}
+nav li{margin:.2rem 0}
+nav a{display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border-radius:6px;font-size:.82rem;color:var(--text2);transition:all var(--trans);text-decoration:none;border:none;line-height:1.4}
+nav a:hover{background:var(--surface);color:var(--text)}
+nav a.active{background:var(--surface);color:var(--accent);font-weight:600}
+nav .toc-num{font-size:.7rem;color:var(--text3);font-family:var(--mono);min-width:1.4rem}
+nav .toc-group{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);padding:.75rem .75rem .25rem;margin-top:.5rem}
+.hero{position:relative;padding:5rem 3rem 4rem;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(79,158,255,.12) 0%,transparent 70%)}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.25);border-radius:20px;padding:.3rem .9rem;font-size:.78rem;color:var(--accent2);letter-spacing:.05em;margin-bottom:1.5rem}
+.hero-tag::before{content:'●';color:var(--green);font-size:.55rem}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);background:linear-gradient(135deg,#fff 30%,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+.hero-sub{font-size:1.05rem;color:var(--text3);margin-bottom:.5rem}
+.hero-date{font-size:.82rem;color:var(--text3);font-family:var(--mono)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem 1.4rem;position:relative;overflow:hidden;transition:border-color var(--trans)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-bar,var(--accent))}
+.stat-card:hover{border-color:var(--border2)}
+.stat-num{font-size:2rem;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1}
+.stat-label{font-size:.75rem;color:var(--text3);margin-top:.35rem}
+section{padding:4rem 0 1rem;border-bottom:1px solid var(--border)}
+section:last-child{border-bottom:none}
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.section-num{font-size:.8rem;font-family:var(--mono);color:var(--accent);background:rgba(79,158,255,.1);border:1px solid rgba(79,158,255,.2);padding:.25rem .6rem;border-radius:4px;white-space:nowrap}
+.section-title{font-family:var(--serif);font-size:1.9rem;color:var(--text)}
+.insight-grid{display:grid;gap:1rem}
+.insight-card{display:flex;gap:1.2rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.4rem 1.6rem;transition:all var(--trans)}
+.insight-card:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:var(--shadow)}
+.insight-n{width:2.5rem;height:2.5rem;min-width:2.5rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1rem;font-family:var(--mono)}
+.insight-body h4{color:var(--text);font-size:.95rem;text-transform:none;letter-spacing:0;margin:0 0 .35rem;font-family:var(--font)}
+.insight-body p{font-size:.9rem;margin:0;color:var(--text2)}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border-radius:var(--r);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.875rem}
+thead tr{background:var(--surface)}
+thead th{padding:.8rem 1rem;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-weight:600;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,.018)}
+tbody td{padding:.75rem 1rem;vertical-align:top;color:var(--text2)}
+tbody td:first-child{color:var(--text);font-weight:500}
+tbody tr:hover td{background:rgba(79,158,255,.04)}
+.info-block{background:var(--card);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:1rem 1.4rem;margin:1.2rem 0;font-size:.9rem;color:var(--text2)}
+.info-block.gold{border-color:var(--gold)}.info-block.green{border-color:var(--green)}.info-block.red{border-color:var(--red)}.info-block.purple{border-color:var(--purple)}
+.info-block strong{display:block;color:var(--text);margin-bottom:.3rem}
+.big-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+.big-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;text-align:center}
+.big-stat .num{font-size:2.8rem;font-weight:700;font-family:var(--mono);color:var(--gold);line-height:1}
+.big-stat .denom{font-size:1rem;color:var(--text3)}
+.big-stat .desc{font-size:.8rem;color:var(--text3);margin-top:.5rem}
+.stage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin:1.5rem 0}
+.stage-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.6rem;position:relative;overflow:hidden;transition:all var(--trans)}
+.stage-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.stage-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--stage-color,var(--accent))}
+.stage-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-family:var(--mono);color:var(--stage-color,var(--accent));background:rgba(79,158,255,.1);border:1px solid currentColor;padding:.2rem .6rem;border-radius:4px;margin-bottom:.8rem;opacity:.8}
+.stage-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.stage-en{font-size:.8rem;color:var(--text3);margin-bottom:.9rem;font-style:italic}
+.stage-card ul{padding-left:1.1rem;font-size:.85rem;color:var(--text2)}
+.stage-card ul li{margin:.3rem 0}
+.stage-tool{margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--text3)}
+.stage-tool span{color:var(--stage-color,var(--accent));font-weight:500}
+.strategy-steps{display:flex;flex-direction:column;gap:.6rem;margin:1.2rem 0}
+.strategy-step{display:flex;align-items:flex-start;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;transition:border-color var(--trans)}
+.strategy-step:hover{border-color:var(--border2)}
+.step-rank{width:2rem;height:2rem;min-width:2rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;font-family:var(--mono)}
+.step-content{flex:1}
+.step-title{font-weight:600;color:var(--text);font-size:.92rem;margin-bottom:.2rem}
+.step-desc{font-size:.83rem;color:var(--text2)}
+.research-grid{display:grid;gap:1rem;margin:1.2rem 0}
+.research-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.4rem;transition:all var(--trans)}
+.research-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.research-journal{font-size:.72rem;font-family:var(--mono);color:var(--accent);opacity:.8;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em}
+.research-title{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.6rem}
+.research-title a{color:inherit;border-bottom:1px solid rgba(232,241,252,.35)}
+.research-title a:hover{border-color:var(--text)}
+.research-findings{display:flex;flex-direction:column;gap:.35rem}
+.research-finding{display:flex;gap:.6rem;font-size:.83rem;color:var(--text2)}
+.research-finding::before{content:'→';color:var(--accent);flex-shrink:0}
+.ref-group{margin-bottom:2rem}
+.ref-group-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.ref-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px dashed var(--border)}
+.ref-item:last-child{border-bottom:none}
+.ref-num{font-family:var(--mono);font-size:.75rem;color:var(--accent);min-width:1.8rem;padding-top:.1rem}
+.ref-content{flex:1}
+.ref-title{font-size:.88rem;color:var(--text);font-weight:500;margin-bottom:.2rem}
+.ref-title a{color:inherit;border-bottom:1px solid rgba(232,241,252,.35)}
+.ref-title a:hover{border-color:var(--text)}
+.ref-meta{font-size:.78rem;color:var(--text3)}
+sup.cite{font-size:.72em;color:var(--accent);font-weight:700;margin-left:.15rem;white-space:nowrap;letter-spacing:-.01em}
+.content-list{padding-left:1.3rem;margin:.8rem 0}
+.content-list li{margin:.4rem 0;color:var(--text2);font-size:.92rem}
+.content-list li strong{color:var(--text)}
+.kw{display:inline;background:rgba(79,158,255,.12);color:var(--accent2);border-radius:4px;padding:.1em .4em;font-size:.85em;font-weight:500}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 3rem;grid-column:1/-1}
+.footer-inner{max-width:900px;margin:0 auto;display:flex;gap:2rem;align-items:flex-start}
+.footer-note{font-size:.82rem;color:var(--text3);line-height:1.7;flex:1}
+.footer-badge{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.7rem 1.2rem;font-size:.75rem;color:var(--text3);white-space:nowrap;font-family:var(--mono)}
+#topnav{position:fixed;top:0;left:0;width:100%;z-index:300;background:rgba(8,16,30,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.8rem;height:56px}
+.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--text);border:none}
+.nav-brand img{height:28px;filter:invert(1) brightness(2);opacity:.85}
+.nav-brand-text{font-weight:700;font-size:.85rem;line-height:1.2}
+.nav-brand-sub{font-size:.63rem;color:var(--text3);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;padding:.36rem .78rem;border-radius:var(--r);border:1px solid transparent;transition:all var(--trans);white-space:nowrap}
+.nav-links a:hover{color:var(--text);border-color:var(--border2);background:rgba(79,158,255,.07)}
+.nav-links a.cta{color:var(--accent);border-color:rgba(79,158,255,.35);background:rgba(79,158,255,.08)}
+.nav-links a.cta:hover{background:rgba(79,158,255,.18)}
+#ham-top{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:.3rem}
+#ham-top span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
+.sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;backdrop-filter:blur(2px)}
+.sidebar-backdrop.open{display:block}
+.emg-legend{font-size:.78rem;color:var(--text3);margin-top:.5rem}
+@media(max-width:900px){
+  .nav-links{display:none}
+  #ham-top{display:flex}
+  .page-wrap{grid-template-columns:1fr;padding-top:56px}
+  aside{position:fixed;top:56px;left:-280px;height:calc(100vh - 56px);width:260px;z-index:100;transition:left .28s cubic-bezier(.4,0,.2,1);border-right:1px solid var(--border2);box-shadow:var(--shadow2)}
+  aside.open{left:0}
+  main{padding:0 1.5rem 4rem}
+  .hero{padding:2.5rem 1.5rem 2rem}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .stage-grid{grid-template-columns:1fr}
+  .big-stat-row{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}
+  .footer-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="nav-brand" href="https://ebook.intellimotionmatrix.com/">
+    <img src="../assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="nav-brand-text">智動矩陣電子書</div>
+      <div class="nav-brand-sub">Breaking Science</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="https://intellimotionmatrix.com/">首頁</a>
+    <a href="https://ebook.intellimotionmatrix.com/">電子書</a>
+    <a href="https://draco.intellimotionmatrix.com/">Draco 裝置</a>
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">Instagram</a>
+    <a href="mailto:jfiii2ofi@gmail.com" class="cta">聯絡我們</a>
+  </div>
+  <button id="ham-top" aria-label="選單"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="sidebar-backdrop" id="backdrop"></div>
+
+<div class="page-wrap">
+<aside>
+  <nav>
+    <div class="toc-group">概覽</div>
+    <ul>
+      <li><a href="#summary"><span class="toc-num">00</span>執行摘要</a></li>
+    </ul>
+    <div class="toc-group">核心研究</div>
+    <ul>
+      <li><a href="#biomechanics"><span class="toc-num">01</span>動作階段生物力學</a></li>
+      <li><a href="#power"><span class="toc-num">02</span>功率輸出與關節動力學</a></li>
+      <li><a href="#barpath"><span class="toc-num">03</span>槓鈴路徑分析</a></li>
+    </ul>
+    <div class="toc-group">表現與訓練</div>
+    <ul>
+      <li><a href="#emg"><span class="toc-num">04</span>EMG 與肌肉激活</a></li>
+      <li><a href="#training"><span class="toc-num">05</span>技術訓練與衍生動作</a></li>
+    </ul>
+    <div class="toc-group">風險與文獻</div>
+    <ul>
+      <li><a href="#injury"><span class="toc-num">06</span>傷害流行病學</a></li>
+      <li><a href="#references"><span class="toc-num">REF</span>參考文獻</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div>
+<main>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">運動科學報告 · Olympic Weightlifting</div>
+  <h1>抓舉<br>運動科學</h1>
+  <p class="hero-sub">奧林匹克舉重的生物力學深度解析</p>
+  <p class="hero-date">// 2026.05 · 整合 36 篇文獻</p>
+  <div class="hero-stats">
+    <div class="stat-card" style="--accent-bar:var(--accent)">
+      <div class="stat-num">36</div>
+      <div class="stat-label">收錄同儕審查文獻總數</div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--gold)">
+      <div class="stat-num">≈1 s</div>
+      <div class="stat-label">精英選手全程動作時間（一拉至接槓）</div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--green)">
+      <div class="stat-num">4</div>
+      <div class="stat-label">生物力學分析階段（一拉／過渡／二拉／接槓）</div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 00 -->
+<section id="summary">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <h2 class="section-title">執行摘要</h2>
+  </div>
+  <p>抓舉（Snatch）是奧林匹克舉重的兩個競技項目之一，要求運動員在單次不間斷的動作中將槓鈴從地面拉至頭頂完全鎖臂位置。全程歷時約 0.9–1.1 秒，由四個生物力學意義截然不同的階段構成，每個階段有其獨特的肌肉激活、功率輸出與力學挑戰。<sup class="cite">[1]</sup><sup class="cite">[2]</sup></p>
+  <p>作為人類運動中功率輸出密度最高的動作之一，抓舉及其衍生動作近年已廣泛應用於各競技項目的訓練體系中。本報告整合截至 2026 年 5 月共 36 篇同儕審查文獻，涵蓋動作力學、功率分析、槓鈴路徑、肌電圖、訓練衍生動作與傷害流行病學六大面向。</p>
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(79,158,255,.15);color:var(--accent)">A</div>
+      <div class="insight-body">
+        <h4>第二拉是決定競技水平的核心</h4>
+        <p>比較頂尖精英與次精英選手，差異主要體現在第二拉的槓鈴峰值速度與高度，而非第一拉技術。第二拉的峰值功率可達第一拉的 3–5 倍。<sup class="cite">[7]</sup><sup class="cite">[9]</sup></p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(245,184,75,.15);color:var(--gold)">B</div>
+      <div class="insight-body">
+        <h4>槓鈴路徑是技術效率的核心指標</h4>
+        <p>失敗嘗試與成功的差異並非力量不足或槓鈴高度，而在翻轉點的槓鈴加速度方向。環形（looping）軌跡是精英競賽中最常見的成功路徑類型。<sup class="cite">[18]</sup><sup class="cite">[19]</sup></p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(52,211,153,.15);color:var(--green)">C</div>
+      <div class="insight-body">
+        <h4>衍生動作保留爆發力訓練核心效益</h4>
+        <p>抓舉高拉、懸掛抓舉等衍生動作去除接槓技術要求，仍能保留三關節延伸的爆發力刺激，NSCA 官方立場支持非競技運動員廣泛採用。<sup class="cite">[26]</sup><sup class="cite">[31]</sup></p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(248,113,113,.15);color:var(--red)">D</div>
+      <div class="insight-body">
+        <h4>傷害率低於多數接觸性運動</h4>
+        <p>儘管技術難度高，舉重傷害率（每千訓練小時 2.4–3.3 次）與非接觸性力量運動相當，且大多為慢性/過度使用傷害，急性傷害相對稀少。<sup class="cite">[33]</sup><sup class="cite">[34]</sup></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 01 -->
+<section id="biomechanics">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">動作階段生物力學</h2>
+  </div>
+  <p>抓舉的完整動作由四個功能性階段組成，各階段在生物力學上有明確的分界點與不同的訓練挑戰。精英選手的全程時間約 0.9–1.1 秒，其中過渡期最短（約 0.1–0.2 秒），卻是技術複雜度最高的段落。<sup class="cite">[1]</sup><sup class="cite">[2]</sup></p>
+
+  <div class="stage-grid">
+    <div class="stage-card" style="--stage-color:var(--green)">
+      <div class="stage-badge">Phase 01</div>
+      <div class="stage-name">第一拉</div>
+      <div class="stage-en">First Pull</div>
+      <ul>
+        <li>從起始位置至槓鈴達膝蓋高度</li>
+        <li>背部角度幾乎保持不變（水平面以上約 30–45°）</li>
+        <li>槓鈴緊貼脛骨上升，路徑近乎垂直</li>
+        <li>主要動力：股四頭肌膝伸＋臀大肌＋豎脊肌等長穩定</li>
+        <li>此階段負責建立動作節奏，過快起拉易導致早期髖伸</li>
+      </ul>
+      <div class="stage-tool">持續時間：<span>約 0.5–0.8 秒（全程最長階段）</span></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--gold)">
+      <div class="stage-badge">Phase 02</div>
+      <div class="stage-name">過渡／雙膝再屈</div>
+      <div class="stage-en">Transition / Double Knee Bend</div>
+      <ul>
+        <li>槓鈴過膝後，膝蓋重新屈曲前移（scoop）</li>
+        <li>髖部主動靠近槓鈴，縮短力臂</li>
+        <li>槓鈴速度短暫降低，蓄積二拉的機械優勢</li>
+        <li>Enoka（1979）稱此為「Unweighting」相位</li>
+        <li>過渡品質直接決定第二拉的爆發效率</li>
+      </ul>
+      <div class="stage-tool">持續時間：<span>約 0.1–0.2 秒（技術複雜度最高）</span><sup class="cite">[1]</sup></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--accent)">
+      <div class="stage-badge">Phase 03</div>
+      <div class="stage-name">第二拉</div>
+      <div class="stage-en">Second Pull / Explosion</div>
+      <ul>
+        <li>三關節同步爆發：踝蹠屈、膝伸展、髖伸展</li>
+        <li>斜方肌聳肩＋手臂輔助拉高完成全程拉力</li>
+        <li>精英選手槓鈴峰值速度：1.5–2.0+ m/s</li>
+        <li>地面反作用力峰值：約 2–3 倍體重</li>
+        <li>此階段為全程功率輸出最高點<sup class="cite">[9]</sup></li>
+      </ul>
+      <div class="stage-tool">峰值功率：<span>≥ 4,000 W（精英男子）</span><sup class="cite">[9]</sup><sup class="cite">[10]</sup></div>
+    </div>
+    <div class="stage-card" style="--stage-color:var(--red)">
+      <div class="stage-badge">Phase 04</div>
+      <div class="stage-name">接槓</div>
+      <div class="stage-en">Catch / Third Pull</div>
+      <ul>
+        <li>槓鈴仍在上升時，身體主動下鑽至槓鈴下方</li>
+        <li>落入全深頭頂深蹲（Overhead Squat）接槓位置</li>
+        <li>肩關節處於完全外展＋外旋複合高壓姿態</li>
+        <li>股四頭肌、三角肌、旋轉肌群受高度離心負荷</li>
+        <li>「第三拉」：主動向下拉槓鈴（精英技術要點）</li>
+      </ul>
+      <div class="stage-tool">接槓衝擊：<span>約 1.5–2.5× 體重（離心接受）</span></div>
+    </div>
+  </div>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">1.77</div>
+      <div class="denom">m/s</div>
+      <div class="desc">希臘精英選手第二拉峰值槓鈴速度<sup class="cite">[2]</sup></div>
+    </div>
+    <div class="big-stat">
+      <div class="num">2–3×</div>
+      <div class="denom">BW</div>
+      <div class="desc">第二拉地面反作用力峰值（體重倍數）<sup class="cite">[1]</sup></div>
+    </div>
+    <div class="big-stat">
+      <div class="num">69 kg</div>
+      <div class="denom">研究量級</div>
+      <div class="desc">頂尖精英 vs 次精英技術差異最清晰的量級<sup class="cite">[7]</sup></div>
+    </div>
+  </div>
+
+  <h3>關鍵文獻</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">Journal of Sports Sciences · 2000<sup class="cite">[2]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/10972413/" target="_blank">Three-dimensional kinematic analysis of the snatch of elite Greek weightlifters</a></div>
+      <div class="research-findings">
+        <div class="research-finding">精英希臘選手三維分析，確立各關節角度與槓鈴速度基準值</div>
+        <div class="research-finding">峰值槓鈴速度約 1.77 m/s，位於第二拉尾段</div>
+        <div class="research-finding">接槓深度與接受成功率直接相關</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">JSCR · 2012<sup class="cite">[5]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/22614145/" target="_blank">Three-dimensional kinematic analysis of the snatch technique for lifting different barbell weights</a></div>
+      <div class="research-findings">
+        <div class="research-finding">從 60% 增至 100% 1RM，槓鈴垂直速度線性下降</div>
+        <div class="research-finding">重負荷下第一拉歷時延長、第二拉縮短</div>
+        <div class="research-finding">峰值槓鈴高度隨負荷增加而降低</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">JSCR · 2018<sup class="cite">[7]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/30094358/" target="_blank">Comparative 3D kinematic analysis of snatch technique: top-elite vs sub-elite (69-kg)</a></div>
+      <div class="research-findings">
+        <div class="research-finding">頂尖精英的槓鈴峰值高度與速度均顯著更高</div>
+        <div class="research-finding">第一拉和接槓階段膝屈角更大為精英技術標誌</div>
+        <div class="research-finding">成績差異主要來自第二拉爆發力而非第一拉技術</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 02 -->
+<section id="power">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">功率輸出與關節動力學</h2>
+  </div>
+  <p>抓舉的第二拉是人類動作中功率輸出密度最高的階段之一。精英男子的峰值功率依量級不同介於 2,100–5,500 W，相對體重約 50–65 W/kg，遠超大多數其他競技動作。<sup class="cite">[9]</sup><sup class="cite">[10]</sup> 髖關節在此階段扮演主導角色，貢獻約 60–70% 的總功率輸出。<sup class="cite">[14]</sup></p>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">~4,800</div>
+      <div class="denom">W</div>
+      <div class="desc">110 kg 量級精英男子第二拉峰值功率<sup class="cite">[9]</sup></div>
+    </div>
+    <div class="big-stat">
+      <div class="num">50–65</div>
+      <div class="denom">W/kg</div>
+      <div class="desc">體重標準化相對功率密度（精英男子）<sup class="cite">[9]</sup><sup class="cite">[10]</sup></div>
+    </div>
+    <div class="big-stat">
+      <div class="num">~60–70%</div>
+      <div class="denom">髖貢獻</div>
+      <div class="desc">第二拉總功率中髖關節力矩的貢獻比例<sup class="cite">[14]</sup></div>
+    </div>
+  </div>
+
+  <h3>各關節功率貢獻</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>關節</th>
+          <th>第二拉功率貢獻</th>
+          <th>主要動作</th>
+          <th>代表肌群</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>髖關節</td>
+          <td><strong>~60–70%</strong>（主導）</td>
+          <td>爆發性髖伸展</td>
+          <td>臀大肌、腘旁肌</td>
+        </tr>
+        <tr>
+          <td>膝關節</td>
+          <td>~20–25%</td>
+          <td>爆發性膝伸展</td>
+          <td>股四頭肌</td>
+        </tr>
+        <tr>
+          <td>踝關節</td>
+          <td>~10–15%</td>
+          <td>蹠屈（提踵）</td>
+          <td>腓腸肌、比目魚肌</td>
+        </tr>
+        <tr>
+          <td>肩帶</td>
+          <td>輔助</td>
+          <td>聳肩＋手臂輔助拉</td>
+          <td>斜方肌（上束）、三角肌</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.82rem;color:var(--text3);margin-top:-.5rem">資料來源：<sup class="cite">[12]</sup><sup class="cite">[13]</sup><sup class="cite">[14]</sup>；數值為多項研究的綜合估計。</p>
+
+  <div class="info-block gold">
+    <strong>功率的歷史意義</strong>
+    奧林匹克舉重是少數能在短時間內系統發展「力-速度」曲線全域能力的訓練方法之一。Garhammer（1980）建立的功率計算方法顯示，第二拉功率為第一拉的 3–5 倍，確立了「第二拉爆發」作為技術優化核心目標的科學依據。<sup class="cite">[9]</sup><sup class="cite">[11]</sup>
+  </div>
+
+  <h3>關鍵文獻</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">Med Sci Sports Exerc · 1980<sup class="cite">[9]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/7392903/" target="_blank">Power production by Olympic weightlifters</a></div>
+      <div class="research-findings">
+        <div class="research-finding">建立抓舉功率計算方法，56 kg 級約 2,100 W，110 kg 級約 4,800 W</div>
+        <div class="research-finding">確立第二拉為最高功率輸出階段，為第一拉的 3–5 倍</div>
+        <div class="research-finding">首次以系統方法比較各量級選手的競賽功率數據</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">JSCR · 2015<sup class="cite">[14]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/28933236/" target="_blank">Contribution of lower extremity kinetics to whole body power output during the power snatch</a></div>
+      <div class="research-findings">
+        <div class="research-finding">髖關節力矩大小正相關於整體功率輸出</div>
+        <div class="research-finding">膝關節力矩負相關於功率（較少膝依賴 = 更有效率）</div>
+        <div class="research-finding">支持「髖主導爆發」作為功率抓舉的技術優化目標</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 03 -->
+<section id="barpath">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">槓鈴路徑分析</h2>
+  </div>
+  <p>槓鈴路徑（barbell trajectory）是評估抓舉技術效率最直觀的指標，由各階段的三維動作學特性決定。研究顯示，精英選手的路徑並非直線，而呈特定的曲線形態；橫向偏移量的控制程度是區分技術水平的關鍵。<sup class="cite">[15]</sup><sup class="cite">[19]</sup></p>
+
+  <svg viewBox="0 0 320 390" style="width:100%;max-width:360px;display:block;margin:1.5rem auto;border-radius:12px;background:var(--card)">
+    <line x1="45" y1="65" x2="285" y2="65" stroke="rgba(79,158,255,0.07)" stroke-width="1"/>
+    <line x1="45" y1="125" x2="285" y2="125" stroke="rgba(79,158,255,0.07)" stroke-width="1"/>
+    <line x1="45" y1="185" x2="285" y2="185" stroke="rgba(79,158,255,0.07)" stroke-width="1"/>
+    <line x1="45" y1="245" x2="285" y2="245" stroke="rgba(79,158,255,0.07)" stroke-width="1"/>
+    <line x1="45" y1="305" x2="285" y2="305" stroke="rgba(79,158,255,0.07)" stroke-width="1"/>
+    <line x1="45" y1="355" x2="285" y2="355" stroke="rgba(79,158,255,0.07)" stroke-width="1"/>
+    <line x1="160" y1="48" x2="160" y2="368" stroke="rgba(79,158,255,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
+    <text x="160" y="380" text-anchor="middle" font-size="9" fill="rgba(107,138,170,0.75)" font-family="JetBrains Mono, monospace">中足基準線</text>
+    <text x="42" y="358" text-anchor="end" font-size="9" fill="rgba(107,138,170,0.75)" font-family="JetBrains Mono, monospace">地板</text>
+    <text x="42" y="70" text-anchor="end" font-size="9" fill="rgba(107,138,170,0.75)" font-family="JetBrains Mono, monospace">高</text>
+    <text x="50" y="390" font-size="9" fill="rgba(107,138,170,0.65)" font-family="JetBrains Mono, monospace">← 貼近</text>
+    <text x="238" y="390" font-size="9" fill="rgba(107,138,170,0.65)" font-family="JetBrains Mono, monospace">遠離 →</text>
+    <!-- Phase segments -->
+    <path d="M 160 355 C 156 310, 152 265, 152 245" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 152 245 C 152 228, 168 213, 173 200" fill="none" stroke="#f5b84b" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 173 200 C 173 183, 147 163, 143 148" fill="none" stroke="#4f9eff" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 143 148 C 143 128, 150 95, 160 65" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Markers -->
+    <circle cx="160" cy="355" r="5" fill="#34d399" stroke="var(--card)" stroke-width="2"/>
+    <circle cx="152" cy="245" r="4" fill="#f5b84b" stroke="var(--card)" stroke-width="2"/>
+    <circle cx="173" cy="200" r="4" fill="#f5b84b" stroke="var(--card)" stroke-width="2"/>
+    <circle cx="143" cy="148" r="4" fill="#4f9eff" stroke="var(--card)" stroke-width="2"/>
+    <circle cx="160" cy="65" r="5" fill="#f87171" stroke="var(--card)" stroke-width="2"/>
+    <!-- Labels -->
+    <text x="168" y="359" font-size="10" fill="#34d399" font-family="PingFang TC, sans-serif">起始</text>
+    <line x1="152" y1="245" x2="130" y2="245" stroke="rgba(107,138,170,0.4)" stroke-width="1"/>
+    <text x="128" y="249" font-size="10" fill="rgba(168,190,216,0.85)" text-anchor="end" font-family="PingFang TC, sans-serif">膝高</text>
+    <text x="178" y="204" font-size="10" fill="#f5b84b" font-family="PingFang TC, sans-serif">過渡</text>
+    <line x1="143" y1="148" x2="108" y2="148" stroke="rgba(107,138,170,0.4)" stroke-width="1"/>
+    <text x="106" y="152" font-size="10" fill="rgba(168,190,216,0.85)" text-anchor="end" font-family="PingFang TC, sans-serif">二拉峰</text>
+    <text x="166" y="69" font-size="10" fill="#f87171" font-family="PingFang TC, sans-serif">接槓</text>
+    <!-- Legend -->
+    <rect x="188" y="258" width="118" height="92" rx="6" fill="rgba(14,25,41,0.75)" stroke="rgba(30,48,80,0.6)" stroke-width="1"/>
+    <circle cx="200" cy="274" r="3.5" fill="#34d399"/>
+    <text x="208" y="278" font-size="9" fill="rgba(168,190,216,0.9)" font-family="PingFang TC, sans-serif">一拉（First Pull）</text>
+    <circle cx="200" cy="290" r="3.5" fill="#f5b84b"/>
+    <text x="208" y="294" font-size="9" fill="rgba(168,190,216,0.9)" font-family="PingFang TC, sans-serif">過渡（Transition）</text>
+    <circle cx="200" cy="306" r="3.5" fill="#4f9eff"/>
+    <text x="208" y="310" font-size="9" fill="rgba(168,190,216,0.9)" font-family="PingFang TC, sans-serif">二拉（Second Pull）</text>
+    <circle cx="200" cy="322" r="3.5" fill="#f87171"/>
+    <text x="208" y="326" font-size="9" fill="rgba(168,190,216,0.9)" font-family="PingFang TC, sans-serif">接槓（Catch）</text>
+    <text x="196" y="342" font-size="8" fill="rgba(107,138,170,0.7)" font-family="JetBrains Mono, monospace">※ 示意，非等比例</text>
+  </svg>
+
+  <div class="info-block">
+    <strong>軌跡類型的競賽流行率</strong>
+    Cunanan et al.（2020）調查 2015 年世錦賽與 2017 年泛美賽共 319 次成功抓舉後發現，「環形（looping）」軌跡最為普遍（佔 53–59%），且此模式不因性別、量級或排名而改變。這是目前規模最大的競賽情境槓鈴軌跡研究。<sup class="cite">[19]</sup>
+  </div>
+
+  <div class="info-block gold">
+    <strong>失敗的根本不是力量不足</strong>
+    Gourgoulis et al.（2009）的關鍵發現：失敗（前落）與成功嘗試在肢段動作模式或槓鈴峰值高度上無顯著差異，兩者的區別僅在翻轉點時槓鈴合力加速度的方向。失敗的根本原因是翻轉至接槓之間的引導動作不足，而非力量不足。<sup class="cite">[18]</sup>
+  </div>
+
+  <h3>關鍵文獻</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">JSCR · 2009<sup class="cite">[18]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/19197201/" target="_blank">Unsuccessful vs. successful performance in snatch lifts: a kinematic approach</a></div>
+      <div class="research-findings">
+        <div class="research-finding">失敗與成功的差異僅在翻轉點槓鈴合力加速度方向</div>
+        <div class="research-finding">前落失敗與翻轉後引導至接槓的後向分力不足有關</div>
+        <div class="research-finding">技術矯正應聚焦翻轉引導，而非第二拉力量</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">Sports (Basel) · 2020<sup class="cite">[19]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/32854406/" target="_blank">Survey of barbell trajectory from the 2015 World and 2017 Pan-American Weightlifting Championships</a></div>
+      <div class="research-findings">
+        <div class="research-finding">分析 319 次競賽成功抓舉，環形（looping）軌跡佔 53–59%</div>
+        <div class="research-finding">軌跡偏好在性別、量級、排名之間高度一致</div>
+        <div class="research-finding">迄今規模最大的競賽情境槓鈴路徑研究</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">Sports Biomechanics · 2022<sup class="cite">[20]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/32772836/" target="_blank">Biomechanical comparison of successful snatch and unsuccessful frontward barbell drop in world-class male weightlifters</a></div>
+      <div class="research-findings">
+        <div class="research-finding">前落失敗與翻轉至接槓階段槓鈴後向偏移量不足有關</div>
+        <div class="research-finding">過度後仰身體重心是世界級選手前落的關鍵失誤因素</div>
+        <div class="research-finding">確認翻轉段的主動引導為接槓穩定的必要條件</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 04 -->
+<section id="emg">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">EMG 與肌肉激活</h2>
+  </div>
+  <p>由於全負荷抓舉的高速動態特性，完整的表面肌電圖（sEMG）記錄在方法論上極具挑戰。現有研究以次最大負荷或衍生動作（懸掛抓舉、抓舉高拉）為主，以下激活模式為多來源 EMG 研究的綜合推論。<sup class="cite">[21]</sup><sup class="cite">[22]</sup></p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>肌群</th>
+          <th>一拉</th>
+          <th>過渡</th>
+          <th>二拉</th>
+          <th>接槓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>豎脊肌</td>
+          <td>★★★</td><td>★★★</td><td>★★</td><td>★★</td>
+        </tr>
+        <tr>
+          <td>股四頭肌</td>
+          <td>★★★</td><td>★★</td><td>★★</td><td>★★★（離心）</td>
+        </tr>
+        <tr>
+          <td>臀大肌</td>
+          <td>★★</td><td>★</td><td>★★★</td><td>★★</td>
+        </tr>
+        <tr>
+          <td>腘旁肌</td>
+          <td>★★</td><td>★</td><td>★★★</td><td>★</td>
+        </tr>
+        <tr>
+          <td>腓腸肌</td>
+          <td>★</td><td>★</td><td>★★★</td><td>★</td>
+        </tr>
+        <tr>
+          <td>斜方肌（上束）</td>
+          <td>★</td><td>★</td><td>★★★</td><td>★★</td>
+        </tr>
+        <tr>
+          <td>三角肌</td>
+          <td>—</td><td>—</td><td>★</td><td>★★★</td>
+        </tr>
+        <tr>
+          <td>旋轉肌群</td>
+          <td>—</td><td>—</td><td>★</td><td>★★★</td>
+        </tr>
+        <tr>
+          <td>闊背肌</td>
+          <td>★★</td><td>★★</td><td>★★</td><td>★</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="emg-legend">★★★ 高度激活 &nbsp;·&nbsp; ★★ 中度激活 &nbsp;·&nbsp; ★ 低度激活 &nbsp;·&nbsp; — 幾乎不激活<br>綜合推論，基於 <sup class="cite">[21]</sup><sup class="cite">[22]</sup>；非單一研究的直接測量值。</p>
+
+  <div class="info-block purple">
+    <strong>專家與業餘選手的肌電差異</strong>
+    Storey & Smith（2023）發現，精英選手在懸掛功率抓舉中表現出更高效的肌肉募集模式：斜方肌激活時機更早、各肌群激活的一致性更高。這種「預激活（pre-activation）」模式減少了力量損失，是專家級抓舉技術的肌電生理標誌。<sup class="cite">[22]</sup>
+  </div>
+
+  <h3>關鍵文獻</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">J Sports Sci Med · 2023<sup class="cite">[22]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38045750/" target="_blank">Effects of expertise on muscle activity during the hang power snatch compared to snatch pulls</a></div>
+      <div class="research-findings">
+        <div class="research-finding">精英、進階、業餘三組的 EMG 直接比較</div>
+        <div class="research-finding">精英斜方肌激活時機更早、一致性更高</div>
+        <div class="research-finding">整體肌肉募集效率隨技術水平提升而改善</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">Int J Sports Sci Coaching · 2025<sup class="cite">[23]</sup></div>
+      <div class="research-title"><a href="https://journals.sagepub.com/doi/10.1177/17479541241296023" target="_blank">The use of lifting straps during snatch alters muscle activation patterns</a></div>
+      <div class="research-findings">
+        <div class="research-finding">護腕帶顯著降低前臂與肱二頭肌激活</div>
+        <div class="research-finding">同時增加股外側肌與闊背肌活性</div>
+        <div class="research-finding">提示護腕帶改變下肢訓練刺激分配，影響整體訓練效果</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 05 -->
+<section id="training">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">技術訓練與衍生動作</h2>
+  </div>
+  <p>抓舉的訓練不僅限於全動作練習。一系列衍生動作（weightlifting derivatives）讓不同目標和技術水平的運動員均能從奧林匹克舉重的動作模式中獲益，並針對力-速度曲線的不同區段施加刺激。<sup class="cite">[26]</sup><sup class="cite">[27]</sup></p>
+
+  <h3>衍生動作層級</h3>
+  <div class="strategy-steps">
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(79,158,255,.15);color:var(--accent)">1</div>
+      <div class="step-content">
+        <div class="step-title">抓舉高拉（Snatch Pull）<sup class="cite">[26]</sup></div>
+        <div class="step-desc">完整執行第一拉與第二拉，但不需接槓。能以超過 1RM 的負荷訓練拉起力學，強化後側鏈與斜方肌爆發力，是力量週期的主力工具。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(245,184,75,.15);color:var(--gold)">2</div>
+      <div class="step-content">
+        <div class="step-title">懸掛抓舉（Hang Snatch）<sup class="cite">[26]</sup><sup class="cite">[29]</sup></div>
+        <div class="step-desc">從膝蓋上方或下方的懸掛位置開始，省略第一拉的技術要求，聚焦過渡與第二拉的爆發模式。研究顯示與懸掛上搏對女子運動員的爆發力改善效果相當。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(79,158,255,.15);color:var(--accent)">3</div>
+      <div class="step-content">
+        <div class="step-title">積木抓舉（Block Snatch）<sup class="cite">[26]</sup></div>
+        <div class="step-desc">利用積木將槓鈴架至膝蓋高度，系統性隔離並強化過渡至接槓的特定技術段落，常用於爆發期針對性訓練。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(52,211,153,.15);color:var(--green)">4</div>
+      <div class="step-content">
+        <div class="step-title">功率抓舉（Power Snatch）<sup class="cite">[26]</sup></div>
+        <div class="step-desc">接槓於深蹲平行以上，降低接槓深度要求，適合需要爆發力但接槓技術尚未成熟的運動員，或以速度發展為主的訓練週期。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank" style="background:rgba(167,139,250,.15);color:var(--purple)">5</div>
+      <div class="step-content">
+        <div class="step-title">跳躍聳肩（Jump Shrug）<sup class="cite">[27]</sup><sup class="cite">[28]</sup></div>
+        <div class="step-desc">去除接槓與手臂拉高，純粹訓練三關節延伸的速度端。研究顯示其相對峰值功率高於懸掛高拉與功率抓舉，是力-速度曲線高速區的針對性工具。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <strong>力-速度曲線的訓練分配</strong>
+    依目標選擇衍生動作：高力低速端→抓舉高拉；中域平衡→功率抓舉、懸掛抓舉；高速低力端→懸掛高拉、跳躍聳肩。Suchomel et al.（2020）的 10 週 RCT 顯示，力/速度超負荷衍生動作組在等長峰值力與衝刺速度的改善優於對照組。<sup class="cite">[27]</sup><sup class="cite">[30]</sup>
+  </div>
+
+  <h3>關鍵文獻</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">Sports Medicine · 2015<sup class="cite">[26]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/25689955/" target="_blank">Weightlifting pulling derivatives: rationale for implementation and application</a></div>
+      <div class="research-findings">
+        <div class="research-finding">系統論述各拉起衍生動作的生物力學比較與適用族群</div>
+        <div class="research-finding">去除接槓仍能保留三關節爆發力刺激的完整性</div>
+        <div class="research-finding">為非競技運動員採用舉重動作提供科學理據</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">JSCR · 2023<sup class="cite">[31]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/36952649/" target="_blank">NSCA position statement on weightlifting for sports performance</a></div>
+      <div class="research-findings">
+        <div class="research-finding">NSCA 官方立場：舉重動作比一般阻力訓練或增強式訓練產生更大的 RFD 適應</div>
+        <div class="research-finding">衍生動作尤其適合需要爆發力但無競技舉重需求的運動員</div>
+        <div class="research-finding">提供訓練分期的實務建議框架</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">JSCR · 2020<sup class="cite">[30]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/32398635/" target="_blank">Training with weightlifting derivatives: the effects of force and velocity overload stimuli</a></div>
+      <div class="research-findings">
+        <div class="research-finding">10 週 RCT，力/速度超負荷組等長峰值力、衝刺與變向速度改善最優</div>
+        <div class="research-finding">最佳動作選擇取決於當前週期目標（力量 vs 速度端）</div>
+        <div class="research-finding">驗證超負荷原則在衍生動作訓練中的可行性</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 06 -->
+<section id="injury">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">傷害流行病學</h2>
+  </div>
+  <p>儘管技術難度被認為是高風險項目，現有流行病學數據顯示奧林匹克舉重的傷害率（每千訓練小時）與多數接觸性運動相近甚至更低，且大多為慢性/過度使用傷害，急性傷害相對稀少。<sup class="cite">[33]</sup><sup class="cite">[34]</sup></p>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">3.3</div>
+      <div class="denom">/ 千訓練小時</div>
+      <div class="desc">美國奧訓中心 6 年精英舉重傷害率<sup class="cite">[32]</sup></div>
+    </div>
+    <div class="big-stat">
+      <div class="num">2.4–3.3</div>
+      <div class="denom">/ 千訓練小時</div>
+      <div class="desc">系統回顧彙整的舉重傷害率範圍<sup class="cite">[33]</sup></div>
+    </div>
+    <div class="big-stat">
+      <div class="num">64.8%</div>
+      <div class="denom">集中三部位</div>
+      <div class="desc">腰椎＋膝＋肩合計傷害佔比<sup class="cite">[32]</sup></div>
+    </div>
+  </div>
+
+  <h3>傷害部位分布</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>部位</th>
+          <th>估計佔比</th>
+          <th>常見傷害類型</th>
+          <th>主要機制</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>腰椎</td>
+          <td>~24%</td>
+          <td>肌肉拉傷、椎間盤</td>
+          <td>一拉屈曲力矩，反覆高負荷累積</td>
+        </tr>
+        <tr>
+          <td>膝部</td>
+          <td>~22%</td>
+          <td>韌帶扭傷、髕腱炎</td>
+          <td>接槓深蹲的高離心負荷</td>
+        </tr>
+        <tr>
+          <td>肩部</td>
+          <td>~20%</td>
+          <td>前向不穩定、旋轉肌腱病</td>
+          <td>接槓外展＋外旋複合高壓<sup class="cite">[35]</sup></td>
+        </tr>
+        <tr>
+          <td>腕／前臂</td>
+          <td>~11%</td>
+          <td>TFCC 損傷、橈骨過度使用</td>
+          <td>接槓腕關節過度背屈</td>
+        </tr>
+        <tr>
+          <td>肘部</td>
+          <td>~9%</td>
+          <td>外上髁炎</td>
+          <td>手臂輔助拉的反覆衝擊</td>
+        </tr>
+        <tr>
+          <td>其他</td>
+          <td>~14%</td>
+          <td>踝、手指等</td>
+          <td>多樣</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.82rem;color:var(--text3);margin-top:-.5rem">資料來源：<sup class="cite">[32]</sup><sup class="cite">[33]</sup><sup class="cite">[35]</sup><sup class="cite">[36]</sup>；佔比為多項研究的綜合估計。</p>
+
+  <div class="info-block red">
+    <strong>肩部：抓舉特有的風險體位</strong>
+    接槓時肩關節同時處於完全外展＋外旋姿態，對旋轉肌群（特別是棘下肌）形成高度離心負荷。Daher et al.（2025）的範圍回顧指出，前向不穩定與旋轉肌群過度使用是舉重選手最常見的肩部傷害類型，而接槓姿勢是最主要的風險體位。<sup class="cite">[35]</sup>
+  </div>
+
+  <h3>關鍵文獻</h3>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">BJSM · 2017<sup class="cite">[33]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/27707741/" target="_blank">Injuries among weightlifters and powerlifters: a systematic review</a></div>
+      <div class="research-findings">
+        <div class="research-finding">首份涵蓋舉重與健力的系統回顧</div>
+        <div class="research-finding">傷害率 2.4–3.3/千小時，脊椎、肩、膝為最常見部位</div>
+        <div class="research-finding">與非接觸性力量運動相近，低於多數接觸性運動</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">BJSM · 2024<sup class="cite">[36]</sup></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/39650568/" target="_blank">Injuries in weightlifting and powerlifting: an updated systematic review</a></div>
+      <div class="research-findings">
+        <div class="research-finding">更新 Aasa 2017，競賽盛行率 10.7–68%</div>
+        <div class="research-finding">抓舉、挺舉與深蹲為最常見傷害動作（佔 21–46%）</div>
+        <div class="research-finding">確認膝、腰椎、肩與手/指為主要傷害部位</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REF -->
+<section id="references">
+  <div class="section-header">
+    <span class="section-num">REF</span>
+    <h2 class="section-title">參考文獻</h2>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">一、動作運動學與階段分析</div>
+    <div class="ref-item">
+      <div class="ref-num">1</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/491869/" target="_blank">The pull in Olympic weightlifting</a></div>
+        <div class="ref-meta">Enoka RM · Medicine and Science in Sports · 1979 · 奠定抓舉分階段分析框架；首次系統描述「雙膝再屈（scoop）」與地面反作用力三段波形</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">2</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/10972413/" target="_blank">Three-dimensional kinematic analysis of the snatch of elite Greek weightlifters</a></div>
+        <div class="ref-meta">Gourgoulis V et al. · Journal of Sports Sciences · 2000 · 確立精英各關節角度與槓鈴速度基準值，峰值速度約 1.77 m/s</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">3</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/12173949/" target="_blank">Comparative 3-dimensional kinematic analysis of the snatch technique in elite male and female Greek weightlifters</a></div>
+        <div class="ref-meta">Gourgoulis V et al. · JSCR · 2002 · 揭示性別差異：女性過渡期膝屈角較大，整體技術模式高度相似</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">4</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/15470309/" target="_blank">Snatch lift kinematics and bar energetics in male adolescent and adult weightlifters</a></div>
+        <div class="ref-meta">Gourgoulis V et al. · J Sports Med Phys Fitness · 2004 · 成人在第二拉相對功率顯著高於青少年；確認第二拉為發展關鍵指標</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">5</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/22614145/" target="_blank">Three-dimensional kinematic analysis of the snatch technique for lifting different barbell weights</a></div>
+        <div class="ref-meta">Hadi G et al. · JSCR · 2012 · 60%→100% 1RM，槓鈴垂直速度線性下降；峰值高度隨負荷降低</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">6</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3737845/" target="_blank">A gender-based kinematic and kinetic analysis of the snatch lift in elite weightlifters in the 69-kg category</a></div>
+        <div class="ref-meta">Harbili E · J Sports Sci Med · 2012 · 同量級性別對比；男性峰值力與速度顯著較高，整體技術模式相似</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">7</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/30094358/" target="_blank">Comparative 3D kinematic analysis of snatch technique: top-elite vs sub-elite male weightlifters (69-kg)</a></div>
+        <div class="ref-meta">Shi H et al. · JSCR · 2018 · 頂尖精英槓鈴峰值高度與速度均顯著更高；接槓階段膝屈角更大為技術標誌</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">8</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/26357926/" target="_blank">Biomechanical analysis of the snatch technique in junior elite female weightlifters</a></div>
+        <div class="ref-meta">Ye L et al. · JSCR · 2015 · 青少年女子精英三維分析；第一拉歷時最長，第二拉產生最大關節伸展角度</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">二、功率輸出與關節動力學</div>
+    <div class="ref-item">
+      <div class="ref-num">9</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/7392903/" target="_blank">Power production by Olympic weightlifters</a></div>
+        <div class="ref-meta">Garhammer J · Med Sci Sports Exerc · 1980 · 建立功率計算方法；56 kg 級約 2,100 W，110 kg 級約 4,800 W；第二拉為第一拉的 3–5 倍</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">10</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://journals.humankinetics.com/view/journals/jab/1/2/article-p122.xml" target="_blank">Biomechanical profiles of Olympic weightlifters</a></div>
+        <div class="ref-meta">Garhammer J · Int J Sport Biomech · 1985 · 分析 1984 年奧運金牌選手；建立各量級槓鈴速度曲線與競賽功率基準值</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">11</div>
+      <div class="ref-content">
+        <div class="ref-title">A review of power output studies of Olympic and powerlifting: methodology, performance prediction, and evaluation tests</div>
+        <div class="ref-meta">Garhammer J · JSCR · 1993 · 整合二十年功率輸出文獻；統一測量方法論，建立跨量級相對功率比較框架</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">12</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/21975459/" target="_blank">Kinematic and kinetic synergies of the lower extremities during the pull in Olympic weightlifting</a></div>
+        <div class="ref-meta">Kipp K et al. · J Appl Biomech · 2012 · 函數主成份分析揭示 65–85% 1RM 的多關節下肢力學協同模式</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">13</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/21986692/" target="_blank">Weightlifting performance is related to kinematic and kinetic patterns of the hip and knee joints</a></div>
+        <div class="ref-meta">Kipp K et al. · JSCR · 2012 · 第一拉和過渡期的髖部運動學模式與第二拉膝伸力矩是 1RM 的最強預測指標</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">14</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/28933236/" target="_blank">Contribution of lower extremity kinetics to whole body power output during the power snatch</a></div>
+        <div class="ref-meta">Kipp K & Harris C · JSCR · 2015 · 髖關節力矩正相關、膝力矩負相關於功率輸出，揭示「髖主導爆發」的生物力學根據</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">三、槓鈴路徑分析</div>
+    <div class="ref-item">
+      <div class="ref-num">15</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://journals.lww.com/nsca-scj/Citation/1996/06000/Biomechanics_of_the_Snatch__Toward_a_Higher.6.aspx" target="_blank">Biomechanics of the snatch: toward a higher training efficiency</a></div>
+        <div class="ref-meta">Bartonietz KE · Strength Cond J · 1996 · 建立抓舉槓鈴路徑類型學分類；路徑形態是技術效率的敏感指標</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">16</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/12423184/" target="_blank">Snatch technique of collegiate national level weightlifters</a></div>
+        <div class="ref-meta">Schilling BK et al. · JSCR · 2002 · 分析美國大學全國選拔賽選手；後向足部位移最常見於成功舉起</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">17</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/20508454/" target="_blank">The three-dimensional kinematics of a barbell during the snatch of Taiwanese weightlifters</a></div>
+        <div class="ref-meta">Wu W-L et al. · JSCR · 2010 · 台灣國家隊路徑分析；橫向軌跡差異大，垂直模式高度一致</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">18</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/19197201/" target="_blank">Unsuccessful vs. successful performance in snatch lifts: a kinematic approach</a></div>
+        <div class="ref-meta">Gourgoulis V et al. · JSCR · 2009 · 失敗與成功的差異僅在翻轉點槓鈴合力加速度方向，而非力量或高度</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">19</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/32854406/" target="_blank">Survey of barbell trajectory and kinematics of the snatch from the 2015 World and 2017 Pan-American Weightlifting Championships</a></div>
+        <div class="ref-meta">Cunanan AJ et al. · Sports (Basel) · 2020 · 調查 319 次競賽抓舉；環形（looping）軌跡最普遍（53–59%）</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">20</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/32772836/" target="_blank">Biomechanical comparison of successful snatch and unsuccessful frontward barbell drop in world-class male weightlifters</a></div>
+        <div class="ref-meta">Nagao H et al. · Sports Biomechanics · 2022 · 前落失敗與翻轉至接槓槓鈴後向偏移量不足有關；過度後仰為關鍵失誤</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">四、EMG 與肌肉激活</div>
+    <div class="ref-item">
+      <div class="ref-num">21</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://www.worldscientific.com/doi/10.1142/S0219519413500103" target="_blank">Upper limb movement and EMG activation during the snatch under various loading conditions</a></div>
+        <div class="ref-meta">Liu RL et al. · J Mech Med Biol · 2013 · 6 階段分類測量三角肌與肱二頭肌 EMG；重負荷顯著增加上升期激活</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">22</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38045750/" target="_blank">Effects of expertise on muscle activity during the hang power snatch compared to snatch and clean pulls</a></div>
+        <div class="ref-meta">Storey AG & Smith HK · J Sports Sci Med · 2023 · 精英選手斜方肌激活時機更早、一致性更高；肌肉募集效率隨技術水平提升</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">23</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://journals.sagepub.com/doi/10.1177/17479541241296023" target="_blank">The use of lifting straps during snatch alters muscle activation patterns</a></div>
+        <div class="ref-meta">Lemus SA et al. · Int J Sports Sci Coaching · 2025 · 護腕帶降低前臂激活，增加股外側肌與闊背肌活性；改變訓練刺激分配</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">24</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/36772210/" target="_blank">Field-based biomechanical assessment of the snatch using wearable in-shoe sensors and videos</a></div>
+        <div class="ref-meta">Field A et al. · Sensors · 2023 · 鞋底力傳感器＋2D 視頻現場評估系統；相較實驗室測力板通過驗證</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">五、訓練應用與衍生動作</div>
+    <div class="ref-item">
+      <div class="ref-num">25</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/23719504/" target="_blank">Reviewing current knowledge in snatch performance and technique: the need for future directions in applied research</a></div>
+        <div class="ref-meta">Ho LKW et al. · JSCR · 2014 · 敘事回顧截至 2013 年的抓舉科學；指出整合生物力學模型與即時回饋的研究缺口</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">26</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/25689955/" target="_blank">Weightlifting pulling derivatives: rationale for implementation and application</a></div>
+        <div class="ref-meta">Suchomel TJ et al. · Sports Medicine · 2015 · 系統論述拉起衍生動作的訓練邏輯；去除接槓仍保留三關節爆發力刺激</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">27</div>
+      <div class="ref-content">
+        <div class="ref-title">Enhancing the force-velocity profile of athletes using weightlifting derivatives</div>
+        <div class="ref-meta">Suchomel TJ et al. · Strength Cond J · 2017 · 描述各衍生動作針對力-速度曲線不同區段的訓練機制與分期方法論</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">28</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5592293/" target="_blank">Power-time curve comparison between weightlifting derivatives</a></div>
+        <div class="ref-meta">Suchomel TJ et al. · JSCR · 2017 · 跳躍聳肩相對峰值功率優於懸掛高拉與懸掛功率抓舉</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">29</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/27601779/" target="_blank">Hang cleans and hang snatches produce similar improvements in female collegiate athletes</a></div>
+        <div class="ref-meta">Ayers JL et al. · Biology of Sport · 2016 · 6 週 RCT；兩種懸掛動作對垂直跳、深蹲 1RM 與 40 碼衝刺改善效果相當</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">30</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/32398635/" target="_blank">Training with weightlifting derivatives: the effects of force and velocity overload stimuli</a></div>
+        <div class="ref-meta">Suchomel TJ et al. · JSCR · 2020 · 10 週 RCT；力/速度超負荷組在等長峰值力與衝刺速度改善最優</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">31</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/36952649/" target="_blank">NSCA position statement on weightlifting for sports performance</a></div>
+        <div class="ref-meta">Comfort P et al. · JSCR · 2023 · NSCA 官方立場；舉重動作比一般阻力訓練或增強式訓練產生更大的力量、爆發力與 RFD 適應</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">六、傷害流行病學</div>
+    <div class="ref-item">
+      <div class="ref-num">32</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/16558570/" target="_blank">Injury rates and profiles of elite competitive weightlifters</a></div>
+        <div class="ref-meta">Calhoon G & Fry AC · J Athletic Training · 1999 · 美國奧訓中心 6 年研究；3.3/千小時；腰椎＋膝＋肩合計 64.8%；拉傷與腱炎佔 68.9%</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">33</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/27707741/" target="_blank">Injuries among weightlifters and powerlifters: a systematic review</a></div>
+        <div class="ref-meta">Aasa U et al. · BJSM · 2017 · 首份舉重與健力的系統回顧；2.4–3.3/千小時；脊椎、肩、膝為最常見部位</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">34</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/27328853/" target="_blank">The epidemiology of injuries across the weight-training sports</a></div>
+        <div class="ref-meta">Keogh JWL & Winwood PW · Sports Medicine · 2017 · 跨舉重、健力、CrossFit 流行病學回顧；舉重傷害率低於多數接觸性運動</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">35</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://journals.sagepub.com/doi/10.1177/17585732241258743" target="_blank">Shouldering the load: a scoping review of shoulder injuries in weight-lifting athletes</a></div>
+        <div class="ref-meta">Daher M et al. · Int J Sports Phys Ther · 2025 · 前向不穩定與旋轉肌群過度使用最常見；接槓姿勢（外展＋外旋）為主要風險體位</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">36</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/39650568/" target="_blank">Injuries in weightlifting and powerlifting: an updated systematic review</a></div>
+        <div class="ref-meta">Tarvainen S & Isolehto J · BJSM · 2024 · 更新 Aasa 2017；競賽盛行率 10.7–68%；抓舉、挺舉與深蹲為最常見傷害動作（21–46%）</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-note">本報告整合截至 2026 年 5 月之學術研究成果，共 36 篇同儕審查文獻，涵蓋動作力學、功率分析、槓鈴路徑、EMG、衍生動作訓練與傷害流行病學六大面向。槓鈴路徑 SVG 為示意圖，非等比例。各階段功率與 EMG 數值為多項研究的綜合估計，個別研究數值可能因受試者、量級與測量方法有所差異。訓練建議基於現有文獻，應結合個人狀況並考慮尋求合格教練指導。</p>
+    <div class="footer-badge">Snatch Science · 2026.05</div>
+  </div>
+</footer>
+
+</div>
+</div>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+const sidebar = document.querySelector('aside');
+const backdrop = document.getElementById('backdrop');
+const hamTop = document.getElementById('ham-top');
+function openSidebar(){sidebar.classList.add('open');backdrop.classList.add('open')}
+function closeSidebar(){sidebar.classList.remove('open');backdrop.classList.remove('open')}
+hamTop.addEventListener('click',()=>sidebar.classList.contains('open')?closeSidebar():openSidebar());
+backdrop.addEventListener('click',closeSidebar);
+navLinks.forEach(a=>a.addEventListener('click',()=>{if(window.innerWidth<=900)closeSidebar()}));
+</script>
+</body>
+</html>
