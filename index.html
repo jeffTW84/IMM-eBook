@@ -1,524 +1,247 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMM INC. eBook</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      color: rgb(197, 197, 197);
-      background-color: #000;
-      overflow-x: hidden;
-      line-height: 3;
-    }
+  <title>智動矩陣 電子書平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1929;--bg2:#111f35;--card:#0f1e30;--border:#1e3050;--border2:#2a4070;
+  --text:#e8f1fc;--text2:#a8bed8;--text3:#6b8aaa;
+  --accent:#4f9eff;--gold:#f5b84b;--green:#34d399;--red:#f87171;--purple:#a78bfa;--teal:#2dd4bf;
+  --serif:'Playfair Display',Georgia,serif;--mono:'JetBrains Mono',monospace;
+  --r:8px;--r2:12px;--trans:.18s ease;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','PingFang TC',system-ui,sans-serif;font-size:15px;line-height:1.75;overflow-x:hidden}
 
-    h1, h2, h3, p {
-      line-height: 1.6;
-    }
+/* ── Top Nav ── */
+#topnav{
+  position:fixed;top:0;left:0;width:100%;z-index:200;
+  background:rgba(14,25,41,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 2rem;transition:padding var(--trans),background var(--trans);
+}
+#topnav.solid{background:rgba(14,25,41,.98);padding:.55rem 2rem}
+.nav-brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--text)}
+.nav-brand img{height:32px;filter:invert(1) brightness(2);opacity:.85}
+.nav-brand-text{font-weight:700;font-size:.9rem;line-height:1.2}
+.nav-brand-sub{font-size:.68rem;color:var(--text3);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:.25rem}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.8rem;padding:.4rem .85rem;border-radius:var(--r);border:1px solid transparent;transition:all var(--trans);white-space:nowrap}
+.nav-links a:hover{color:var(--text);border-color:var(--border2);background:rgba(79,158,255,.07)}
+.nav-links a.cta{color:var(--accent);border-color:rgba(79,158,255,.35);background:rgba(79,158,255,.08)}
+.nav-links a.cta:hover{background:rgba(79,158,255,.18)}
+#ham-top{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:.3rem}
+#ham-top span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px;transition:all var(--trans)}
+#mobile-menu{display:none;position:fixed;inset:0;top:60px;background:rgba(14,25,41,.97);z-index:190;padding:2rem;flex-direction:column;gap:1rem;border-top:1px solid var(--border)}
+#mobile-menu a{color:var(--text2);text-decoration:none;font-size:1.05rem;padding:.7rem 0;border-bottom:1px solid var(--border);display:block}
+#mobile-menu.open{display:flex}
 
+/* ── Page Hero ── */
+.page-hero{padding:8rem 2rem 5rem;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% -10%,rgba(79,158,255,.1) 0%,transparent 70%)}
+.hero-label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;opacity:.9}
+.hero-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.15;margin-bottom:.8rem;background:linear-gradient(135deg,#fff 30%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-hero p{font-size:.95rem;color:var(--text2);max-width:520px;margin:0 auto;line-height:1.7}
 
-    .section {
-      padding: 5rem 2rem;
-      margin-top: 10rem;
-      margin-bottom: 10rem;
-      color: rgb(197, 197, 197);
-    }
+/* ── Sections ── */
+section.page-section{max-width:1100px;margin:0 auto;padding:5rem 2rem}
+.section-label{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem;opacity:.8}
+.section-heading{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.4rem);color:var(--text);margin-bottom:.5rem}
+.section-heading span{color:var(--gold)}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
 
-    .section h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-      color: rgb(220, 20, 60);
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-  </style>
-  <style>
-    .fixed-banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      /* 初始高度 */
-      background: black;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
-      font-family: 'Raleway', sans-serif;
-      transition: height 0.3s ease, font-size 0.3s ease;
-    }
+/* ── Catalogue Cards ── */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.6rem;display:flex;flex-direction:column;gap:.6rem;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:border-color var(--trans),transform var(--trans)}
+.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--cat-accent,var(--accent))}
+.cat-card:hover{border-color:var(--cat-accent,var(--accent));transform:translateY(-3px)}
+.cat-num{font-family:var(--mono);font-size:.66rem;color:var(--text3);letter-spacing:.08em}
+.cat-category{font-family:var(--mono);font-size:.7rem;color:var(--cat-accent,var(--accent));letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.cat-title{font-family:var(--serif);font-size:1.2rem;color:var(--text);line-height:1.3;margin-top:.15rem}
+.cat-desc{font-size:.82rem;color:var(--text2);line-height:1.72;flex:1}
+.cat-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
+.cat-tag{font-family:var(--mono);font-size:.63rem;padding:.13rem .48rem;border-radius:4px;background:rgba(79,158,255,.07);border:1px solid var(--border2);color:var(--text3)}
+.cat-cta{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;margin-top:.4rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.74rem;color:var(--cat-accent,var(--accent))}
+.cat-cta::after{content:'→';transition:transform var(--trans)}
+.cat-card:hover .cat-cta::after{transform:translateX(4px)}
+.cat-status{font-size:.63rem;color:var(--text3)}
 
-    .fixed-banner.shrink {
-      height: 50px;
-      /* 滑動後縮小的高度 */
-      font-size: 1.2rem;
-      /* 滑動後的字體大小 */
-    }
+/* ── Footer ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2rem 2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:start}
+.footer-brand{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem;text-decoration:none}
+.footer-brand img{height:30px;filter:invert(1) brightness(2);opacity:.75}
+.footer-brand-text{font-weight:700;font-size:.9rem;color:var(--text)}
+.footer-info{font-size:.8rem;color:var(--text3);line-height:2}
+.footer-info a{color:var(--text3);text-decoration:none;transition:color var(--trans)}
+.footer-info a:hover{color:var(--text2)}
+.footer-social{display:flex;flex-direction:column;align-items:flex-end;gap:.75rem}
+.social-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text2);text-decoration:none;font-size:.82rem;padding:.5rem 1rem;border:1px solid var(--border2);border-radius:var(--r);transition:all var(--trans)}
+.social-link:hover{color:var(--text);border-color:var(--accent);background:rgba(79,158,255,.07)}
+.footer-copy{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.75rem;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
 
-    .fixed-banner .highlight {
-      font-size: 2rem;
-      /* 特別放大的字體大小 */
-      font-weight: bold;
-      color: red;
-      /* 特別標記的顏色 */
-      margin: 0 0.3rem;
-      /* 與周圍文字保持間距 */
-    }
-
-    .fixed-banner a {
-      color: white;
-      /* 固定連結字體顏色 */
-      text-decoration: none;
-      /* 移除底線 */
-    }
-
-    .fixed-banner a:visited {
-      color: white;
-      /* 點擊過後的顏色 */
-    }
-
-    .fixed-banner a:hover {
-      color: rgb(127, 127, 127);
-      /* 滑鼠懸停時的顏色 */
-    }
-
-    .fixed-banner a:active {
-      color: rgb(62, 62, 62);
-      /* 點擊中的顏色 */
-    }
-
-    @keyframes float {
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
-
-      50% {
-        transform: translate(10px, 10px);
-      }
-    }
-  </style>
-  <style>
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      color: #ccc;
-      background-color: #000;
-    }
-
-    .bookshelf {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .book {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 10px;
-      overflow: hidden;
-      width: 300px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .book:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
-    }
-
-    .book img {
-      width: 100%;
-      height: auto;
-    }
-
-    .book-info {
-      padding: 1rem;
-      text-align: left;
-    }
-
-    .book-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #ff4b5c;
-      margin-bottom: 0.5rem;
-    }
-
-    .book-meta {
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .book-meta span {
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .book-link {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      color: #fff;
-      background: crimson;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    .book-link:hover {
-      background: #e63946;
-    }
-  </style>
-  <style>
-    .normal-content {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      text-align: justify;
-      border-left: 5px solid crimson;
-      padding-left: 1rem;
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    .box-content {
-      font-size: 1.2rem; 
-      line-height: 1.8; 
-      text-align: justify; 
-      border: 2px dashed crimson; 
-      padding: 1rem; 
-      border-radius: 10px; 
-      margin: 1rem 0;
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    .set-container {
-      margin: 2rem 0; 
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-
-    .set-Grid {
-      display: flex; 
-      align-items: flex-start; 
-      margin-bottom: 2rem;
-    }
-
-    .set-no {
-      font-size: 2.5rem; 
-      font-weight: bold; 
-      color: crimson; 
-      margin-right: 1rem;
-    }
-
-    .set-title {
-      margin: 0; 
-      font-size: 1.5rem; 
-      color: white;
-    }
-
-    .set-content {
-      margin: 0.5rem 0; 
-      font-size: 1rem; 
-      line-height: 1.6; 
-      color: rgb(197, 197, 197);
-      animation: fadeInUp 0.8s ease forwards;
-    }
-  </style>
-  <style>
-    .recommendation {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      justify-content: center;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 20px;
-    }
-
-    .recommendation-card {
-      background: linear-gradient(120deg, rgba(255, 100, 150, 0.3), rgba(100, 100, 255, 0.2));
-      border-radius: 20px;
-      width: 260px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      text-decoration: none;
-      color: #fff;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .recommendation-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.4);
-    }
-
-    .recommendation-card img {
-      max-width: 80%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease;
-      filter: grayscale(50%);
-    }
-
-    .recommendation-card img:hover {
-      transform: scale(1.2);
-      filter: grayscale(0%);
-    }
-
-    .recommendation-card h3 {
-      margin: 1rem 0;
-      font-size: 1.8rem;
-      font-family: 'Noto Sans TC', sans-serif;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 0.1em;
-    }
-
-    .recommendation-card p {
-      font-size: 1rem;
-      opacity: 0.85;
-      font-family: 'Noto Sans TC', sans-serif;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .recommendation-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
-      opacity: 0;
-      transition: opacity 0.4s;
-      border-radius: 20px;
-    }
-
-    .recommendation-card:hover::after {
-      opacity: 1;
-    }
-  </style>
-  <style>
-    .footer {
-      background-color: #111;
-      color: #ccc;
-      padding: 2rem 1rem;
-      margin-top: 5rem;
-      padding-top: 5rem;
-      padding-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer .company-info {
-      flex: 1 1 40%;
-      text-align: left;
-    }
-
-    .footer .company-info a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer .company-info a:hover {
-      color: #fff;
-    }
-
-    .footer .social {
-      flex: 1 1 28%;
-      text-align: right;
-    }
-
-    .footer .social a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      position: relative;
-      display: inline-block;
-      transition: all 0.3s ease;
-      animation: neon-glow 1.5s infinite alternate;
-      background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer .social a:hover {
-      transform: scale(1.1);
-      text-shadow: 0 0 5px #ff00cc, 0 0 10px #3333ff, 0 0 15px #00ffcc;
-    }
-
-    @keyframes neon-glow {
-      0% {
-        text-shadow: 0 0 5px #ff00cc, 0 0 10px #3333ff, 0 0 15px #00ffcc;
-      }
-      100% {
-        text-shadow: 0 0 10px #00ffcc, 0 0 20px #3333ff, 0 0 30px #ff00cc;
-      }
-    }
-
-    .footer .copyright {
-      text-align: center;
-      font-size: 0.875rem;
-      margin-top: 1rem;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
-
-      50% {
-        transform: translate(10px, 10px);
-      }
-    }
-  </style>
+/* ── Responsive ── */
+@media(max-width:768px){
+  #topnav{padding:.65rem 1.2rem}
+  .nav-links{display:none}
+  #ham-top{display:flex}
+  .cat-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-social{align-items:flex-start}
+  section.page-section{padding:3.5rem 1.2rem}
+}
+</style>
 </head>
-
 <body>
-  <div class="fixed-banner" id="banner">
-    <a href="https://intellimotionmatrix.com/">IntelliMotionMatrix</a> <span class="highlight">X</span> <a
-      href="https://www.instagram.com/dongshangyin/">DongShangYin</a>
+
+<!-- Top Nav -->
+<nav id="topnav">
+  <a class="nav-brand" href="https://intellimotionmatrix.com/">
+    <img src="./assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="nav-brand-text">智動矩陣 電子書</div>
+      <div class="nav-brand-sub">Breaking Science Books</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="https://intellimotionmatrix.com/">首頁</a>
+    <a href="https://draco.intellimotionmatrix.com/">Draco 裝置</a>
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">Instagram</a>
+    <a href="mailto:jfiii2ofi@gmail.com" class="cta">聯絡我們</a>
   </div>
+  <button id="ham-top" aria-label="選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <section class="section" style="margin-top: 0rem;">
-    <h2>電子書 / Ebook</h2>
-    <div class="bookshelf">
-      
-      <div class="book">
-        <a href="https://ebook.intellimotionmatrix.com/ebk-1312-ja/preview.html">
-          <img src="https://jeffTW84.github.io/IMM-eBook/assets/p00.png" alt="Book 1 Cover">
-        </a>
-        <div class="book-info">
-          <div class="book-title">單手ICE & AIRCHAIR升天</div>
-          <div class="book-meta">
-            <span>上架日期：2025/1/23</span>
-            <span>語 言：繁體中文</span>
-            <span>版 本：街頭版 / 強化版 / 師範版</span>
-            <span>適合對象：專注於動作訓練的舞者 / 兼顧動作與肌力強化的舞者 / 希望全面理解技術與原理的舞者</span>
-          </div>
-          <a href="https://ebook.intellimotionmatrix.com/ebk-1312-ja/preview.html" class="book-link">閱讀更多</a>
-        </div>
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <a href="https://intellimotionmatrix.com/" onclick="toggleMenu()">首頁</a>
+  <a href="https://draco.intellimotionmatrix.com/" onclick="toggleMenu()">Draco 旋轉訓練裝置</a>
+  <a href="https://www.instagram.com/dongshangyin/" target="_blank" onclick="toggleMenu()">Instagram @dongshangyin</a>
+  <a href="mailto:jfiii2ofi@gmail.com" onclick="toggleMenu()">jfiii2ofi@gmail.com</a>
+</div>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="hero-label">Breaking Science</div>
+  <h1>電子書 / eBook</h1>
+  <p>讓訓練有所依據</p>
+</div>
+
+<!-- Catalogue -->
+<section class="page-section">
+  <div class="section-label">科學報告</div>
+  <h2 class="section-heading">書目 / <span>Catalogue</span></h2>
+
+  <div class="cat-grid">
+
+    <!-- 01 倒立科學 -->
+    <a href="./ebk-1505-hs/handstand-report.html" class="cat-card" style="--cat-accent:var(--accent)">
+      <div class="cat-num">01 · HANDSTAND SCIENCE</div>
+      <div class="cat-category">倒立科學</div>
+      <div class="cat-title">倒立的科學</div>
+      <p class="cat-desc">整合神經科學、生物力學與訓練科學，從感覺系統到肌肉控制，系統化解析倒立平衡機制。涵蓋 12 篇文獻的研究整合報告。</p>
+      <div class="cat-tags">
+        <span class="cat-tag">神經科學</span>
+        <span class="cat-tag">生物力學</span>
+        <span class="cat-tag">感覺系統</span>
+        <span class="cat-tag">訓練科學</span>
       </div>
-    
-      <div class="book">
-        <img src="https://jeffTW84.github.io/IMM-eBook/assets/p00_E.png" alt="Book 2 Cover">
-        <div class="book-info">
-          <div class="book-title">ONE-HAND TURTLE & AIRCHAIR</div>
-          <div class="book-meta">
-            <span>Release Date：(Coming soon)</span>
-            <span>Language：English</span>
-            <span>Versions: Street Edition / Enhanced Edition / Master Edition</span>
-            <span>Suitable for: Dancers focused on movement training / Dancers aiming to enhance both movement and strength / Dancers seeking a comprehensive understanding of techniques and principles</span>
-          </div>
-        </div>
+      <div class="cat-cta">
+        <span class="cat-status">科學報告 · 繁體中文</span>
+        查看報告
       </div>
-    </div>
-  </section>
+    </a>
 
-  <section class="section">
-    <h2>猜你喜歡 / Guess You Like It</h2>
-    <div class="recommendation" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem;">
-      <a href="https://www.instagram.com/p/C2efKsaOwKm/?igsh=Ym9uaGR0cGFwZWoy" class="recommendation-card">
-        <img src="https://jeffTW84.github.io/IMM-eBook/assets/DSY-airchair-anlys.png" alt="請重新整理">
-        <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">AIRCHAIR 分析</h3>
-      </a>
-      <a href="https://www.instagram.com/p/C6v8JWav6FZ/?igsh=MTYwOGlqYnAxM3N5dw==" class="recommendation-card">
-        <img src="https://jeffTW84.github.io/IMM-eBook/assets/DSY-goup-intro.png" alt="請重新整理">
-        <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">基礎升天 介紹</h3>
-      </a>
-      <a href="https://draco.intellimotionmatrix.com/" class="recommendation-card">
-        <img src="https://jeffTW84.github.io/IMM-eBook/assets/draco2-full-view-expand-express-sqr.png" alt="請重新整理">
-        <h3 style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">旋轉訓練裝置</h3>
-      </a>
-    </div>
-  </section>
+    <!-- 02 Thomas Flare 全旋科學 -->
+    <a href="./ebk-1506-tf/thomas-flare-report.html" class="cat-card" style="--cat-accent:var(--gold)">
+      <div class="cat-num">02 · THOMAS FLARE SCIENCE</div>
+      <div class="cat-category">全旋科學</div>
+      <div class="cat-title">Thomas Flare / B-boy Flare 全旋科學</div>
+      <p class="cat-desc">整合體操生物力學與霹靂舞運動科學兩大社群的研究，深度拆解鞍馬圓圈與地板 Flare 的力學機制。涵蓋 26 篇文獻。</p>
+      <div class="cat-tags">
+        <span class="cat-tag">體操生物力學</span>
+        <span class="cat-tag">霹靂舞</span>
+        <span class="cat-tag">EMG 肌電圖</span>
+        <span class="cat-tag">腕部負荷</span>
+      </div>
+      <div class="cat-cta">
+        <span class="cat-status">科學報告 · 繁體中文</span>
+        查看報告
+      </div>
+    </a>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="company-info">
-        智動矩陣有限公司<br>
-        地址：台灣新北市汐止區新台五路一段95號20樓之6<br>
+    <!-- 03 ICE & AIRCHAIR 升天科學 -->
+    <a href="./ebk-1312-ia/ice-airchair-goup-report.html" class="cat-card" style="--cat-accent:var(--green)">
+      <div class="cat-num">03 · BREAKING SCIENCE</div>
+      <div class="cat-category">升天科學</div>
+      <div class="cat-title">單手 ICE & AIRCHAIR 升天</div>
+      <p class="cat-desc">從生物力學、解剖學到運動科學，深度拆解兩個進階 powermove 的升天機制，以科學視角理解動作背後的物理與肌肉邏輯。</p>
+      <div class="cat-tags">
+        <span class="cat-tag">霹靂舞</span>
+        <span class="cat-tag">動作分析</span>
+        <span class="cat-tag">解剖學</span>
+        <span class="cat-tag">力學</span>
+      </div>
+      <div class="cat-cta">
+        <span class="cat-status">科學報告 · 電子書已上市</span>
+        查看報告
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a class="footer-brand" href="https://intellimotionmatrix.com/">
+        <img src="./assets/imm-logo.png" alt="IMM Logo">
+        <span class="footer-brand-text">智動矩陣有限公司</span>
+      </a>
+      <div class="footer-info">
+        地址：台灣新北市汐止區新台五路一段 95 號 20 樓之 6<br>
         統一編號：95465056<br>
-        聯絡電話：<a href="tel:0963820352">0963-820-352</a><br>
-        電子郵件：<a href="mailto:jeff@intellimotionmatrix.com">jeff@intellimotionmatrix.com</a><br>
-      </div>
-      <div class="social">
-        <a href="https://www.instagram.com/dongshangyin/" target="_blank" style="font-weight: bolder;">FOLLOW US ON INSTAGRAM !</a>
+        電話：<a href="tel:0963820352">0963-820-352</a><br>
+        Email：<a href="mailto:jfiii2ofi@gmail.com">jfiii2ofi@gmail.com</a>
       </div>
     </div>
-    <div class="copyright">
-      &copy; 2025 IntelliMotionMatrix INC. All rights reserved.
+    <div class="footer-social">
+      <a href="https://www.instagram.com/dongshangyin/" target="_blank" class="social-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @dongshangyin
+      </a>
+      <a href="https://intellimotionmatrix.com/" class="social-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        智動矩陣首頁
+      </a>
+      <a href="https://draco.intellimotionmatrix.com/" class="social-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Draco 裝置
+      </a>
     </div>
-  </footer>
-  <script>
-    // Handle banner shrink on scroll
-    const banner = document.getElementById('banner');
-    let lastScrollTop = 0;
+  </div>
+  <div class="footer-copy">
+    <span>&copy; 2025 IntelliMotionMatrix INC. All rights reserved.</span>
+    <span style="font-family:var(--mono);font-size:.7rem;color:var(--border2)">ebook.intellimotionmatrix.com</span>
+  </div>
+</footer>
 
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-
-      if (scrollTop > lastScrollTop) {
-        // Scrolling down
-        banner.classList.add('shrink');
-      } else {
-        // Scrolling up
-        banner.classList.remove('shrink');
-      }
-
-      lastScrollTop = scrollTop;
-    });
-  </script>
-  <script>
-    const images = document.querySelectorAll('.gallery img');
-    const dots = document.querySelectorAll('.dots span');
-    let currentIndex = 0;
-    let interval = setInterval(switchImage, 3000);
-
-    function switchImage() {
-      images[currentIndex].classList.remove('active');
-      dots[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.add('active');
-      dots[currentIndex].classList.add('active');
-    }
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        clearInterval(interval);
-        images[currentIndex].classList.remove('active');
-        dots[currentIndex].classList.remove('active');
-        currentIndex = index;
-        images[currentIndex].classList.add('active');
-        dots[currentIndex].classList.add('active');
-        interval = setInterval(switchImage, 3000);
-      });
-    });
-  </script>
+<script>
+const nav = document.getElementById('topnav');
+window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 60), {passive:true});
+function toggleMenu(){ document.getElementById('mobile-menu').classList.toggle('open') }
+</script>
 </body>
-
 </html>
