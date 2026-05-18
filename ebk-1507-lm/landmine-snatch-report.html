@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地雷管抓舉運動科學報告 · Landmine Snatch Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/imm-report.css">
+<style>
+/* Landmine-specific */
+:root{--teal:#2dd4bf}
+.hero::before{background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(45,212,191,.10) 0%,transparent 70%)}
+.hero-tag{background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.25);color:var(--teal)}
+.hero-tag::before{color:var(--teal)}
+.hero h1{background:linear-gradient(135deg,#fff 30%,var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stats{grid-template-columns:repeat(3,1fr)}
+.stat-card::before{background:var(--accent-bar,var(--teal))}
+.info-block.teal{border-color:var(--teal)}
+.big-stat .num{color:var(--teal)}
+.step-rank{background:rgba(45,212,191,.12);color:var(--teal);border:1px solid rgba(45,212,191,.3)}
+.td-hi{color:var(--teal) !important;font-weight:600}
+.emg-bar-wrap{margin:1rem 0}
+.emg-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem}
+.emg-label{font-size:.82rem;color:var(--text2);min-width:180px;flex-shrink:0}
+.emg-sublabel{font-size:.7rem;color:var(--text3)}
+.emg-track{flex:1;background:var(--surface);border-radius:4px;height:18px;overflow:hidden}
+.emg-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:.5rem;font-size:.7rem;font-weight:700;color:rgba(8,16,30,.85)}
+.emg-src{font-size:.7rem;color:var(--text3);min-width:56px;text-align:right;flex-shrink:0}
+.ev-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;padding:.2rem .55rem;border-radius:6px;font-family:var(--mono);margin-left:.4rem;vertical-align:middle}
+.ev-direct{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.3)}
+.ev-inferred{background:rgba(245,184,75,.10);color:var(--gold);border:1px solid rgba(245,184,75,.25)}
+.diagram-wrap{display:flex;justify-content:center;margin:2rem 0}
+.diagram-wrap svg{max-width:420px;width:100%}
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="nav-brand" href="https://ebook.intellimotionmatrix.com/">
+    <img src="../assets/imm-logo.png" alt="IMM Logo">
+    <div>
+      <div class="nav-brand-text">智動矩陣電子書</div>
+      <div class="nav-brand-sub">Breaking Science</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="https://intellimotionmatrix.com/">首頁</a>
+    <a href="https://ebook.intellimotionmatrix.com/">電子書</a>
+    <a href="https://draco.intellimotionmatrix.com/">Draco 裝置</a>
+    <a href="https://www.instagram.com/dongshangyin/" target="_blank">Instagram</a>
+    <a href="mailto:jfiii2ofi@gmail.com" class="cta">聯絡我們</a>
+  </div>
+  <button id="ham-top" aria-label="選單"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="sidebar-backdrop" id="backdrop"></div>
+
+<div class="page-wrap">
+<aside>
+  <nav>
+    <div class="toc-group">概覽</div>
+    <ul>
+      <li><a href="#summary"><span class="toc-num">00</span>執行摘要</a></li>
+    </ul>
+    <div class="toc-group">動作力學</div>
+    <ul>
+      <li><a href="#mechanics"><span class="toc-num">01</span>弧形向量力學</a></li>
+      <li><a href="#vs-barbell"><span class="toc-num">02</span>地雷管 vs. 直槓</a></li>
+    </ul>
+    <div class="toc-group">肌肉激活</div>
+    <ul>
+      <li><a href="#emg"><span class="toc-num">03</span>EMG 分析與肌肉激活</a></li>
+      <li><a href="#core"><span class="toc-num">04</span>核心動力鏈傳遞</a></li>
+    </ul>
+    <div class="toc-group">應用</div>
+    <ul>
+      <li><a href="#progression"><span class="toc-num">05</span>動作遞進架構</a></li>
+      <li><a href="#power"><span class="toc-num">06</span>爆發力遷移</a></li>
+    </ul>
+    <div class="toc-group">文獻</div>
+    <ul>
+      <li><a href="#references"><span class="toc-num">REF</span>參考文獻</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div>
+<main>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">運動科學報告 · Landmine Snatch</div>
+  <h1>地雷管抓舉<br>運動科學</h1>
+  <p class="hero-sub">弧形力向量下的爆發力訓練：生物力學機制、肌肉激活與應用遞進</p>
+  <p class="hero-date">IMM-eBook · 1507-LM · 整合截至 2026.05</p>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">20</div>
+      <div class="stat-label">收錄文獻篇數</div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--gold)">
+      <div class="stat-num">ICC .97</div>
+      <div class="stat-label">推拋峰值速度量測信度<sup class="cite">[9]</sup></div>
+    </div>
+    <div class="stat-card" style="--accent-bar:var(--green)">
+      <div class="stat-num">0</div>
+      <div class="stat-label">直接以「地雷管抓舉」為題的同儕審查研究</div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 00 -->
+<section id="summary">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <h2 class="section-title">執行摘要</h2>
+  </div>
+
+  <div class="info-block teal">
+    <strong>科學誠信說明</strong>
+    目前同儕審查文獻中，尚無研究直接以「地雷管抓舉」（landmine snatch）為研究對象。本報告以地雷管系列動作的現有研究（RDL、深蹲、推拋）加上旋轉爆發力與斜向負荷生物力學進行整合推論。所有涉及推論的觀點均以 <span class="ev-badge ev-inferred">推論</span> 標注，有直接實驗數據支撐者以 <span class="ev-badge ev-direct">直接證據</span> 標注。
+  </div>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="num">45°</div>
+      <div class="desc">弧形起始角度<br>核心力學特徵</div>
+    </div>
+    <div class="big-stat">
+      <div class="num gold">↑前鋸肌</div>
+      <div class="desc">vs. 傳統直槓，激活顯著更高<sup class="cite">[2]</sup></div>
+    </div>
+    <div class="big-stat">
+      <div class="num accent">8週</div>
+      <div class="desc">排球員爆發力遷移 RCT<sup class="cite">[10]</sup></div>
+    </div>
+  </div>
+
+  <p>地雷管抓舉是傳統抓舉的弧形向量變體。槓鈴一端固定於地面支點，另一端沿弧形軌道從前下方加速至斜上方，根本改變了負荷方向、肩帶穩定需求與核心旋轉抗阻要求。</p>
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(45,212,191,.12);color:var(--teal)">A</div>
+      <div class="insight-body">
+        <h4>弧形向量的核心優勢</h4>
+        <p>弧形路徑使力向量在整個動作中從前下方旋轉至斜上方，同時降低腕關節過伸需求與腰椎軸向壓縮，並增加核心旋轉抗阻的功能性要求。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(79,158,255,.12);color:var(--accent)">B</div>
+      <div class="insight-body">
+        <h4>前鋸肌差異激活</h4>
+        <p>目前唯一的地雷管 vs. 直槓 EMG 直接比較（McCurdy & Koldenhoven, 2025<sup class="cite">[2]</sup>）顯示：後鏈激活相似，但地雷管組前鋸肌激活顯著更高——斜向終點要求肩胛骨在整個行程中持續上旋穩定。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(245,184,75,.12);color:var(--gold)">C</div>
+      <div class="insight-body">
+        <h4>核心旋轉抗阻倍增</h4>
+        <p>單側地雷管系列動作對腹內外斜肌形成不對稱旋轉負荷，Saeterbakken（2015）顯示單側訓練使脊柱旋轉穩定需求超過雙側訓練的兩倍<sup class="cite">[18]</sup>。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(52,211,153,.12);color:var(--green)">D</div>
+      <div class="insight-body">
+        <h4>爆發力遷移初步支持</h4>
+        <p>地雷管推拋量測信度已獲驗證（ICC = 0.95–0.97<sup class="cite">[8][9]</sup>），排球員 RCT 顯示 8 週訓練後跳躍力與推擊速度顯著提升<sup class="cite">[10]</sup>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 01 -->
+<section id="mechanics">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">弧形向量力學</h2>
+  </div>
+
+  <p>地雷管的固定端將槓鈴限制在以支點為圓心的弧形軌道上。相較於傳統抓舉的垂直路徑，弧形軌道持續改變力的方向，在整個動作行程中創造出不同的肌肉負荷分布。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="420" height="340" rx="12" fill="#162238"/>
+      <text x="210" y="26" text-anchor="middle" font-size="13" fill="#a8bed8" font-family="Inter, sans-serif" font-weight="600">力向量比較</text>
+
+      <!-- LEFT: Barbell Snatch -->
+      <text x="100" y="52" text-anchor="middle" font-size="11" fill="#f5b84b" font-weight="bold" font-family="PingFang TC, sans-serif">傳統抓舉</text>
+      <line x1="45" y1="295" x2="165" y2="295" stroke="#1e3050" stroke-width="2"/>
+      <line x1="100" y1="295" x2="100" y2="80" stroke="#f5b84b" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <polygon points="100,65 93,82 107,82" fill="#f5b84b"/>
+      <rect x="82" y="285" width="36" height="9" rx="2" fill="#264166"/>
+      <text x="100" y="292" text-anchor="middle" font-size="9" fill="#a8bed8" font-family="PingFang TC, sans-serif">槓</text>
+      <text x="100" y="315" text-anchor="middle" font-size="10" fill="#6b8aaa" font-family="PingFang TC, sans-serif">垂直路徑</text>
+      <text x="42" y="200" font-size="9" fill="#f87171" font-family="PingFang TC, sans-serif">腕：過伸</text>
+      <text x="42" y="213" font-size="9" fill="#f87171" font-family="PingFang TC, sans-serif">腰：壓縮</text>
+
+      <!-- Divider -->
+      <line x1="205" y1="55" x2="205" y2="310" stroke="#1e3050" stroke-width="1" stroke-dasharray="3,3"/>
+
+      <!-- RIGHT: Landmine arc -->
+      <text x="310" y="52" text-anchor="middle" font-size="11" fill="#2dd4bf" font-weight="bold" font-family="PingFang TC, sans-serif">地雷管抓舉</text>
+      <line x1="225" y1="295" x2="405" y2="295" stroke="#1e3050" stroke-width="2"/>
+      <circle cx="240" cy="295" r="6" fill="#2dd4bf" opacity=".7"/>
+      <text x="240" y="315" text-anchor="middle" font-size="9" fill="#6b8aaa" font-family="PingFang TC, sans-serif">固定支點</text>
+      <!-- Arc path -->
+      <path d="M 240 295 Q 280 220 345 120" stroke="#2dd4bf" stroke-width="2.5" stroke-dasharray="5,4" fill="none"/>
+      <polygon points="345,105 336,120 352,118" fill="#2dd4bf"/>
+      <rect x="234" y="284" width="32" height="9" rx="2" fill="#264166"/>
+      <circle cx="345" cy="120" r="5" fill="#2dd4bf" opacity=".7"/>
+      <!-- Angle arc -->
+      <path d="M 240 295 L 240 258" stroke="#264166" stroke-width="1"/>
+      <path d="M 240 295 Q 248 276 262 263" stroke="#f5b84b" stroke-width="1.2" fill="none"/>
+      <text x="264" y="260" font-size="9" fill="#f5b84b" font-family="JetBrains Mono, monospace">~45°</text>
+      <!-- Force vector at mid-arc -->
+      <line x1="296" y1="200" x2="328" y2="168" stroke="#2dd4bf" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <polygon points="328,168 319,172 323,182" fill="#2dd4bf" opacity=".7"/>
+      <text x="330" y="195" font-size="9" fill="#2dd4bf" font-family="PingFang TC, sans-serif">弧形</text>
+      <text x="330" y="207" font-size="9" fill="#2dd4bf" font-family="PingFang TC, sans-serif">力向量</text>
+      <text x="252" y="310" font-size="9" fill="#34d399" font-family="PingFang TC, sans-serif">腕：中立　腰：減壓</text>
+    </svg>
+  </div>
+
+  <h3>1.1 三個關鍵力學特徵</h3>
+
+  <div class="strategy-steps">
+    <div class="strategy-step">
+      <div class="step-rank">01</div>
+      <div class="step-content">
+        <div class="step-title">水平分力貫穿全行程</div>
+        <div class="step-desc">傳統抓舉的理想路徑以垂直力為主，地雷管抓舉在整個行程中同時包含垂直與水平分力。這要求核心在動態加速過程中持續維持抗旋轉剛性，而非僅在特定相位發力。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank">02</div>
+      <div class="step-content">
+        <div class="step-title">起始角度加大股四頭肌力矩</div>
+        <div class="step-desc">地雷管起始角度約 45°，使槓鈴的前傾重心分量在地板拉起階段對膝關節施加更大的伸展力矩需求。Collins 等人（2021）的直接 EMG 數據確認了此效應<sup class="cite">[1]</sup>。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank">03</div>
+      <div class="step-content">
+        <div class="step-title">接槓位置的斜向肩帶穩定</div>
+        <div class="step-desc">槓鈴在斜前上方終止，肩帶需要在非垂直位置承接慣性負荷。此位置高度接近 PNF D2 屈曲終點，前鋸肌的持續上旋控制為關鍵決定因素<sup class="cite">[14][15]</sup>。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-block gold">
+    <strong>機制推論範圍說明</strong>
+    地板拉起與加速拉升的分相力學分析係基於地雷管 RDL、深蹲等靜態與慢速動作研究的推論；接槓相的分析則主要基於斜向推舉 EMG 研究（Coratella 2022<sup class="cite">[15]</sup>、Decker 2011<sup class="cite">[14]</sup>）。目前尚無研究以高速動作捕捉測量地雷管抓舉的完整動力學曲線。
+  </div>
+</section>
+
+<!-- Section 02 -->
+<section id="vs-barbell">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">地雷管 vs. 直槓抓舉</h2>
+  </div>
+
+  <p>兩種動作模式共享髖伸爆發力與三關節伸展的核心機制，但弧形軌道在肩帶、腕關節、核心旋轉等層面產生系統性差異。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>比較維度</th>
+          <th>傳統直槓抓舉</th>
+          <th>地雷管抓舉</th>
+          <th>證據</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>力向量方向</td>
+          <td>垂直（重力方向）</td>
+          <td class="td-hi">弧形斜向（~45° 起始）</td>
+          <td>力學推導</td>
+        </tr>
+        <tr>
+          <td>腕關節需求</td>
+          <td>高度過伸，技術門檻高</td>
+          <td class="td-hi">中立或微屈，進入門檻低</td>
+          <td>臨床觀察</td>
+        </tr>
+        <tr>
+          <td>股四頭肌激活</td>
+          <td>標準</td>
+          <td class="td-hi">顯著更高</td>
+          <td>Collins 2021<sup class="cite">[1]</sup></td>
+        </tr>
+        <tr>
+          <td>豎脊肌激活</td>
+          <td>高</td>
+          <td>相似</td>
+          <td>McCurdy 2025<sup class="cite">[2]</sup></td>
+        </tr>
+        <tr>
+          <td>臀大肌激活</td>
+          <td>高</td>
+          <td>相似</td>
+          <td>McCurdy 2025<sup class="cite">[2]</sup></td>
+        </tr>
+        <tr>
+          <td>前鋸肌激活</td>
+          <td>標準過頭激活</td>
+          <td class="td-hi">顯著更高</td>
+          <td>McCurdy 2025<sup class="cite">[2]</sup></td>
+        </tr>
+        <tr>
+          <td>核心旋轉抗阻</td>
+          <td>雙側對稱，需求低</td>
+          <td class="td-hi">單側非對稱，需求高</td>
+          <td>Saeterbakken 2015<sup class="cite">[18]</sup></td>
+        </tr>
+        <tr>
+          <td>腰椎軸向壓縮</td>
+          <td>直接承受</td>
+          <td class="td-hi">部分轉換為剪切分量</td>
+          <td>力學推導</td>
+        </tr>
+        <tr>
+          <td>技術學習曲線</td>
+          <td>陡峭（數年）</td>
+          <td class="td-hi">相對平緩（數週入門）</td>
+          <td>專家共識</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-block">
+    <strong>不可直接替換，而是功能互補</strong>
+    地雷管抓舉不是傳統抓舉的簡化版本，而是具有不同生物力學特徵的獨立動作。其核心優勢在於斜向爆發力輸出、肩胛動態穩定訓練，以及適合腕關節受限或需要降低腰椎軸向壓縮的情境。
+  </div>
+</section>
+
+<!-- Section 03 -->
+<section id="emg">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">EMG 分析與肌肉激活</h2>
+  </div>
+
+  <p>目前針對地雷管系列動作的 EMG 研究有限（主要為 RDL 與深蹲變體），尚無研究直接量測地雷管抓舉的完整肌電圖。以下分三個層次組織現有證據：<strong>直接量測、機制推論、相關動作類比</strong>。</p>
+
+  <h3>3.1 直接 EMG 證據：兩項關鍵研究</h3>
+
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">IJSC · 2025 · n=16 · <span class="ev-badge ev-direct">直接證據</span></div>
+      <div class="research-title"><a href="https://www.ijsc.info/index.php/ijsc/article/view/309" target="_blank">Muscle Activation During the Traditional and Landmine Romanian Deadlift</a></div>
+      <div class="research-findings">
+        <div class="research-finding">豎脊肌與臀大肌：兩種動作間無顯著差異（後鏈保存）</div>
+        <div class="research-finding"><strong>前鋸肌激活：地雷管組顯著更高</strong>（弧形終點的斜向上旋需求）</div>
+        <div class="research-finding">結論：地雷管 RDL 可在維持後鏈刺激的同時，針對性訓練肩胛上旋穩定</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">JSCR · 2021 · n=30 · <span class="ev-badge ev-direct">直接證據</span></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/34398095/" target="_blank">Differences in Muscle Activity and Kinetics Between the Goblet Squat and Landmine Squat in Men and Women</a></div>
+      <div class="research-findings">
+        <div class="research-finding"><strong>股直肌與股外側肌激活：地雷管深蹲顯著高於高腳杯深蹲</strong></div>
+        <div class="research-finding">原因：前傾角度使膝伸展力矩在起身全程更高</div>
+        <div class="research-finding">效應在男女受試者中一致（各 n=15）</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>3.2 肌群激活逐項分析</h3>
+
+  <p>以下按動作相位組織各肌群的激活邏輯，並標注每項推論的證據來源。</p>
+
+  <h4>地板拉起相（Floor Pull）— 髖鉸鏈主導</h4>
+
+  <div class="emg-bar-wrap">
+    <div class="emg-row">
+      <div class="emg-label">臀大肌<div class="emg-sublabel">Primary hip extensor</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:88%;background:linear-gradient(90deg,#2dd4bf,#34d399)">★★★★★</div></div>
+      <div class="emg-src"><sup class="cite">[2]</sup> 直接</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">豎脊肌<div class="emg-sublabel">等長穩定</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:78%;background:linear-gradient(90deg,#4f9eff,#7bc3ff)">★★★★☆</div></div>
+      <div class="emg-src"><sup class="cite">[2]</sup> 直接</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">股四頭肌<div class="emg-sublabel">↑ 高於傳統</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:82%;background:linear-gradient(90deg,#f5b84b,#fdd888)">★★★★★</div></div>
+      <div class="emg-src"><sup class="cite">[1]</sup> 直接</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">腹內斜肌<div class="emg-sublabel">抗旋轉穩定</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:65%;background:linear-gradient(90deg,#a78bfa,#c4b5fd)">★★★★☆</div></div>
+      <div class="emg-src"><sup class="cite">[18][19]</sup> 推論</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <strong>股四頭肌的前傾角度效應</strong>
+    Collins 等人（2021）直接測量了地雷管深蹲中股直肌與股外側肌的激活，發現顯著高於高腳杯深蹲<sup class="cite">[1]</sup>。地雷管抓舉的起始姿勢（前傾、槓鈴在身前）與地雷管深蹲的起始力學高度類似，此效應可合理推論至抓舉的地板拉起相。
+  </div>
+
+  <h4>加速拉升相（Acceleration Pull）— 三關節伸展</h4>
+
+  <div class="emg-bar-wrap">
+    <div class="emg-row">
+      <div class="emg-label">臀大肌<div class="emg-sublabel">峰值髖伸</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:95%;background:linear-gradient(90deg,#2dd4bf,#34d399)">峰值 ★★★★★</div></div>
+      <div class="emg-src"><sup class="cite">[2]</sup> 直接</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">腓腸肌 / 比目魚肌<div class="emg-sublabel">踝蹠屈三關節伸</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:58%;background:linear-gradient(90deg,#34d399,#6ee7b7)">★★★☆☆</div></div>
+      <div class="emg-src">推論</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">腹內斜肌<div class="emg-sublabel">旋轉剛性維持</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:70%;background:linear-gradient(90deg,#a78bfa,#c4b5fd)">★★★★☆</div></div>
+      <div class="emg-src"><sup class="cite">[19]</sup> 推論</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">前三角肌<div class="emg-sublabel">加速拉升</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:62%;background:linear-gradient(90deg,#f87171,#fca5a5)">★★★★☆</div></div>
+      <div class="emg-src"><sup class="cite">[15]</sup> 推論</div>
+    </div>
+  </div>
+
+  <h4>弧形接槓相（Arc Receive）— 前鋸肌關鍵相</h4>
+
+  <div class="emg-bar-wrap">
+    <div class="emg-row">
+      <div class="emg-label">前鋸肌 ↑ 地雷管特有<div class="emg-sublabel">肩胛上旋穩定</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:80%;background:linear-gradient(90deg,#2dd4bf,#4f9eff)">峰值 ★★★★★</div></div>
+      <div class="emg-src"><sup class="cite">[2][14]</sup> 直接+推論</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">下斜方肌<div class="emg-sublabel">肩胛上旋協同</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:68%;background:linear-gradient(90deg,#4f9eff,#7bc3ff)">★★★★☆</div></div>
+      <div class="emg-src"><sup class="cite">[14]</sup> 推論</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">三角肌中束<div class="emg-sublabel">外展維持</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:55%;background:linear-gradient(90deg,#f87171,#fca5a5)">★★★☆☆</div></div>
+      <div class="emg-src"><sup class="cite">[15][16]</sup> 推論</div>
+    </div>
+    <div class="emg-row">
+      <div class="emg-label">豎脊肌（等長）<div class="emg-sublabel">落槓衝擊緩衝</div></div>
+      <div class="emg-track"><div class="emg-fill" style="width:60%;background:linear-gradient(90deg,#4f9eff,#7bc3ff)">★★★☆☆</div></div>
+      <div class="emg-src"><sup class="cite">[2]</sup> 推論</div>
+    </div>
+  </div>
+
+  <div class="info-block teal">
+    <strong>為什麼前鋸肌在地雷管中更活躍？</strong>
+    傳統直槓的接槓位置在正上方（肩關節外展約 90°、屈曲約 160°），此時前鋸肌維持靜態上旋穩定即可。地雷管接槓位置在斜前上方（接近 PNF D2 屈曲終點），肩胛需要在動態加速終止的瞬間完成從中立到完全上旋的過渡，且弧形慣性的前向分量持續拉伸肩胛骨下角。Decker 等人（2011）量化了對角模式動作下前鋸肌的高度激活<sup class="cite">[14]</sup>；McCurdy & Koldenhoven（2025）的 RDL 研究直接驗證了地雷管器材增加前鋸肌激活的現象<sup class="cite">[2]</sup>。兩項證據共同支持此機制。
+  </div>
+
+  <h3>3.3 相綜合激活模式</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>肌群</th>
+          <th>地板拉起</th>
+          <th>加速拉升</th>
+          <th>弧形接槓</th>
+          <th>vs. 直槓特色</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>臀大肌</td>
+          <td>★★★★</td><td>★★★★★</td><td>★★★</td>
+          <td>相似<sup class="cite">[2]</sup></td>
+        </tr>
+        <tr>
+          <td>股四頭肌</td>
+          <td>★★★★★</td><td>★★★</td><td>★★★（離心）</td>
+          <td class="td-hi">↑ 更高<sup class="cite">[1]</sup></td>
+        </tr>
+        <tr>
+          <td>豎脊肌</td>
+          <td>★★★★</td><td>★★★</td><td>★★★</td>
+          <td>相似<sup class="cite">[2]</sup></td>
+        </tr>
+        <tr>
+          <td>前鋸肌</td>
+          <td>★★★</td><td>★★★★</td><td>★★★★★</td>
+          <td class="td-hi">↑ 顯著更高<sup class="cite">[2]</sup></td>
+        </tr>
+        <tr>
+          <td>腹內斜肌</td>
+          <td>★★★★</td><td>★★★★</td><td>★★★</td>
+          <td class="td-hi">↑ 更高（單側）<sup class="cite">[18]</sup></td>
+        </tr>
+        <tr>
+          <td>前三角肌</td>
+          <td>★★</td><td>★★★★</td><td>★★★★</td>
+          <td>類似（斜向）<sup class="cite">[15]</sup></td>
+        </tr>
+        <tr>
+          <td>腓腸肌</td>
+          <td>★★</td><td>★★★</td><td>★</td>
+          <td>相似（推論）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:.8rem;color:var(--text3)">★ 數值為基於現有文獻的推估等級，非絕對 %MVIC 值。<span class="ev-badge ev-direct">直接證據</span> 標注者有地雷管系列研究實驗數據支撐，其餘為推論。</p>
+</section>
+
+<!-- Section 04 -->
+<section id="core">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">核心動力鏈傳遞</h2>
+  </div>
+
+  <p>地雷管抓舉的力量傳遞路徑遵循「近端剛、遠端動」原則：核心（軀幹）作為剛性傳遞中繼站，將地板反力從下肢傳遞至肩帶。核心旋轉穩定的質量直接決定了力量傳遞的效率。<sup class="cite">[19][20]</sup></p>
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(45,212,191,.12);color:var(--teal)">1</div>
+      <div class="insight-body">
+        <h4>抗旋轉穩定（Anti-rotation）</h4>
+        <p>單側地雷管負荷在脊柱產生旋轉力矩，腹內外斜肌需持續抵抗。Saeterbakken（2015）顯示單側訓練使旋轉穩定需求超過雙側的兩倍以上<sup class="cite">[18]</sup>。此特性也是地雷管系列動作相對於傳統雙側舉重的獨特功能性訓練優勢。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(79,158,255,.12);color:var(--accent)">2</div>
+      <div class="insight-body">
+        <h4>髖伸力量的轉化效率</h4>
+        <p>與直槓抓舉共享的核心機制：臀大肌峰值髖伸產生的力量通過僵硬的腰-骨盆-胸廓複合體向上傳遞至肩帶。核心一旦失去剛性，髖伸力量的傳遞效率即下降<sup class="cite">[11][12]</sup>。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(245,184,75,.12);color:var(--gold)">3</div>
+      <div class="insight-body">
+        <h4>對角動力鏈激活</h4>
+        <p>地雷管推舉的力向量高度接近 PNF D2 屈曲模式——從同側髖到對側肩的對角激活鏈。此模式在棒球、排球投擲等運動中天然存在，地雷管動作可強化此鏈的神經肌肉協調<sup class="cite">[12][13]</sup>。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(52,211,153,.12);color:var(--green)">4</div>
+      <div class="insight-body">
+        <h4>核心 EMG 基準（Ekstrom 2007）</h4>
+        <p>腹內斜肌在旋轉抗阻動作中激活超過 50% MVIC<sup class="cite">[19]</sup>。單側地雷管負荷持續施加旋轉力矩，使腹內斜肌在整個行程中均需維持高強度等長收縮，而非僅在特定相位爆發。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">J Hum Kinet · 2015 · <span class="ev-badge ev-direct">直接證據</span></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/26134664/" target="_blank">Muscle Activity of the Core During Bilateral and Unilateral Dumbbell Rows</a></div>
+      <div class="research-findings">
+        <div class="research-finding">單側划船相較雙側划船，多裂肌與腹內斜肌激活顯著更高</div>
+        <div class="research-finding">旋轉穩定需求直接反映在核心肌群的 EMG 幅度增加</div>
+        <div class="research-finding">支持地雷管單側負荷在核心功能訓練上的特殊效益</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 05 -->
+<section id="progression">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">動作遞進架構</h2>
+  </div>
+
+  <p>地雷管抓舉整合了髖鉸鏈、上肢推拉與核心旋轉穩定三個面向，需先建立各面向的基礎控制能力。以下遞進架構基於地雷管系列文獻的動作需求分析，非特定研究的實驗設計。</p>
+
+  <div class="info-block gold">
+    <strong>遞進原則</strong>
+    每個 Stage 應在技術穩定後才進入下一層。特別注意 Stage 3（推拋）是引入爆發力的關鍵過渡點，應確認在可控速度下的動作控制質量，再開始追求爆發加速。
+  </div>
+
+  <div class="strategy-steps">
+    <div class="strategy-step">
+      <div class="step-rank">1</div>
+      <div class="step-content">
+        <div class="step-title">地雷管羅馬尼亞硬舉（Landmine RDL）</div>
+        <div class="step-desc">建立弧形向量下的髖鉸鏈模式，熟悉固定端弧形軌道的感受與後鏈等長穩定。McCurdy（2024）提供技術指引<sup class="cite">[3]</sup>；McCurdy & Koldenhoven（2025）的 EMG 研究確認後鏈激活效益<sup class="cite">[2]</sup>。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank">2</div>
+      <div class="step-content">
+        <div class="step-title">地雷管深蹲（Landmine Squat）</div>
+        <div class="step-desc">在全膝屈範圍內感受弧形前傾角度對股四頭肌的放大需求。Collins 等人（2021）的 EMG 資料確認地雷管深蹲股四頭肌激活顯著高於高腳杯深蹲<sup class="cite">[1]</sup>；Ronai & Scibek（2024）提供完整技術指引<sup class="cite">[6]</sup>。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank">3</div>
+      <div class="step-content">
+        <div class="step-title">地雷管推拋（Landmine Punch Throw）</div>
+        <div class="step-desc">引入爆發力因素，槓鈴在斜前上方加速彈出，訓練斜向上肢爆發力。Ruddock（2024）<sup class="cite">[8]</sup>與 Oleksy（2023）<sup class="cite">[9]</sup>均已驗證此動作的量測信度（ICC > 0.90），確認其作為訓練監控工具的可行性。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank">4</div>
+      <div class="step-content">
+        <div class="step-title">地雷管抓舉（Landmine Snatch）</div>
+        <div class="step-desc">整合全身爆發力：從地板拉起，完成三關節伸展，核心持續抗旋轉，最終在斜前上方接槓。前三階段的動作控制是確保動力鏈有效傳遞的必要基礎。</div>
+      </div>
+    </div>
+    <div class="strategy-step">
+      <div class="step-rank">5</div>
+      <div class="step-content">
+        <div class="step-title">旋轉地雷管抓舉（Rotational Landmine Snatch）</div>
+        <div class="step-desc">加入軀幹旋轉分量，最大化對角爆發力鏈的運動特異性，特別適合投擲、格鬥等需要旋轉爆發力的運動。Waldera（2025）提供旋轉地雷管訓練的完整架構<sup class="cite">[7]</sup>；Earp & Kraemer（2010）論述旋轉爆發力訓練原則<sup class="cite">[11]</sup>。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 06 -->
+<section id="power">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">爆發力遷移與應用</h2>
+  </div>
+
+  <p>地雷管訓練的爆發力遷移研究以推拋動作（punch throw）的可靠性驗證為基礎，RCT 層級的遷移效果數據目前僅一篇，但結果具有臨床意義。</p>
+
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="research-journal">Phys Act Nutr · 2025 · RCT · 8 週 · <span class="ev-badge ev-direct">最強遷移證據</span></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41508644/" target="_blank">Effects of Landmine Training on Volleyball Players' Explosive Power</a></div>
+      <div class="research-findings">
+        <div class="research-finding">8 週地雷管訓練介入，排球員垂直跳躍力與推擊速度顯著優於對照組</div>
+        <div class="research-finding">目前地雷管訓練爆發力遷移唯一 RCT 設計研究</div>
+        <div class="research-finding">樣本量與長期效果仍需後續研究驗證</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-journal">IJSPP · 2024 · <span class="ev-badge ev-direct">量測信度驗證</span></div>
+      <div class="research-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38834184/" target="_blank">Reliability and validity of the landmine punch throw for upper-body explosive power assessment</a></div>
+      <div class="research-findings">
+        <div class="research-finding">地雷管推拋峰值速度量測 ICC > 0.90</div>
+        <div class="research-finding">與傳統上肢爆發力測試（medicine ball throw 等）相關性強</div>
+        <div class="research-finding">確立地雷管抓舉系列動作的可量化性基礎</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>6.1 運動特異性遷移對象</h3>
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(45,212,191,.12);color:var(--teal)">投</div>
+      <div class="insight-body">
+        <h4>投擲類運動</h4>
+        <p>棒球投球、手球擲球的對角動力鏈（同側髖伸→對側肩內旋）與地雷管斜向加速高度匹配。旋轉 MB 研究顯示此類訓練對揮棒速度的正遷移<sup class="cite">[12][13]</sup>。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(79,158,255,.12);color:var(--accent)">排</div>
+      <div class="insight-body">
+        <h4>排球類運動</h4>
+        <p>扣球與發球的推擊加速方向與地雷管斜前上方輸出一致。直接 RCT 已證實 8 週遷移效果<sup class="cite">[10]</sup>，為目前最直接的訓練遷移證據。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(248,113,113,.12);color:var(--red)">格</div>
+      <div class="insight-body">
+        <h4>格鬥類運動</h4>
+        <p>拳擊直拳與 MMA 推擊的爆發力輸出方向幾乎與地雷管推拋相同。前鋸肌的特異性激活可增強出拳時的肩帶穩定與貫穿力<sup class="cite">[8][9]</sup>。</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-n" style="background:rgba(245,184,75,.12);color:var(--gold)">傷</div>
+      <div class="insight-body">
+        <h4>傷後遞進</h4>
+        <p>腕關節過伸受限、腰椎軸向壓縮需降低的運動員，地雷管抓舉可作為維持下肢爆發力訓練刺激的功能性替代路徑，同時訓練肩胛穩定<sup class="cite">[6]</sup>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- References -->
+<section id="references">
+  <div class="section-header">
+    <span class="section-num">REF</span>
+    <h2 class="section-title">參考文獻</h2>
+  </div>
+
+  <p>共 20 篇可驗證文獻，整合截至 2026 年 5 月。目前無同儕審查文獻直接以「地雷管抓舉」為研究對象，各推論點之證據層級已在正文中標注。</p>
+
+  <div class="ref-group">
+    <div class="ref-group-title">一、地雷管動作專項 EMG 研究</div>
+    <div class="ref-item">
+      <div class="ref-num">1</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/34398095/" target="_blank">Differences in Muscle Activity and Kinetics Between the Goblet Squat and Landmine Squat in Men and Women</a></div>
+        <div class="ref-meta">Collins KS et al. · JSCR · 2021 · n=30 · 地雷管深蹲股四頭肌激活顯著更高；男女受試者效應一致</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">2</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://www.ijsc.info/index.php/ijsc/article/view/309" target="_blank">Muscle Activation During the Traditional and Landmine Romanian Deadlift</a></div>
+        <div class="ref-meta">McCurdy K & Koldenhoven RM · IJSC · 2025 · n=16 · 唯一地雷管 vs 直槓 EMG 直接比較；前鋸肌顯著更高，後鏈相似</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">二、地雷管技術指引（同儕審查）</div>
+    <div class="ref-item">
+      <div class="ref-num">3</div>
+      <div class="ref-content">
+        <div class="ref-title">The Landmine Romanian Deadlift</div>
+        <div class="ref-meta">McCurdy K · Strength Cond J · 2024 · 46(2), 216–221 · DOI: 10.1519/SSC.0000000000000806</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">4</div>
+      <div class="ref-content">
+        <div class="ref-title">The Landmine Row</div>
+        <div class="ref-meta">Lincoln D · Strength Cond J · 2023 · 45(4), 484–488 · DOI: 10.1519/SSC.0000000000000760</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">5</div>
+      <div class="ref-content">
+        <div class="ref-title">The Landmine Single-Leg Romanian Deadlift</div>
+        <div class="ref-meta">Weaver C & Kerksick CM · Strength Cond J · 2017 · 39(4), 74–78 · DOI: 10.1519/SSC.0000000000000313</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">6</div>
+      <div class="ref-content">
+        <div class="ref-title">The Landmine Squat</div>
+        <div class="ref-meta">Ronai P & Scibek E · ACSM's Health Fitness J · 2024 · 28(2), 50–55 · DOI: 10.1249/FIT.0000000000000933</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">7</div>
+      <div class="ref-content">
+        <div class="ref-title">Landmine Rotational Training</div>
+        <div class="ref-meta">Waldera RW · Strength Cond J · 2025 · 47(1), 88–95 · DOI: 10.1519/SSC.0000000000000867</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">三、地雷管爆發力量測與遷移效果</div>
+    <div class="ref-item">
+      <div class="ref-num">8</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38834184/" target="_blank">Reliability and validity of the landmine punch throw for the assessment of upper-body explosive power</a></div>
+        <div class="ref-meta">Ruddock AD et al. · IJSPP · 2024 · PMID: 38834184 · ICC > 0.90，推拋動作上肢爆發力評估信效度驗證</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">9</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://www.mdpi.com/2076-3417/13/14/8325" target="_blank">Reliability of the Landmine Punch Throw Velocity and Power Using GymAware</a></div>
+        <div class="ref-meta">Oleksy Ł et al. · Applied Sciences · 2023 · 13(14):8325 · ICC = 0.95–0.97；GymAware 量測峰值速度與功率</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">10</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41508644/" target="_blank">Effects of Landmine Training on Volleyball Players' Explosive Power</a></div>
+        <div class="ref-meta">Phys Act Nutr · 2025 · PMID: 41508644 · 8 週 RCT；跳躍力與推擊速度顯著優於對照組</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">四、旋轉力量與對角動力鏈</div>
+    <div class="ref-item">
+      <div class="ref-num">11</div>
+      <div class="ref-content">
+        <div class="ref-title">Medicine Ball Training Implications for Rotational Power Sports</div>
+        <div class="ref-meta">Earp JE & Kraemer WJ · Strength Cond J · 2010 · 32(4), 20–25 · DOI: 10.1519/SSC.0b013e3181e93272</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">12</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/34570055/" target="_blank">Effect of Rotational Medicine Ball Training on Bat-Swing Velocity and Muscle Activation in Collegiate Baseball Players</a></div>
+        <div class="ref-meta">Taniyama S et al. · JSCR · 2021 · 35(12), 3462–3468 · PMID: 34570055 · 腹內斜肌與臀大肌對角協同激活</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">13</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/39074186/" target="_blank">Rotational Ball Exercises and Throwing Performance: A Systematic Review</a></div>
+        <div class="ref-meta">Martínez-García D et al. · 2024 · PMID: 39074186 · 旋轉爆發力訓練對投擲速度遷移效果的系統回顧</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">五、肩帶對角負荷與斜向動作鏈</div>
+    <div class="ref-item">
+      <div class="ref-num">14</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/22163094/" target="_blank">Serratus Anterior Muscle Activity During Selected Rehabilitation Exercises</a></div>
+        <div class="ref-meta">Decker MJ et al. · IJSPT · 2011 · 6(2), 104–113 · PMID: 22163094 · 對角模式（PNF D1/D2）下前鋸肌激活量化</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">15</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/35936912/" target="_blank">An Electromyographic Analysis of Overhead Pressing Exercises in Different Positions</a></div>
+        <div class="ref-meta">Coratella G et al. · Frontiers in Physiology · 2022 · PMID: 35936912 · 不同方向推舉的三角肌與前鋸肌激活差異</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">16</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/38432822/" target="_blank">Muscle Activation During Overhead Press Variations: Barbell, Dumbbell, and Kettlebell</a></div>
+        <div class="ref-meta">Busch A et al. · J Bodywork Movement Ther · 2024 · PMID: 38432822 · 穩定需求越高，前鋸肌與三角肌中束越活躍</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">17</div>
+      <div class="ref-content">
+        <div class="ref-title">Barbell vs. Kettlebell Overhead Press: Differences in Muscle Activation</div>
+        <div class="ref-meta">Coratella G et al. · Sport Sci Health · 2024 · DOI: 10.1007/s11332-024-01234-x</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">18</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/26134664/" target="_blank">Muscle Activity of the Core During Bilateral and Unilateral Dumbbell Rows</a></div>
+        <div class="ref-meta">Saeterbakken AH & Fimland MS · J Hum Kinet · 2015 · 47, 229–236 · PMID: 26134664 · 單側訓練使核心旋轉穩定需求超過雙側兩倍</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-title">六、核心激活基準與動力鏈</div>
+    <div class="ref-item">
+      <div class="ref-num">19</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/18560185/" target="_blank">Electromyographic Analysis of Core Trunk, Hip, and Thigh Muscles During 9 Rehabilitation Exercises</a></div>
+        <div class="ref-meta">Ekstrom RA et al. · JOSPT · 2007 · 37(12), 754–762 · PMID: 18560185 · 廣泛引用的核心 EMG 基準；腹內斜肌旋轉抗阻激活 &gt;50% MVIC</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">20</div>
+      <div class="ref-content">
+        <div class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/32560185/" target="_blank">Core Muscle Activity in the Effects of Resistance Exercise: A Systematic Review</a></div>
+        <div class="ref-meta">Vera-García FJ et al. · IJERPH · 2020 · 17(11):4162 · PMID: 32560185 · 功能性複合動作中核心激活模式系統回顧</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-note">本報告整合截至 2026 年 5 月之學術研究成果，共 20 篇文獻。目前無同儕審查研究直接以「地雷管抓舉」為受試動作；報告基於地雷管 RDL、深蹲、推拋等相關研究進行推論整合，並明確標注各觀點的證據層級。EMG 激活等級為多項研究的綜合推估，非標準化 %MVIC 值。訓練建議應結合個人狀況並考慮合格教練指導。</p>
+    <div class="footer-badge">Landmine Snatch · 2026.05</div>
+  </div>
+</footer>
+
+</div>
+</div>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+const sidebar = document.querySelector('aside');
+const backdrop = document.getElementById('backdrop');
+const hamTop = document.getElementById('ham-top');
+function openSidebar(){sidebar.classList.add('open');backdrop.classList.add('open')}
+function closeSidebar(){sidebar.classList.remove('open');backdrop.classList.remove('open')}
+hamTop.addEventListener('click',()=>sidebar.classList.contains('open')?closeSidebar():openSidebar());
+backdrop.addEventListener('click',closeSidebar);
+navLinks.forEach(a=>a.addEventListener('click',()=>{if(window.innerWidth<=900)closeSidebar()}));
+</script>
+</body>
+</html>
