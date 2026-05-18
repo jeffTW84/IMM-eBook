@@ -26,15 +26,17 @@
 ## 1. 專案結構
 
 ```
-IMM-eBook/
-├── assets/
-│   └── imm-logo.png          ← logo 路徑，報告中用 ../assets/imm-logo.png
-├── index.html                ← 總目錄，每次新增報告都要更新
-├── ebk-XXXX-YY/              ← 每個報告一個資料夾
-│   └── [topic]-report.html
-├── [topic]_science/          ← 對應的參考文獻資料夾（在 important/ 下）
+important/
+├── [topic]_science/          ← 參考文獻資料夾，與 Website/ 平行
 │   └── references.txt
-└── IMM_REPORT_TEMPLATE_SPEC.md  ← 本文件
+└── Website/
+    └── IMM-eBook/
+        ├── assets/
+        │   └── imm-logo.png  ← 報告中用 ../assets/imm-logo.png
+        ├── index.html        ← 總目錄，每次新增報告都要更新
+        ├── ebk-XXXX-YY/     ← 每個報告一個資料夾
+        │   └── [topic]-report.html
+        └── IMM_REPORT_TEMPLATE_SPEC.md  ← 本文件
 ```
 
 **命名規則：**
